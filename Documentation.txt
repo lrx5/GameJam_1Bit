@@ -1,11 +1,25 @@
-Folder Structure
-res:// (root)
-- Assets #For general imported Assets
-- Scenes #For Scenes together with its dependent scripts
-- Sprites #For Sprites & TileSheets
-- [T] Test #Folder for Testing & Prototype Materials
+[Project Overview]
+-!ToDo
 
-Setting up the Animated SpriteSheet
+-------------------------------------------------------------------------------
+[Project Structure]
+- Folder Structure
+res:// (root)
+-> Assets #For general imported Assets
+-> Scenes #For Scenes together with its dependent scripts
+-> Sprites #For Sprites & TileSheets
+-> [T] Test #Folder for Testing & Prototype Materials
+
+- Autoloads (singleton scripts)
+None so far
+
+-------------------------------------------------------------------------------
+[Assets]
+- General Sizes
+Tile size: 18px by 18px
+Quadrant Tower size: 26px by 26px
+
+- Setting up the Animated SpriteSheet
 #Red outline is a guide
 Horizontal:  24
 Vertical:    14
@@ -15,7 +29,9 @@ Separation:  2px
 			 1px
 Offset:      1px
 			 1px
+-------------------------------------------------------------------------------
 
-Display
+[Other Settings]
+- Display
 Viewport Width:  480px
 Viewport Height: 270px
