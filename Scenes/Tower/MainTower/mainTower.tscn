@@ -28,14 +28,18 @@ bulletSpawn = NodePath("GunPivot/BulletSpawn")
 projectilePacker = SubResource("Resource_53meh")
 
 [node name="Quadrant1" parent="." instance=ExtResource("3_5fpq1")]
+position = Vector2(0, 1)
 
 [node name="Quadrant2" parent="." instance=ExtResource("3_5fpq1")]
+position = Vector2(0, 1)
 rotation = 1.5708
 
 [node name="Quadrant3" parent="." instance=ExtResource("3_5fpq1")]
+position = Vector2(0, 1)
 rotation = 3.14159
 
 [node name="Quadrant4" parent="." instance=ExtResource("3_5fpq1")]
+position = Vector2(0, 1)
 rotation = 4.71239
 
 [node name="GunPivot" type="Node2D" parent="."]
