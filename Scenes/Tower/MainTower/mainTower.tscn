@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://5l0rvo3d5vff"]
+
+[ext_resource type="Script" path="res://Scenes/Tower/MainTower/mainTower.gd" id="1_rpmm2"]
+[ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_102nf"]
+[ext_resource type="PackedScene" uid="uid://by027ilxvnhvq" path="res://Scenes/Tower/Quadrant/mainTowerQuadrant.tscn" id="3_5fpq1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jcul"]
+atlas = ExtResource("2_102nf")
+region = Rect2(1280, 448, 64, 64)
+
+[node name="MainTower" type="Node2D" node_paths=PackedStringArray("quadrant1", "quadrant2", "quadrant3", "quadrant4")]
+script = ExtResource("1_rpmm2")
+quadrant1 = NodePath("Quadrant1")
+quadrant2 = NodePath("Quadrant2")
+quadrant3 = NodePath("Quadrant3")
+quadrant4 = NodePath("Quadrant4")
+
+[node name="Base" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_3jcul")
+
+[node name="Quadrant1" parent="." instance=ExtResource("3_5fpq1")]
+
+[node name="Quadrant2" parent="." instance=ExtResource("3_5fpq1")]
+rotation = 1.5708
+
+[node name="Quadrant3" parent="." instance=ExtResource("3_5fpq1")]
+rotation = 3.14159
+
+[node name="Quadrant4" parent="." instance=ExtResource("3_5fpq1")]
+rotation = 4.71239
+
+[node name="Gun" type="Sprite2D" parent="."]
+texture = ExtResource("2_102nf")
+region_enabled = true
+region_rect = Rect2(1216, 640, 64, 64)
