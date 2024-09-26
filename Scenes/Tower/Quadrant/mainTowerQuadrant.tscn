@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://by027ilxvnhvq"]
+[gd_scene load_steps=4 format=3 uid="uid://by027ilxvnhvq"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/Quadrant/mainTowerQuadrant.gd" id="1_8yh60"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="2_ck6qy"]
-[ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_oppfr"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxhea"]
-atlas = ExtResource("2_oppfr")
-region = Rect2(1280, 448, 32, 32)
+[ext_resource type="Texture2D" uid="uid://4824py4dmmuq" path="res://Sprites/tower_quadrant.png" id="2_h6nj2"]
 
 [node name="Quadrant1" type="Node2D" node_paths=PackedStringArray("healthManager")]
 script = ExtResource("1_8yh60")
@@ -14,7 +10,7 @@ healthManager = NodePath("HealthManager")
 
 [node name="Base" type="Sprite2D" parent="."]
 position = Vector2(-16, -16)
-texture = SubResource("AtlasTexture_cxhea")
+texture = ExtResource("2_h6nj2")
 
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("2_ck6qy")

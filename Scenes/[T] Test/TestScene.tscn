@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://cheoswjpe1saa"]
+
+[ext_resource type="Texture2D" uid="uid://baw01e27nf8g4" path="res://Sprites/[T] Test/1bit_ss_test.png" id="1_yiig5"]
+[ext_resource type="Script" path="res://Scenes/[T] Test/Enemy.gd" id="2_57guv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmtw4"]
+atlas = ExtResource("1_yiig5")
+region = Rect2(1, 1, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbaqr"]
+atlas = ExtResource("1_yiig5")
+region = Rect2(21, 1, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5lfd"]
+atlas = ExtResource("1_yiig5")
+region = Rect2(41, 1, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghbgr"]
+atlas = ExtResource("1_yiig5")
+region = Rect2(61, 1, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm1we"]
+atlas = ExtResource("1_yiig5")
+region = Rect2(81, 1, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xq3q"]
+atlas = ExtResource("1_yiig5")
+region = Rect2(101, 1, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8k2i"]
+atlas = ExtResource("1_yiig5")
+region = Rect2(121, 1, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3jnl"]
+atlas = ExtResource("1_yiig5")
+region = Rect2(141, 1, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jocmj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmtw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbaqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5lfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghbgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm1we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xq3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8k2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3jnl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jocmj")
+autoplay = "default"
+frame_progress = 0.863314
+script = ExtResource("2_57guv")
+
+[node name="Camera2D" type="Camera2D" parent="AnimatedSprite2D"]
