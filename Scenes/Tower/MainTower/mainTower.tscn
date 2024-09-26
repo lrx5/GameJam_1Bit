@@ -1,23 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://5l0rvo3d5vff"]
+[gd_scene load_steps=9 format=3 uid="uid://5l0rvo3d5vff"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/MainTower/mainTower.gd" id="1_rpmm2"]
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_102nf"]
+[ext_resource type="PackedScene" uid="uid://cethbk84oqk0g" path="res://Scenes/Projectiles/ProjectileType1/projectileType1.tscn" id="2_g5kfm"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/Resources/projectilePacker.gd" id="3_3manp"]
 [ext_resource type="PackedScene" uid="uid://by027ilxvnhvq" path="res://Scenes/Tower/Quadrant/mainTowerQuadrant.tscn" id="3_5fpq1"]
+[ext_resource type="Script" path="res://Scenes/Tower/MainTower/gunPivot.gd" id="3_yrwgf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3jcul"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yhsk"]
 atlas = ExtResource("2_102nf")
-region = Rect2(1280, 448, 64, 64)
+region = Rect2(1360, 640, 32, 64)
 
-[node name="MainTower" type="Node2D" node_paths=PackedStringArray("quadrant1", "quadrant2", "quadrant3", "quadrant4")]
+[sub_resource type="Resource" id="Resource_53meh"]
+script = ExtResource("3_3manp")
+projectileName = &"Default"
+projectileIcon = SubResource("AtlasTexture_0yhsk")
+projectileScene = ExtResource("2_g5kfm")
+
+[node name="MainTower" type="Node2D" node_paths=PackedStringArray("quadrant1", "quadrant2", "quadrant3", "quadrant4", "gunPivot", "bulletSpawn")]
 script = ExtResource("1_rpmm2")
 quadrant1 = NodePath("Quadrant1")
 quadrant2 = NodePath("Quadrant2")
 quadrant3 = NodePath("Quadrant3")
 quadrant4 = NodePath("Quadrant4")
-
-[node name="Base" type="Sprite2D" parent="."]
-visible = false
-texture = SubResource("AtlasTexture_3jcul")
+gunPivot = NodePath("GunPivot")
+bulletSpawn = NodePath("GunPivot/BulletSpawn")
+projectilePacker = SubResource("Resource_53meh")
 
 [node name="Quadrant1" parent="." instance=ExtResource("3_5fpq1")]
 
@@ -30,7 +38,15 @@ rotation = 3.14159
 [node name="Quadrant4" parent="." instance=ExtResource("3_5fpq1")]
 rotation = 4.71239
 
-[node name="Gun" type="Sprite2D" parent="."]
+[node name="GunPivot" type="Node2D" parent="."]
+script = ExtResource("3_yrwgf")
+
+[node name="BulletSpawn" type="Node2D" parent="GunPivot"]
+position = Vector2(39, 0)
+
+[node name="Gun" type="Sprite2D" parent="GunPivot/BulletSpawn"]
+position = Vector2(-27, 0)
+rotation = 1.5708
 texture = ExtResource("2_102nf")
 region_enabled = true
 region_rect = Rect2(1216, 640, 64, 64)

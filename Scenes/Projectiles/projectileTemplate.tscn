@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdnlwrjhbh2yf"]
+
+[ext_resource type="Script" path="res://Scenes/Projectiles/ProjectileType1/projectileType1.gd" id="1_2hx1a"]
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_2hx1a")
+
+[node name="ProjectileShape" type="CollisionShape2D" parent="."]
+
+[node name="ProjectileSprite" type="Sprite2D" parent="."]

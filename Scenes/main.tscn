@@ -3511,3 +3511,6 @@ tile_set = SubResource("TileSet_4hfpl")
 
 [node name="MainTower" parent="." instance=ExtResource("2_3thwq")]
 position = Vector2(240, 144)
+projectilePacker = null
+
+[node name="ProjectileField" type="Node2D" parent="." groups=["projectileField"]]
