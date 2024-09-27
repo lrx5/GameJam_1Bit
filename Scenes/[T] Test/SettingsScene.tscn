@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wuhlyhixodjs"]
+[gd_scene load_steps=13 format=3 uid="uid://1maw45qqsqk"]
 
 [ext_resource type="Script" path="res://Scripts/Settings.gd" id="1_f7q6d"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="2_fjr2j"]
