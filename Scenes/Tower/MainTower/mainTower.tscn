@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Tower/MainTower/mainTower.gd" id="1_rpmm2"]
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_102nf"]
-[ext_resource type="Resource" uid="uid://bxygu7bx2ynrg" path="res://Scenes/Projectiles/ProjectileType1/projectileType1Packed.tres" id="2_q86os"]
+[ext_resource type="Resource" uid="uid://di06bdgnkamgt" path="res://Scenes/Projectiles/ProjectileType1/projectileType1Packed.tres" id="2_q86os"]
 [ext_resource type="PackedScene" uid="uid://by027ilxvnhvq" path="res://Scenes/Tower/Quadrant/mainTowerQuadrant.tscn" id="3_5fpq1"]
 [ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="3_yrwgf"]
 [ext_resource type="Script" path="res://Scenes/Components/bulletSpawn.gd" id="5_yyx2b"]

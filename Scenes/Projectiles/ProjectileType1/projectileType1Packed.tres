@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProjectilePacker" load_steps=5 format=3 uid="uid://bxygu7bx2ynrg"]
+[gd_resource type="Resource" script_class="ProjectilePacker" load_steps=5 format=3 uid="uid://di06bdgnkamgt"]
 
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="1_skber"]
 [ext_resource type="PackedScene" uid="uid://cethbk84oqk0g" path="res://Scenes/Projectiles/ProjectileType1/projectileType1.tscn" id="2_shqkm"]
