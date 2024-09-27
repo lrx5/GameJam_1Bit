@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemy.tscn" id="3_5btnd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_exk1w"]
-texture = ExtResource("1_hfbbv")
+texture = ExtResource("1_adr6d")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
