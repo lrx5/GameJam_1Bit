@@ -3,12 +3,18 @@ extends Characters
 
 var initTarget 	: MainTowerQuadrant
 
+var isIdle 		= "parameters/StateMachine/conditions/isIdle"
+var isRunning 	= "parameters/StateMachine/conditions/isRunning"
+
+
+
+
 func _ready():
 	_setInitTarget()
 
 func _process(delta: float) -> void:
 	pass
-	#move_and_slide()
+	move_and_slide()
 
 func _setInitTarget():
 	var quadDict		: Dictionary
@@ -27,7 +33,9 @@ func _setInitTarget():
 			quadDict[quad] = distance
 			towerDistance.append(distance)
 
-	print("I am enemy: ", name)
-	print("The shortest distance to a quadrant is ", towerDistance.min(),". This quadrant is "\
-	,quadDict.find_key(towerDistance.min()))
+	#print("I am enemy: ", name)
+	#print("The shortest distance to a quadrant is ", towerDistance.min(),". This quadrant is "\
+	#,quadDict.find_key(towerDistance.min()))
 	initTarget = quadDict.find_key(towerDistance.min())
+	
+	

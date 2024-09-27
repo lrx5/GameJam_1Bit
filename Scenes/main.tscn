@@ -3516,15 +3516,16 @@ position = Vector2(240, 144)
 [node name="ProjectileField" type="Node2D" parent="." groups=["projectileField"]]
 
 [node name="Malayo" parent="." instance=ExtResource("3_5btnd")]
-position = Vector2(140, 203)
-runSpeed = 25.0
+position = Vector2(16, 212)
+runSpeed = 5.0
 
 [node name="Malapit" parent="." instance=ExtResource("3_5btnd")]
-position = Vector2(201, 113)
-runSpeed = 10.0
+position = Vector2(118, 81)
+runSpeed = 1.0
 
 [node name="Mabilis" parent="." instance=ExtResource("3_5btnd")]
-position = Vector2(237, 67)
+position = Vector2(470, 23)
+runSpeed = 8.0
 
 [node name="HighestHP" parent="." instance=ExtResource("3_5btnd")]
 visible = false
