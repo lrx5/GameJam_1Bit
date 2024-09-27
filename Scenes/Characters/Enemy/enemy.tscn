@@ -1,0 +1,122 @@
+[gd_scene load_steps=16 format=3 uid="uid://gb2y6ecbyf3d"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Enemy/enemy.gd" id="1_eopo7"]
+[ext_resource type="Texture2D" uid="uid://baw01e27nf8g4" path="res://Sprites/[T] Test/1bit_ss_test.png" id="2_twhs5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt5v2"]
+atlas = ExtResource("2_twhs5")
+region = Rect2(0, 0, 160, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4heu"]
+radius = 5.0
+height = 16.0
+
+[sub_resource type="Animation" id="Animation_uinsc"]
+resource_name = "Run"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_2fwxf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rplgh"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ti4w2"]
+_data = {
+"Idle": SubResource("Animation_rplgh"),
+"RESET": SubResource("Animation_2fwxf"),
+"Run": SubResource("Animation_uinsc")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cnokl"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m5ggm"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hujra"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r4fkx"]
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ftw1v"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pp7ln"]
+states/Idle/node = SubResource("AnimationNodeAnimation_cnokl")
+states/Idle/position = Vector2(360.706, 100.228)
+states/Run/node = SubResource("AnimationNodeAnimation_m5ggm")
+states/Run/position = Vector2(523.059, 97.2445)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_hujra"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_r4fkx"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ftw1v")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_agrjj"]
+graph_offset = Vector2(-351.337, 116.975)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_pp7ln")
+nodes/StateMachine/position = Vector2(47.0588, 141.176)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animTree")]
+script = ExtResource("1_eopo7")
+animTree = NodePath("EnemyAnimationTree")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_kt5v2")
+hframes = 8
+region_rect = Rect2(0, 0, 158, 18)
+
+[node name="EnemyShape" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_w4heu")
+
+[node name="EnemyAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ti4w2")
+}
+
+[node name="EnemyAnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_agrjj")
+anim_player = NodePath("../EnemyAnimationPlayer")
+parameters/StateMachine/conditions/isIdle = false
+parameters/StateMachine/conditions/isRunning = false

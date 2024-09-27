@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://ubdkmnkemmfs"]
+[gd_scene load_steps=6 format=4 uid="uid://ubdkmnkemmfs"]
 
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="1_hfbbv"]
 [ext_resource type="PackedScene" uid="uid://5l0rvo3d5vff" path="res://Scenes/Tower/MainTower/mainTower.tscn" id="2_3thwq"]
+[ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemy.tscn" id="3_5btnd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_exk1w"]
 texture = ExtResource("1_hfbbv")
@@ -3511,6 +3512,8 @@ tile_set = SubResource("TileSet_4hfpl")
 
 [node name="MainTower" parent="." instance=ExtResource("2_3thwq")]
 position = Vector2(240, 144)
-projectilePacker = null
 
 [node name="ProjectileField" type="Node2D" parent="." groups=["projectileField"]]
+
+[node name="Enemy" parent="." instance=ExtResource("3_5btnd")]
+position = Vector2(238, -32)

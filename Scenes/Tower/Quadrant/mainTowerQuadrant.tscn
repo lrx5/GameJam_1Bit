@@ -9,7 +9,7 @@ script = ExtResource("1_8yh60")
 healthManager = NodePath("HealthManager")
 
 [node name="Base" type="Sprite2D" parent="."]
-position = Vector2(-16, -16)
+position = Vector2(-13, -13)
 texture = ExtResource("2_h6nj2")
 
 [node name="HealthManager" type="Node" parent="."]

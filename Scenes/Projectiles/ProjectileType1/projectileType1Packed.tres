@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ProjectilePacker" load_steps=5 format=3 uid="uid://bxygu7bx2ynrg"]
+
+[ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="1_skber"]
+[ext_resource type="PackedScene" uid="uid://cethbk84oqk0g" path="res://Scenes/Projectiles/ProjectileType1/projectileType1.tscn" id="2_shqkm"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/Resources/projectilePacker.gd" id="3_y43o0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lqly"]
+atlas = ExtResource("1_skber")
+region = Rect2(1360, 640, 32, 64)
+
+[resource]
+script = ExtResource("3_y43o0")
+projectileName = &"Type1"
+projectileIcon = SubResource("AtlasTexture_1lqly")
+projectileScene = ExtResource("2_shqkm")

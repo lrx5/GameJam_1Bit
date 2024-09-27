@@ -1,15 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://5l0rvo3d5vff"]
+[gd_scene load_steps=7 format=3 uid="uid://5l0rvo3d5vff"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/MainTower/mainTower.gd" id="1_rpmm2"]
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_102nf"]
 [ext_resource type="Resource" uid="uid://bxygu7bx2ynrg" path="res://Scenes/Projectiles/ProjectileType1/projectileType1Packed.tres" id="2_q86os"]
 [ext_resource type="PackedScene" uid="uid://by027ilxvnhvq" path="res://Scenes/Tower/Quadrant/mainTowerQuadrant.tscn" id="3_5fpq1"]
-[ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="3_yrwgf"]
-[ext_resource type="Script" path="res://Scenes/Components/bulletSpawn.gd" id="5_yyx2b"]
-[ext_resource type="Script" path="res://Scenes/Components/attackRange.gd" id="7_w52sc"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_fw7y1"]
-radius = 125.0
+[ext_resource type="Script" path="res://Scenes/Tower/MainTower/gunPivot.gd" id="3_yrwgf"]
+[ext_resource type="Script" path="res://Scenes/Tower/MainTower/bulletSpawn.gd" id="5_yyx2b"]
 
 [node name="MainTower" type="Node2D" node_paths=PackedStringArray("quadrant1", "quadrant2", "quadrant3", "quadrant4")]
 script = ExtResource("1_rpmm2")
@@ -29,14 +25,14 @@ rotation = 3.14159
 [node name="Quadrant4" parent="." instance=ExtResource("3_5fpq1")]
 rotation = 4.71239
 
-[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
+[node name="GunPivot" type="Node2D" parent="."]
 script = ExtResource("3_yrwgf")
-inRange = NodePath("../AttackRange")
 
-[node name="BulletSpawn" type="Node2D" parent="GunPivot" node_paths=PackedStringArray("gunPivot")]
+[node name="BulletSpawn" type="Node2D" parent="GunPivot" node_paths=PackedStringArray("gunPivot", "bulletSpawn")]
 position = Vector2(39, 0)
 script = ExtResource("5_yyx2b")
 gunPivot = NodePath("..")
+bulletSpawn = NodePath(".")
 projectilePacker = ExtResource("2_q86os")
 
 [node name="Gun" type="Sprite2D" parent="GunPivot/BulletSpawn"]
@@ -45,9 +41,3 @@ rotation = 1.5708
 texture = ExtResource("2_102nf")
 region_enabled = true
 region_rect = Rect2(1216, 640, 64, 64)
-
-[node name="AttackRange" type="Area2D" parent="."]
-script = ExtResource("7_w52sc")
-
-[node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CircleShape2D_fw7y1")
