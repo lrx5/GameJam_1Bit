@@ -27,7 +27,7 @@ rotation = 1.5708
 rotation = 3.14159
 
 [node name="Quadrant4" parent="." instance=ExtResource("3_5fpq1")]
-rotation = -1.5708
+rotation = 4.71239
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
 script = ExtResource("3_yrwgf")

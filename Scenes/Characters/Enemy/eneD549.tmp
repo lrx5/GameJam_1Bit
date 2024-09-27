@@ -128,5 +128,3 @@ parameters/StateMachine/conditions/isRunning = false
 
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("3_8vmgq")
-
-[node name="EnemyStateMachines" type="Node" parent="."]

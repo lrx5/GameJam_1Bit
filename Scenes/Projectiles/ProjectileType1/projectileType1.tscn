@@ -10,6 +10,7 @@ height = 34.0
 [node name="ProjectileType1" type="CharacterBody2D"]
 collision_layer = 512
 collision_mask = 16384
+motion_mode = 1
 script = ExtResource("1_wkkv0")
 
 [node name="ProjectileShape" type="CollisionShape2D" parent="."]

@@ -18,7 +18,6 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	enemiesDetected = get_overlapping_bodies()
-	print(targetPriority)
 
 func _setTarget():
 	var valueSort : Array
