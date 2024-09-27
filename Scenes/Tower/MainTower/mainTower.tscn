@@ -27,7 +27,7 @@ rotation = 1.5708
 rotation = 3.14159
 
 [node name="Quadrant4" parent="." instance=ExtResource("3_5fpq1")]
-rotation = 4.71239
+rotation = -1.5708
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
 script = ExtResource("3_yrwgf")
@@ -47,6 +47,8 @@ region_enabled = true
 region_rect = Rect2(1216, 640, 64, 64)
 
 [node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4096
 script = ExtResource("7_w52sc")
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]

@@ -3,12 +3,14 @@ extends Node2D
 
 @export var inRange	: AttackRange
 
-
+func _ready():
+	print(inRange.targetPriority)
 
 func _process(delta: float) -> void:
-	if inRange.enemy:
-		var enemyPosition = inRange.enemy.global_position
+	if inRange.target:
+		var enemyPosition = inRange.target.global_position
 		rotation = global_position.angle_to_point(enemyPosition)
+		
 		
 	#get mouse position
 	#var mousePos = get_global_mouse_position()

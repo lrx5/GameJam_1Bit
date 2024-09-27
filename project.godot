@@ -33,6 +33,18 @@ shoot={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Ground"
+2d_physics/layer_5="Projectiles"
+2d_physics/layer_6="AttackRange"
+2d_physics/layer_9="Player"
+2d_physics/layer_10="PlayerHitBox"
+2d_physics/layer_11="PlayerHurtBox"
+2d_physics/layer_13="Enemy"
+2d_physics/layer_14="EnemyHitBox"
+2d_physics/layer_15="EnemyHurtBox"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

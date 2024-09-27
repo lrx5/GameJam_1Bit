@@ -6,5 +6,6 @@ func _ready():
 	print("I am the enemy and my position is: ",global_position)
 
 func _process(delta: float) -> void:
-	move_and_slide()
+	pass
+	#move_and_slide()
 	

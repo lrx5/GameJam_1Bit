@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://gb2y6ecbyf3d"]
+[gd_scene load_steps=17 format=3 uid="uid://gb2y6ecbyf3d"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/enemy.gd" id="1_eopo7"]
 [ext_resource type="Texture2D" uid="uid://baw01e27nf8g4" path="res://Sprites/[T] Test/1bit_ss_test.png" id="2_twhs5"]
+[ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="3_8vmgq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kt5v2"]
 atlas = ExtResource("2_twhs5")
@@ -97,9 +98,12 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_pp7ln")
 nodes/StateMachine/position = Vector2(47.0588, 141.176)
 node_connections = [&"output", 0, &"StateMachine"]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animTree")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animTree", "healthManager")]
+collision_layer = 4096
+collision_mask = 257
 script = ExtResource("1_eopo7")
 animTree = NodePath("EnemyAnimationTree")
+healthManager = NodePath("HealthManager")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_kt5v2")
@@ -120,3 +124,6 @@ tree_root = SubResource("AnimationNodeBlendTree_agrjj")
 anim_player = NodePath("../EnemyAnimationPlayer")
 parameters/StateMachine/conditions/isIdle = false
 parameters/StateMachine/conditions/isRunning = false
+
+[node name="HealthManager" type="Node" parent="."]
+script = ExtResource("3_8vmgq")

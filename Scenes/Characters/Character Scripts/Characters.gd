@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export_category("Node References")
 @export var animTree : AnimationTree
+@export var healthManager : HealthManager
 
 @export_category("Character Variables")
 @export_range(0,150,1,"or_greater") var runSpeed 	: float = 125

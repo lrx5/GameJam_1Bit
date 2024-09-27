@@ -2,23 +2,47 @@ class_name AttackRange
 extends Area2D
 
 @onready var hasDetectedEnemy 	: bool = false
-@onready var enemy 				: Characters
+@onready var target 				: Characters
+
+@export_enum("Farthest","Nearest","Highest HP", "Fastest") var targetPriority = "Farthest"
+
+var enemiesDetected	: Array
+var enemiesStatDict : Dictionary
+
 
 func _ready() -> void:
-	body_entered.connect(_onEnemyDetected)
-	body_exited.connect(_onEnemyOutOfRange)
+	pass
 	
 func _process(delta: float) -> void:
-	#if enemy:
-	#	print("I'm tracking the position of the enemy in ",enemy.global_position)
-	
-	body_exited.disconnect(_onEnemyDetected)
+	_setTarget()
 
-func _onEnemyDetected(body : Characters):
-	#hasDetectedEnemy = true
-	print("Body detected")
-	enemy = body
+func _physics_process(delta: float) -> void:
+	enemiesDetected = get_overlapping_bodies()
+	print(targetPriority)
+
+func _setTarget():
+	var valueSort : Array
+	match targetPriority:
+		"Farthest", "Nearest":
+			for enemy in enemiesDetected:
+				enemiesStatDict[enemy] = global_position.distance_to(enemy.global_position)
+				valueSort.append(global_position.distance_to(enemy.global_position))
+			if targetPriority == "Farthest":
+				target = enemiesStatDict.find_key(valueSort.max())
+			else:
+				target = enemiesStatDict.find_key(valueSort.min())
+		"Fastest":
+			for enemy in enemiesDetected:
+				enemiesStatDict[enemy] = enemy.runSpeed
+				print(enemy.runSpeed)
+				valueSort.append(enemy.runSpeed)
+			target =  enemiesStatDict.find_key(valueSort.max())
+		"HighestHP":
+			for enemy in enemiesDetected:
+				if enemy.healthManager:
+					enemiesStatDict[enemy]= enemy.healthManager.currentHealth
+					valueSort.append(enemy.healthManager.currentHealth)
+				target = enemiesStatDict.find_key(valueSort.max())
+				
+			
 		
-func _onEnemyOutOfRange(body : Characters):
-	print("Enemy out of range")
-	enemy = null
