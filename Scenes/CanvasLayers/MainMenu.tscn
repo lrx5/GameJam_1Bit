@@ -1,13 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0jhe8q1ju468"]
+[gd_scene load_steps=14 format=3 uid="uid://d0jhe8q1ju468"]
 
 [ext_resource type="Script" path="res://Scenes/CanvasLayers/CanvasLayer Scripts/MainMenu.gd" id="1_8w4ok"]
 [ext_resource type="Texture2D" uid="uid://br3p4m4d2c5ho" path="res://Sprites/Play_Normal.png" id="1_h8ha4"]
 [ext_resource type="Texture2D" uid="uid://ckk3ddjmibhn0" path="res://Sprites/Play_Hoverl.png" id="2_5ovou"]
 [ext_resource type="Texture2D" uid="uid://d011k1lj0q3qm" path="res://Sprites/Settings_Normal.png" id="3_kjnua"]
-[ext_resource type="Texture2D" uid="uid://uusd6c8esw6y" path="res://Sprites/1bit_bg.png" id="3_xgsi4"]
 [ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Sprites/Settings_Hover.png" id="4_voiko"]
 [ext_resource type="Texture2D" uid="uid://yyntxpdrmfjj" path="res://Sprites/Quit_Normal.png" id="6_rl4kb"]
 [ext_resource type="Texture2D" uid="uid://bshy1a3f0nw4i" path="res://Sprites/Quit_Hover.png" id="7_v0aiy"]
+[ext_resource type="Texture2D" uid="uid://blxsuusrq64tg" path="res://Sprites/1bit_bg_main.png" id="8_xb1rx"]
+[ext_resource type="Shader" path="res://Scenes/CanvasLayers/BackgroundSmoke.gdshader" id="9_0bu8o"]
+[ext_resource type="Texture2D" uid="uid://dwcahf700kdab" path="res://Sprites/1bit_bg_smoke.png" id="9_8kimt"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayers/sprite_wave.gd" id="11_iihp7"]
+[ext_resource type="Texture2D" uid="uid://gylwgx722dai" path="res://Sprites/1bit_bg_white.png" id="12_8bww7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jldx4"]
+shader = ExtResource("9_0bu8o")
+shader_parameter/time = null
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 10.0
 
 [node name="MainMenu" type="CanvasLayer"]
 process_mode = 3
@@ -55,9 +65,22 @@ texture_pressed = ExtResource("6_rl4kb")
 texture_hover = ExtResource("7_v0aiy")
 texture_disabled = ExtResource("7_v0aiy")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BackgroundMain" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(240, 135)
-texture = ExtResource("3_xgsi4")
+texture = ExtResource("8_xb1rx")
+
+[node name="BackgroundSmoke" type="Sprite2D" parent="."]
+z_index = -2
+material = SubResource("ShaderMaterial_jldx4")
+position = Vector2(240, 135)
+texture = ExtResource("9_8kimt")
+script = ExtResource("11_iihp7")
+
+[node name="BackgroundWhite" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(240, 135)
+texture = ExtResource("12_8bww7")
 
 [connection signal="pressed" from="Control/Play" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="Control/Settings" to="Control" method="_on_settings_pressed"]

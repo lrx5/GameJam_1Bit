@@ -1,11 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://1maw45qqsqk"]
+[gd_scene load_steps=19 format=3 uid="uid://1maw45qqsqk"]
 
 [ext_resource type="Script" path="res://Scenes/CanvasLayers/CanvasLayer Scripts/Settings.gd" id="1_f7q6d"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="2_fjr2j"]
 [ext_resource type="Texture2D" uid="uid://dkrabk2vh630" path="res://Sprites/Music_Normal.png" id="3_40lhb"]
 [ext_resource type="Texture2D" uid="uid://b7jvoxecycbcl" path="res://Sprites/settings_handle.png" id="3_w6o26"]
 [ext_resource type="Texture2D" uid="uid://dp66ukqr71x67" path="res://Sprites/Sfx_Normal.png" id="4_umn54"]
+[ext_resource type="Shader" path="res://Scenes/CanvasLayers/SettingsScene.gdshader" id="5_dkom3"]
 [ext_resource type="Texture2D" uid="uid://70qcfbhty0mo" path="res://Sprites/1bit_settings.png" id="6_tymsj"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayers/label.gd" id="7_rpes1"]
+[ext_resource type="Shader" path="res://Scenes/CanvasLayers/SettingsBackground.gdshader" id="8_c113w"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayers/sprite_wave_settings.gd" id="10_d8rxc"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ugcde"]
 color = Color(1, 1, 1, 1)
@@ -21,9 +25,21 @@ thickness = 6
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nw3xq"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ceiul"]
+shader = ExtResource("5_dkom3")
+shader_parameter/time = null
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 10.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_6oloa"]
 font = ExtResource("2_fjr2j")
 font_size = 30
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lexfo"]
+shader = ExtResource("8_c113w")
+shader_parameter/time = null
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 10.0
 
 [node name="Settings" type="CanvasLayer"]
 process_mode = 3
@@ -106,6 +122,7 @@ offset_bottom = 195.0
 texture = ExtResource("4_umn54")
 
 [node name="Label" type="Label" parent="Control"]
+material = SubResource("ShaderMaterial_ceiul")
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -118,10 +135,13 @@ grow_horizontal = 2
 text = "SETTINGS"
 label_settings = SubResource("LabelSettings_6oloa")
 horizontal_alignment = 1
+script = ExtResource("7_rpes1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lexfo")
 position = Vector2(240, 135)
 texture = ExtResource("6_tymsj")
+script = ExtResource("10_d8rxc")
 
 [connection signal="value_changed" from="Control/BGMSlider" to="Control" method="_on_bgm_slider_value_changed"]
 [connection signal="value_changed" from="Control/SFXSlider" to="Control" method="_on_sfx_slider_value_changed"]
