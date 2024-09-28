@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="1_hfbbv"]
 [ext_resource type="PackedScene" uid="uid://5l0rvo3d5vff" path="res://Scenes/Tower/MainTower/mainTower.tscn" id="2_3thwq"]
 [ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemy.tscn" id="3_5btnd"]
-[ext_resource type="PackedScene" uid="uid://d0jhe8q1ju468" path="res://Scenes/[T] Test/main_menu.tscn" id="4_ajgcx"]
-[ext_resource type="PackedScene" uid="uid://1maw45qqsqk" path="res://Scenes/[T] Test/SettingsScene.tscn" id="5_s07ia"]
+[ext_resource type="PackedScene" uid="uid://d0jhe8q1ju468" path="res://Scenes/CanvasLayers/MainMenu.tscn" id="4_ajgcx"]
+[ext_resource type="PackedScene" uid="uid://1maw45qqsqk" path="res://Scenes/CanvasLayers/SettingsScene.tscn" id="5_s07ia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_exk1w"]
 texture = ExtResource("1_hfbbv")
