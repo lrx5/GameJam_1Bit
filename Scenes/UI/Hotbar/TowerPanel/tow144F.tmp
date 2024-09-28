@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce5kpfo525fhr"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/TowerPanel/tower1Panel.gd" id="1_ieskt"]
+[ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="1_vcteh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1brf"]
+atlas = ExtResource("1_vcteh")
+region = Rect2(1216, 640, 64, 64)
+
+[node name="Tower1Panel" type="Panel"]
+custom_minimum_size = Vector2(36, 36)
+script = ExtResource("1_ieskt")
+towerName = "mainTower"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(18, 18)
+scale = Vector2(0.55, 0.55)
+texture = SubResource("AtlasTexture_o1brf")
+
+[connection signal="gui_input" from="." to="." method="_onUserInterfaceInput"]

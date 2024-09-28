@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://5l0rvo3d5vff"]
+[gd_scene load_steps=10 format=3 uid="uid://5l0rvo3d5vff"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/MainTower/mainTower.gd" id="1_rpmm2"]
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_102nf"]
@@ -10,6 +10,15 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fw7y1"]
 radius = 125.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ma37"]
+bg_color = Color(1, 1, 1, 0.235294)
+corner_radius_top_left = 125
+corner_radius_top_right = 125
+corner_radius_bottom_right = 125
+corner_radius_bottom_left = 125
+corner_detail = 20
+anti_aliasing = false
 
 [node name="MainTower" type="Node2D" node_paths=PackedStringArray("quadrant1", "quadrant2", "quadrant3", "quadrant4")]
 script = ExtResource("1_rpmm2")
@@ -53,3 +62,11 @@ script = ExtResource("7_w52sc")
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_fw7y1")
+
+[node name="AttackRangeUI" type="Panel" parent="."]
+visible = false
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = 125.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6ma37")

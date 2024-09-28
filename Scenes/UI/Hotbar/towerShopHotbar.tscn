@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxcskcr2b6so0"]
+
+[ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/tower1Panel.tscn" id="1_5k7b3"]
+
+[node name="TowerShopHotbar" type="CanvasLayer"]
+
+[node name="TowerShop" type="Panel" parent="."]
+custom_minimum_size = Vector2(80, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ShopGrid" type="GridContainer" parent="TowerShop"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 3.0
+offset_top = 3.0
+theme_override_constants/h_separation = 3
+columns = 2
+
+[node name="Tower1Panel" parent="TowerShop/ShopGrid" instance=ExtResource("1_5k7b3")]
+layout_mode = 2
+
+[node name="Tower1Panel2" parent="TowerShop/ShopGrid" instance=ExtResource("1_5k7b3")]
+layout_mode = 2

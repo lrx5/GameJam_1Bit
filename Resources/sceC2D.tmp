@@ -1,0 +1,26 @@
+[gd_scene load_steps=12 format=3 uid="uid://v61eqfjgvsfx"]
+
+[ext_resource type="Script" path="res://Resources/sceneManager.gd" id="1_vy3iy"]
+[ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemy.tscn" id="2_x4pv4"]
+[ext_resource type="PackedScene" uid="uid://5l0rvo3d5vff" path="res://Scenes/Tower/MainTower/mainTower.tscn" id="3_bv6go"]
+[ext_resource type="PackedScene" uid="uid://by027ilxvnhvq" path="res://Scenes/Tower/Quadrant/mainTowerQuadrant.tscn" id="4_gwrce"]
+[ext_resource type="PackedScene" uid="uid://cethbk84oqk0g" path="res://Scenes/Projectiles/ProjectileType1/projectileType1.tscn" id="5_vbxru"]
+[ext_resource type="PackedScene" uid="uid://dxcskcr2b6so0" path="res://Scenes/UI/Hotbar/towerShopHotbar.tscn" id="6_ehogn"]
+[ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel1/tower1Panel.tscn" id="7_f8c7e"]
+[ext_resource type="PackedScene" uid="uid://d0jhe8q1ju468" path="res://Scenes/[T] Test/main_menu.tscn" id="8_hjitk"]
+[ext_resource type="PackedScene" uid="uid://1maw45qqsqk" path="res://Scenes/[T] Test/SettingsScene.tscn" id="9_fj6s4"]
+[ext_resource type="PackedScene" uid="uid://cheoswjpe1saa" path="res://Scenes/[T] Test/TestScene.tscn" id="10_ng2n4"]
+[ext_resource type="PackedScene" uid="uid://bbilceywr41gy" path="res://Scenes/world.tscn" id="11_jp5b4"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_vy3iy")
+enemy = ExtResource("2_x4pv4")
+mainTower = ExtResource("3_bv6go")
+mainTowerQuadrant = ExtResource("4_gwrce")
+projectileType1 = ExtResource("5_vbxru")
+towerShopHotbar = ExtResource("6_ehogn")
+tower1Panel = ExtResource("7_f8c7e")
+main_menu = ExtResource("8_hjitk")
+SettingsScene = ExtResource("9_fj6s4")
+TestScene = ExtResource("10_ng2n4")
+world = ExtResource("11_jp5b4")
