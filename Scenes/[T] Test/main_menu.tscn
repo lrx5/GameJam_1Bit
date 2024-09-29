@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8w4ok")
 
-[node name="Play" type="TextureButton" parent="Control"]
+[node name="Play" type="TextureButton" parent="Control" groups=["menuControls"]]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 171.0
@@ -33,7 +33,7 @@ texture_pressed = ExtResource("1_h8ha4")
 texture_hover = ExtResource("2_5ovou")
 texture_focused = ExtResource("2_5ovou")
 
-[node name="Settings" type="TextureButton" parent="Control"]
+[node name="Settings" type="TextureButton" parent="Control" groups=["menuControls"]]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 213.0
@@ -44,7 +44,7 @@ texture_pressed = ExtResource("3_kjnua")
 texture_hover = ExtResource("4_voiko")
 texture_disabled = ExtResource("4_voiko")
 
-[node name="Quit" type="TextureButton" parent="Control"]
+[node name="Quit" type="TextureButton" parent="Control" groups=["menuControls"]]
 layout_mode = 0
 offset_left = 427.0
 offset_top = 213.0

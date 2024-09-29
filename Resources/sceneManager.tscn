@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cethbk84oqk0g" path="res://Scenes/Projectiles/ProjectileType1/projectileType1.tscn" id="5_vbxru"]
 [ext_resource type="PackedScene" uid="uid://dxcskcr2b6so0" path="res://Scenes/UI/Hotbar/towerShopHotbar.tscn" id="6_ehogn"]
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/tower1Panel.tscn" id="7_f8c7e"]
-[ext_resource type="PackedScene" uid="uid://d0jhe8q1ju468" path="res://Scenes/[T] Test/main_menu.tscn" id="8_hjitk"]
-[ext_resource type="PackedScene" uid="uid://1maw45qqsqk" path="res://Scenes/[T] Test/SettingsScene.tscn" id="9_fj6s4"]
+[ext_resource type="PackedScene" uid="uid://byaj84r1nn03j" path="res://Scenes/UI/MainMenu/mainMenuTextRect.tscn" id="8_aelne"]
+[ext_resource type="PackedScene" uid="uid://bsfofk3gmlsdb" path="res://Scenes/UI/Settings/settingsTextRect.tscn" id="9_jw8xs"]
 [ext_resource type="PackedScene" uid="uid://cheoswjpe1saa" path="res://Scenes/[T] Test/TestScene.tscn" id="10_ng2n4"]
 [ext_resource type="PackedScene" uid="uid://bbilceywr41gy" path="res://Scenes/world.tscn" id="11_jp5b4"]
 
@@ -20,7 +20,7 @@ mainTowerQuadrant = ExtResource("4_gwrce")
 projectileType1 = ExtResource("5_vbxru")
 towerShopHotbar = ExtResource("6_ehogn")
 tower1Panel = ExtResource("7_f8c7e")
-main_menu = ExtResource("8_hjitk")
-SettingsScene = ExtResource("9_fj6s4")
+mainMenuTextRect = ExtResource("8_aelne")
+settingsTextRect = ExtResource("9_jw8xs")
 TestScene = ExtResource("10_ng2n4")
 world = ExtResource("11_jp5b4")

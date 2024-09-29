@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxcskcr2b6so0"]
+[gd_scene load_steps=3 format=3 uid="uid://dxcskcr2b6so0"]
 
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/tower1Panel.tscn" id="1_5k7b3"]
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
 
 [node name="TowerShopHotbar" type="CanvasLayer"]
+script = ExtResource("1_nu803")
 
 [node name="TowerShop" type="Panel" parent="."]
 custom_minimum_size = Vector2(80, 0)
@@ -21,8 +23,14 @@ offset_top = 3.0
 theme_override_constants/h_separation = 3
 columns = 2
 
-[node name="Tower1Panel" parent="TowerShop/ShopGrid" instance=ExtResource("1_5k7b3")]
+[node name="Tower1Panel" parent="TowerShop/ShopGrid" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
 layout_mode = 2
+script = null
 
-[node name="Tower1Panel2" parent="TowerShop/ShopGrid" instance=ExtResource("1_5k7b3")]
+[node name="Tower2Panel" parent="TowerShop/ShopGrid" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
+layout_mode = 2
+script = null
+
+[node name="PanelTemplate" type="Panel" parent="TowerShop/ShopGrid" groups=["buildTower"]]
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2

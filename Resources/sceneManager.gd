@@ -10,10 +10,10 @@ extends Node
 @export var projectileType1 		: PackedScene
 @export var towerShopHotbar 		: PackedScene
 @export var tower1Panel 			: PackedScene
-@export var main_menu 				: PackedScene
-@export var SettingsScene 			: PackedScene
-@export var TestScene 				: PackedScene
-@export var world 					: PackedScene
+@export var mainMenuTextRect		: PackedScene
+@export var settingsTextRect		: PackedScene
+@export var TestScene				: PackedScene
+@export var world					: PackedScene
 
 #To update the dictionary simply make the variable name as string then use it
 #as the key, and the variable itself as the value
@@ -25,8 +25,8 @@ extends Node
 	"projectileType1"			: projectileType1,
 	"towerShopHotbar"			: towerShopHotbar,
 	"tower1Panel"				: tower1Panel,
-	"main_menu"					: main_menu,
-	"SettingsScene"				: SettingsScene,
+	"mainMenuTextRect"			: mainMenuTextRect,
+	"settingsTextRect"			: settingsTextRect,
 	"TestScene"					: TestScene,
 	"world"						: world
 }

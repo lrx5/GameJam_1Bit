@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c26k1walm7wgi"]
+
+[ext_resource type="Script" path="res://Scenes/UI/sceneSwitcher.gd" id="1_n8hva"]
+[ext_resource type="PackedScene" uid="uid://byaj84r1nn03j" path="res://Scenes/UI/MainMenu/mainMenuTextRect.tscn" id="1_qw5cb"]
+[ext_resource type="PackedScene" uid="uid://bsfofk3gmlsdb" path="res://Scenes/UI/Settings/settingsTextRect.tscn" id="3_5hpbb"]
+
+[node name="SceneSwitcher" type="Node" node_paths=PackedStringArray("mainMenuScene", "settingsScene")]
+script = ExtResource("1_n8hva")
+mainMenuScene = NodePath("MainMenu")
+settingsScene = NodePath("Settings")
+
+[node name="MainMenu" parent="." instance=ExtResource("1_qw5cb")]
+
+[node name="Settings" parent="." instance=ExtResource("3_5hpbb")]
+visible = false
