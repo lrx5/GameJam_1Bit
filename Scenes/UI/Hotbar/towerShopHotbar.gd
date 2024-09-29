@@ -4,31 +4,21 @@ extends CanvasLayer
 
 @onready var world 			= get_tree().get_first_node_in_group("world")
 @onready var towerField 	= get_tree().get_first_node_in_group("towerField")
-@onready var buildMode 		: bool = false
-@onready var buildValid 	: bool = false
+
+
 @onready var previewTower 	: Node
+@onready var buildMode 		: bool = false
+@onready var clicked	 	: bool = false
+@onready var isDragging		: bool = false
+@onready var canDrop		: bool = false
 
-var buildLocation
+
 var towerType
-
-
+var towerName
 
 func _ready():
 	var nodeSorter = []
 	_getTowers(self, nodeSorter)
-
-func setTowerPreview(tower: PackedScene, mousePos: Vector2):
-	var towerPreview = tower.instantiate()
-	towerPreview.process_mode = Node.PROCESS_MODE_DISABLED
-	towerPreview.modulate = Color("a5a5a596")
-	add_child(towerPreview)
-	towerPreview.name += "Preview"
-	towerPreview.global_position = mousePos
-	
-	#if towerField:
-	#	towerField.add_child(towerPreview)
-	#	towerPreview.name = towerName
-	#	towerPreview.global_position = mousePos.snapped(gridSize)
 
 func _getTowers(parent : Node, children: Array):
 	#gets all the child of the towershop in the first iteration
@@ -38,69 +28,90 @@ func _getTowers(parent : Node, children: Array):
 			child.connect("mouse_entered", onMouseEnter)
 			child.connect("mouse_exited", onMouseExit)
 			children.append(child)
-			print(child.name)
 		#reiterates to scan the child of the towershop's child
 		_getTowers(child,children)
 
 func onShopHUDentered(input, tower):
+	#Selecting tower based on the name of the main node
 	match tower.name:
 		"Tower1Panel":
 			#replace the towerType with the actual tower scene
 			towerType = SceneManager.getScene("mainTower")
 		"Tower2Panel":
 			towerType = null
-			print("No towers yet")
 		"PanelTemplate":
 			towerType = null
-			print("Come on... I'm just a template")
 			
 	if towerType and buildMode:
-		previewTower = towerType.instantiate()
-		if isJustPressed(input):
-			clickedTower(input)
-		elif isPressed(input):
-			draggedTower(input)
-		elif isJustReleased(input):
-			releasedTower(input)
-			buildMode = false
-		elif InputEventMouseButton and not input.button_mask == 1:
-			pass
-			#get_child(1).queue_free()
+		if isJustClicked(input):
+			if not previewTower:
+				previewTower = towerType.instantiate()
+				towerName = previewTower.name
+			clicked = true
 	
 
-func isJustPressed(input: InputEvent):
+func _process(delta: float) -> void:
+	if clicked:
+		clickedTower()
+		
+	if isDragging:
+		draggedTower()
+		if canDrop:
+			if Input.is_action_just_released("ui_LMB"):
+				droppedTower()
+	if Input.is_action_just_pressed("ui_RMB") and isDragging:
+		cancelDrag()
+	if previewTower:
+		print(previewTower.get_child(0).is_colliding)
+		
+func isJustClicked(input: InputEvent):
 	return input is InputEventMouseButton and input.button_mask == 1
-	
-func isPressed(input: InputEvent):
-	return input is InputEventMouseMotion and input.button_mask == 1
 
-func isJustReleased(input: InputEvent):
-	return input is InputEventMouseButton and input.button_mask == 0
+func clickedTower():
+	clicked = false
+	add_child(previewTower) 
+	previewTower.process_mode 		= Node.PROCESS_MODE_DISABLED
+	previewTower.name 				+= "Preview"
+	previewTower.modulate 			= Color("a5a5a596")
+	previewTower.global_position 	= getSnappedCanvasMousePos()
+	isDragging = true
 	
-func clickedTower(input: InputEvent):
-	previewTower.process_mode 	= Node.PROCESS_MODE_DISABLED
-	previewTower.modulate 		= Color("a5a5a596")
-	add_child(previewTower)
-	previewTower.name 			+= "Preview"
-	previewTower.global_position = gridSnap(input)
+func draggedTower():
+	get_child(1).global_position = getSnappedCanvasMousePos()
 	
-func draggedTower(input: InputEvent):
-	get_child(1).global_position = gridSnap(input)
-	
-func releasedTower(input: InputEvent):
-	get_child(1).queue_free()
+func droppedTower():
+	remove_child(previewTower)
 	towerField.add_child(previewTower)
-	previewTower.global_position = gridSnap(input)
+	previewTower.process_mode		= Node.PROCESS_MODE_ALWAYS
+	previewTower.name				= towerName
+	previewTower.modulate			= Color("ffffff")
+	previewTower.global_position	= getSnappedCanvasMousePos()
+	previewTower = null
+	isDragging = false
 	
-func gridSnap(input: InputEvent):
-	return input.global_position.snapped(gridSize)
+func cancelDrag():
+	buildMode = false
+	isDragging = false
+	canDrop = false
+	if previewTower:
+		previewTower.queue_free()
+		previewTower = null
+	
+	
+func getSnappedCanvasMousePos():
+	return get_viewport().get_mouse_position().snapped(gridSize)
 
 func onMouseEnter():
 	buildMode = true
+	canDrop = false
 	InputMap.action_erase_events("shoot")
 
 func onMouseExit():
-	var leftClick = InputEventMouseButton.new()
-	leftClick.button_index = MOUSE_BUTTON_LEFT
-	InputMap.action_add_event("shoot",leftClick)
+	if not isDragging:
+		buildMode = false
+		var leftClick = InputEventMouseButton.new()
+		leftClick.button_index = MOUSE_BUTTON_LEFT
+		InputMap.action_add_event("shoot",leftClick)
+	else:
+		canDrop = true
 	
