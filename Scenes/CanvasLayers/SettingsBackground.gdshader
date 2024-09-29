@@ -10,13 +10,13 @@ void fragment() {
     vec2 pixel_size = 1.0 / texture_size;
 
     // Round the x-coordinate to the nearest pixel column for pixel-perfect alignment
-    float pixel_x = floor(SCREEN_UV.x / pixel_size.x) * pixel_size.x;
+    float pixel_x = floor(UV.x / pixel_size.x) * pixel_size.x;
 
     // Create the wave offset using sine function
     float wave_offset = sin(pixel_x * frequency + time) * amplitude;
 
     // Adjust the y-coordinate by the wave offset, ensuring pixel-perfect movement
-    vec2 uv = SCREEN_UV;
+    vec2 uv = UV;
     uv.y += wave_offset * pixel_size.y;
 
     // Sample the texture using the modified UVs
