@@ -61,8 +61,6 @@ func _process(delta: float) -> void:
 				droppedTower()
 	if Input.is_action_just_pressed("ui_RMB") and isDragging:
 		cancelDrag()
-	if previewTower:
-		print(previewTower.get_child(0).is_colliding)
 		
 func isJustClicked(input: InputEvent):
 	return input is InputEventMouseButton and input.button_mask == 1

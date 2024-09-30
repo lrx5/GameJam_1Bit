@@ -58,6 +58,7 @@ ui_RMB={
 2d_physics/layer_1="Ground"
 2d_physics/layer_5="Projectiles"
 2d_physics/layer_6="AttackRange"
+2d_physics/layer_7="TowerPlacementFootprint"
 2d_physics/layer_9="Player"
 2d_physics/layer_10="PlayerHitBox"
 2d_physics/layer_11="PlayerHurtBox"

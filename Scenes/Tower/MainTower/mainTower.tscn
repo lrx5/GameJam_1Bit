@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5l0rvo3d5vff"]
+[gd_scene load_steps=10 format=3 uid="uid://5l0rvo3d5vff"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/MainTower/mainTower.gd" id="1_rpmm2"]
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_102nf"]
@@ -20,9 +20,6 @@ corner_radius_bottom_left = 125
 corner_detail = 20
 anti_aliasing = false
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_22xv0"]
-radius = 30.0
-
 [node name="MainTower" type="Node2D" node_paths=PackedStringArray("quadrant1", "quadrant2", "quadrant3", "quadrant4")]
 script = ExtResource("1_rpmm2")
 quadrant1 = NodePath("Quadrant1")
@@ -31,19 +28,15 @@ quadrant3 = NodePath("Quadrant3")
 quadrant4 = NodePath("Quadrant4")
 
 [node name="Quadrant1" parent="." instance=ExtResource("3_5fpq1")]
-test = 10.0
 
 [node name="Quadrant2" parent="." instance=ExtResource("3_5fpq1")]
 rotation = 1.5708
-test = 10.0
 
 [node name="Quadrant3" parent="." instance=ExtResource("3_5fpq1")]
 rotation = 3.14159
-test = 10.0
 
 [node name="Quadrant4" parent="." instance=ExtResource("3_5fpq1")]
 rotation = 4.71239
-test = 10.0
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
 script = ExtResource("3_yrwgf")
@@ -63,8 +56,9 @@ region_enabled = true
 region_rect = Rect2(1216, 640, 64, 64)
 
 [node name="AttackRange" type="Area2D" parent="."]
-collision_layer = 32
+collision_layer = 0
 collision_mask = 4096
+monitorable = false
 script = ExtResource("7_w52sc")
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
@@ -77,8 +71,3 @@ offset_top = -125.0
 offset_right = 125.0
 offset_bottom = 125.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6ma37")
-
-[node name="TempArea" type="Area2D" parent="."]
-
-[node name="TempShape" type="CollisionShape2D" parent="TempArea"]
-shape = SubResource("CircleShape2D_22xv0")

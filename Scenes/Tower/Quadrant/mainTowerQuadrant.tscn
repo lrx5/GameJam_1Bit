@@ -6,7 +6,7 @@
 
 [node name="Quadrant1" type="StaticBody2D" node_paths=PackedStringArray("healthManager")]
 collision_layer = 256
-collision_mask = 4097
+collision_mask = 256
 script = ExtResource("1_8yh60")
 healthManager = NodePath("HealthManager")
 
@@ -17,5 +17,12 @@ texture = ExtResource("2_h6nj2")
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("2_ck6qy")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="TowerBase" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="TowerBaseShape" type="CollisionPolygon2D" parent="TowerBase"]
+polygon = PackedVector2Array(0, 0, -26, 0, -26, -15, -15, -26, 0, -26)
+
+[node name="QuadrantShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-26, 0, 0, 0, 0, -26, -15, -26, -26, -15)
