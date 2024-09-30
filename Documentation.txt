@@ -1,17 +1,37 @@
 [Project Overview]
--!ToDo
+A last resort stand of fending of mechanical enemies in a futuristic planet.
+In order to succeed with your mission of uploading inavluable intel about the
+weakness of these automated machines, you musd hold of 50 rounds in order
+to upload the data to your mothership. Defend your prism beacon at all costs,
+while deploying necessary defenses around your perimeter.
+
+
 
 -------------------------------------------------------------------------------
-[Project Structure]
-- Folder Structure
-res:// (root)
--> Assets #For general imported Assets
--> Scenes #For Scenes together with its dependent scripts
--> Sprites #For Sprites & TileSheets
--> [T] Test #Folder for Testing & Prototype Materials
+[Folder Structure]
+- Current Main Scene: SceneSwitcher.tscn
 
-- Autoloads (singleton scripts)
-None so far
+/gamejam_1bit/
+│
+├── /Assets/               # Raw assets (textures, sounds, fonts, etc.)
+│   ├── /Fonts/            # Font files (ttf, otf, etc.)
+│   ├── /Sounds/           # Sound effects and music
+│   ├── /Sprites/          # All images and textures mostly in .png
+│   ├── /TDTR/             # Prototype Assets No.1
+│   └── /TDTD/             # Prototype Assets No.2
+│
+├── /Resources/            # Management of Resources such as Scenes
+│
+├── /Scenes/               # Scene files (.tscn) together with their Scripts (.gd)
+│   ├── /Characters/       # Enemy Scenes and Scripts
+│   ├── /Components/       # Component Scripts
+│   ├── /Projectiles/      # Projectiles Scense and Scripts
+│   ├── /Tower/            # Tower Scenes and Scripts
+│   ├── /UI/               # User Interface Scenes and Scripts
+│   └── /[T] Test/         # For Debugging Purposes
+│
+├── Documentation.txt      # This Documentation that you are reading
+└── icon.png               # Project icon
 
 -------------------------------------------------------------------------------
 [Assets]
@@ -19,18 +39,23 @@ None so far
 Tile size: 18px by 18px
 Quadrant Tower size: 26px by 26px
 
-- Setting up the Animated SpriteSheet
-#Red outline is a guide
-Horizontal:  24
-Vertical:    14
+- Setting up the Animated SpriteSheet (enemy_packed.png)
+New Method with Packed SpriteSheets
+Horizontal:  8
+Vertical:    4
 Size:        18px
 			 18px
-Separation:  2px
-			 1px
-Offset:      1px
-			 1px
--------------------------------------------------------------------------------
+Separation:  0px
+			 0px
+Offset:      0px
+			 0px
 
+-------------------------------------------------------------------------------
+[Autoloads]
+The project has a total of 1 Autoload(s):
+SceneManager.gd            # Contains Packed Scenes stored in a dictionary
+
+-------------------------------------------------------------------------------
 [Other Settings]
 - Display
 Viewport Width:  480px

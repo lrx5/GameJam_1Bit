@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ci5ulxw7cu5tg"]
+
+[ext_resource type="Shader" path="res://Scenes/UI/MainMenu/BackgroundSmoke.gdshader" id="1_5v1eg"]
+
+[resource]
+shader = ExtResource("1_5v1eg")
+shader_parameter/time = null
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 10.0
