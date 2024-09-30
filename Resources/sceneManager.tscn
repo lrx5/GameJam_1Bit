@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/tower1Panel.tscn" id="7_f8c7e"]
 [ext_resource type="PackedScene" uid="uid://byaj84r1nn03j" path="res://Scenes/UI/MainMenu/mainMenuTextRect.tscn" id="8_aelne"]
 [ext_resource type="PackedScene" uid="uid://bsfofk3gmlsdb" path="res://Scenes/UI/Settings/settingsTextRect.tscn" id="9_jw8xs"]
-[ext_resource type="PackedScene" uid="uid://cheoswjpe1saa" path="res://Scenes/[T] Test/TestScene.tscn" id="10_ng2n4"]
+[ext_resource type="PackedScene" path="res://Scenes/[T] Test/TestScene.tscn" id="10_ng2n4"]
 [ext_resource type="PackedScene" uid="uid://bbilceywr41gy" path="res://Scenes/world.tscn" id="11_jp5b4"]
 
 [node name="SceneManager" type="Node"]

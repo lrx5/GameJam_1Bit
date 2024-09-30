@@ -4,7 +4,7 @@ extends CanvasLayer
 
 @onready var world 			= get_tree().get_first_node_in_group("world")
 @onready var towerField 	= get_tree().get_first_node_in_group("towerField")
-
+@onready var tileMap 		= get_tree().get_first_node_in_group("tileMap")
 
 @onready var previewTower 	: Node
 @onready var buildMode 		: bool = false
@@ -70,7 +70,16 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_RMB") and isDragging:
 		cancelDrag()
 		
+func gridPlacement(): #Preparation for future use
+	var mousePos = get_viewport().get_mouse_position() / pow(tileMap.scale.x,2)
+	#convert the mouse position to tile position
+	var tilePos = tileMap.local_to_map(mousePos)
+	#convert the tile position to a global position being centered around the tile position
+	var cellPos = tileMap.map_to_local(tilePos) * tileMap.scale #multiplied since the tilemap is also scaled down to 0.25. If it is not scaled down there is no need to do this
+	var globalPos = tileMap.to_global(cellPos).snapped(gridSize)
 	
+	return globalPos
+
 
 func getFootprint(parent):
 	for child in parent.get_children():
@@ -91,14 +100,14 @@ func isJustClicked(input: InputEvent):
 func clickedTower():
 	clicked = false
 	add_child(previewTower) 
-	#previewTower.process_mode 		= Node.PROCESS_MODE_DISABLED
+	previewTower.process_mode 		= Node.PROCESS_MODE_DISABLED
 	previewTower.name 				+= "Preview"
 	previewTower.modulate 			= Color("a5a5a596")
-	previewTower.global_position 	= getSnappedCanvasMousePos()
+	previewTower.global_position 	= gridPlacement()
 	isDragging = true
 	
 func draggedTower():
-	get_child(1).global_position = getSnappedCanvasMousePos()
+	get_child(1).global_position = gridPlacement()
 	
 func droppedTower():
 	remove_child(previewTower)
@@ -106,7 +115,7 @@ func droppedTower():
 	previewTower.process_mode		= Node.PROCESS_MODE_ALWAYS
 	previewTower.name				= towerName
 	previewTower.modulate			= Color("ffffff")
-	previewTower.global_position	= getSnappedCanvasMousePos()
+	previewTower.global_position	= gridPlacement()#getSnappedCanvasMousePos()
 	previewTower = null
 	isDragging = false
 	towerBase = null
