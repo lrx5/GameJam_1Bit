@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://de12ssetfcqme"]
+
+[ext_resource type="Shader" path="res://Scenes/UI/MainMenu/particles.gdshader" id="1_vg3ct"]
+
+[resource]
+shader = ExtResource("1_vg3ct")
+shader_parameter/time = null
+shader_parameter/amplitude = 0.0
+shader_parameter/frequency = 0.0
