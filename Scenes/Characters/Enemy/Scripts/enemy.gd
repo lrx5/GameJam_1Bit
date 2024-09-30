@@ -7,8 +7,6 @@ var isIdle 		= "parameters/StateMachine/conditions/isIdle"
 var isRunning 	= "parameters/StateMachine/conditions/isRunning"
 
 
-
-
 func _ready():
 	_setInitTarget()
 

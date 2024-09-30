@@ -11,13 +11,8 @@ func _enter():
 		#character.global_rotation = character.global_position.angle_to_point(character.initTarget.global_position)
 		var myPos =  character.global_position
 		var targetPos = character.initTarget.global_position
-		print(character.name,"'s global position is: ",myPos)
-		print(character.initTarget.name,"'s global position is: ",targetPos)
-		
 		var initDirection = myPos.direction_to(targetPos)
 		character.rotation = initDirection.angle() - deg_to_rad(90)
-		 
-		print(initDirection)
 		
 func _exit():
 	character.animTree.set(character.isRunning, false)

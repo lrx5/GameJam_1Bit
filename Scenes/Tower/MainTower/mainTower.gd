@@ -14,5 +14,5 @@ var quad1Health : float = 0
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
-		$GunPivot/BulletSpawn.shoot()
+		projectileSpawner.shoot()
 			

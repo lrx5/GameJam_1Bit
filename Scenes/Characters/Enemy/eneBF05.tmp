@@ -138,7 +138,7 @@ parameters/StateMachine/conditions/isRunning = false
 
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("3_8vmgq")
-maxHealth = 200.0
+maxHealth = 50.0
 
 [node name="EnemyStateMachines" type="Node" parent="."]
 

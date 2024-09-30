@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://ejx2wwt2081"]
+
+[ext_resource type="Script" path="res://Scenes/Tower/CannonTower/cannonTower.gd" id="1_p0heo"]
+[ext_resource type="Texture2D" uid="uid://bal7j5ackqghc" path="res://Assets/Sprites/PNG/Buildable Tower/cannonTower_tier1.png" id="2_ap2o7"]
+[ext_resource type="Script" path="res://Scenes/Components/towerBase.gd" id="2_irp3t"]
+[ext_resource type="Script" path="res://Scenes/Components/projectileSpawner.gd" id="4_6jypc"]
+[ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="4_f57va"]
+[ext_resource type="Resource" uid="uid://duixsi5od80pv" path="res://Scenes/Projectiles/CannonTowerProjectile/cannonTowerProjectile.tres" id="5_5i3mj"]
+[ext_resource type="Script" path="res://Scenes/Components/attackRange.gd" id="6_aa4ru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4h40k"]
+radius = 50.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bje08"]
+
+[node name="CannonTower" type="StaticBody2D" node_paths=PackedStringArray("projectileSpawner", "attackRange", "gunPivot")]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("1_p0heo")
+projectileSpawner = NodePath("GunPivot/ProjectileSpawner")
+attackRange = NodePath("AttackRange")
+gunPivot = NodePath("GunPivot")
+attackSpeed = 200.0
+
+[node name="CannonCollider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, -4, -4, 5, 4, 5, 4, -4)
+
+[node name="TowerBase" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("2_irp3t")
+
+[node name="TowerShape" type="CollisionPolygon2D" parent="TowerBase"]
+polygon = PackedVector2Array(-4, -4, -4, 5, 4, 5, 4, -4)
+
+[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
+script = ExtResource("4_f57va")
+inRange = NodePath("../AttackRange")
+
+[node name="ProjectileSpawner" type="Node2D" parent="GunPivot" node_paths=PackedStringArray("gunPivot")]
+script = ExtResource("4_6jypc")
+gunPivot = NodePath("..")
+projectilePacker = ExtResource("5_5i3mj")
+
+[node name="CannonSprite" type="Sprite2D" parent="GunPivot"]
+position = Vector2(0, -4)
+texture = ExtResource("2_ap2o7")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4096
+script = ExtResource("6_aa4ru")
+
+[node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_4h40k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_bje08")

@@ -7,9 +7,10 @@ extends Node
 @export var enemy 					: PackedScene
 @export var mainTower 				: PackedScene
 @export var mainTowerQuadrant 		: PackedScene
-@export var projectileType1 		: PackedScene
+@export var cannonTower				: PackedScene
+@export var cannonTowerProjectile	: PackedScene
 @export var towerShopHotbar 		: PackedScene
-@export var tower1Panel 			: PackedScene
+@export var cannonPanel 			: PackedScene
 @export var mainMenuTextRect		: PackedScene
 @export var settingsTextRect		: PackedScene
 @export var world					: PackedScene
@@ -21,9 +22,10 @@ extends Node
 	"enemy"						: enemy,
 	"mainTower"					: mainTower,
 	"mainTowerQuadrant"			: mainTowerQuadrant,
-	"projectileType1"			: projectileType1,
+	"cannonTower"				: cannonTower,
+	"cannonTowerProjectile"		: cannonTowerProjectile,
 	"towerShopHotbar"			: towerShopHotbar,
-	"tower1Panel"				: tower1Panel,
+	"cannonPanel"				: cannonPanel,
 	"mainMenuTextRect"			: mainMenuTextRect,
 	"settingsTextRect"			: settingsTextRect,
 	"world"						: world

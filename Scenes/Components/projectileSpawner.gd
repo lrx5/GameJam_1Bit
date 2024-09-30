@@ -3,7 +3,7 @@ extends Node2D
 
 @export_category("Gun Variables")
 @export var gunPivot 				: GunPivot					##Reference to the Gun Pivot
-@export var defaultAngle			: Vector2 = Vector2.RIGHT	##Vector angle of the projectile Sprite. Y values are inverted meaning that the up direction is negative rather than the usual being positive.
+@export var defaultAngle			: Vector2 = Vector2.UP	##Vector angle of the projectile Sprite. Y values are inverted meaning that the up direction is negative rather than the usual being positive.
 @onready var projectileSpawner		: ProjectileSpawner = self
 
 
@@ -18,7 +18,11 @@ func shoot():
 	projectileField.add_child(projectile)
 	projectile.name = projectilePacker.projectileName
 	projectile.global_position = projectileSpawner.global_position
+
+	#Direction the gun is looking offseted by the default angle
 	var gunDirection = defaultAngle.rotated(gunPivot.global_rotation)
-	projectile.rotation = Vector2.DOWN.rotated(gunPivot.global_rotation).angle()#projectilePosition.rotated(gunPivot.rotation) 
+	#Sprite rotation of the projectile
+	projectile.rotation = gunPivot.global_rotation
+	#Assigns a direction to the projectile velocity
 	projectile.shoot(gunDirection)
 	
