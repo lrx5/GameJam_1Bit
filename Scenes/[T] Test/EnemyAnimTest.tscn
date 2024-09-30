@@ -1,10 +1,12 @@
-[gd_scene load_steps=47 format=3 uid="uid://cheoswjpe1saa"]
+[gd_scene load_steps=53 format=3 uid="uid://cheoswjpe1saa"]
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
+[ext_resource type="Shader" path="res://Scenes/[T] Test/EnemyOnHit.gdshader" id="3_hjn3d"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/(explodr_enemy).gd" id="4_3erxk"]
 [ext_resource type="Shader" path="res://Scenes/[T] Test/RectangleShader.gdshader" id="4_bes7x"]
 [ext_resource type="Texture2D" uid="uid://cpiskrlxfwp8i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_Panel.png" id="5_ec6gx"]
+[ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTestSprite.gd" id="6_7kevm"]
 [ext_resource type="Texture2D" uid="uid://c0vbfmd5xhxfj" path="res://Scenes/[T] Test/Cage.png" id="6_tb5nn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_400ka"]
@@ -205,6 +207,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s71xt"]
+shader = ExtResource("3_hjn3d")
+shader_parameter/damaged_color = Vector4(0, 0, 0, 1)
+shader_parameter/value = 0.0
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fddt"]
 load_path = "res://.godot/imported/enemy_spritesheet.png-7c46a12bcd647ec8bfa01d1ab9589264.ctex"
 
@@ -272,6 +279,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_mfmv7"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sjs5o"]
+gradient = SubResource("Gradient_mfmv7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rm13y"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_sjs5o")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5y80"]
 shader = ExtResource("4_bes7x")
 shader_parameter/gradient_color = Vector4(0.6, 0.6, 1, 1)
@@ -291,17 +312,11 @@ autoplay = "default"
 frame_progress = 0.258959
 script = ExtResource("1_4qdmk")
 
-[node name="Camera2D" type="Camera2D" parent="(FastEnemy)"]
-visible = false
-
 [node name="(BigEnemy)" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jocmj")
 autoplay = "default"
 frame_progress = 0.164799
 script = ExtResource("1_4qdmk")
-
-[node name="Camera2D" type="Camera2D" parent="(BigEnemy)"]
-visible = false
 
 [node name="(MedEnemy)" type="AnimatedSprite2D" parent="."]
 position = Vector2(30, 0)
@@ -310,30 +325,39 @@ autoplay = "default"
 frame_progress = 0.35178
 script = ExtResource("1_4qdmk")
 
-[node name="Camera2D" type="Camera2D" parent="(MedEnemy)"]
-visible = false
-
 [node name="(ExplodrEnemy)" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_s71xt")
 position = Vector2(56, 0)
 sprite_frames = SubResource("SpriteFrames_l1a31")
 autoplay = "default"
 frame_progress = 0.732074
 script = ExtResource("4_3erxk")
 
-[node name="Camera2D" type="Camera2D" parent="(ExplodrEnemy)"]
+[node name="DamageParticles" type="GPUParticles2D" parent="(ExplodrEnemy)"]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_rm13y")
+lifetime = 0.2
+explosiveness = 1.0
+
+[node name="Camera2D2" type="Camera2D" parent="(ExplodrEnemy)"]
+zoom = Vector2(2, 2)
 
 [node name="ShaderTest" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_e5y80")
-position = Vector2(-151.5, 25)
+position = Vector2(130, 25)
 scale = Vector2(1.86111, 1.44444)
 texture = ExtResource("5_ec6gx")
+script = ExtResource("6_7kevm")
 
 [node name="ShaderTest2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_e5y80")
-position = Vector2(-152, -21)
+position = Vector2(129.5, -21)
 scale = Vector2(1.86111, 1.44444)
 texture = ExtResource("5_ec6gx")
+script = ExtResource("6_7kevm")
 
 [node name="Cage" type="Sprite2D" parent="."]
-position = Vector2(-153, -2)
+position = Vector2(128.5, -2)
 texture = ExtResource("6_tb5nn")
+script = ExtResource("6_7kevm")
