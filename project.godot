@@ -19,12 +19,14 @@ config/icon="res://icon.svg"
 
 CanvasManager="*res://Scripts/CanvasManager.gd"
 SceneManager="*res://Resources/sceneManager.tscn"
+CanvasManager="*res://Scenes/CanvasLayers/CanvasLayer Scripts/CanvasManager.gd"
 
 [display]
 
 window/size/viewport_width=480
 window/size/viewport_height=270
 window/size/resizable=false
+window/size/always_on_top=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"

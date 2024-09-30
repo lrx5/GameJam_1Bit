@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Tower/Quadrant/mainTowerQuadrant.gd" id="1_8yh60"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="2_ck6qy"]
-[ext_resource type="Texture2D" uid="uid://4824py4dmmuq" path="res://Sprites/tower_quadrant.png" id="2_h6nj2"]
+[ext_resource type="Texture2D" uid="uid://4824py4dmmuq" path="res://Assets/Sprites/PNG/Main Tower/tower_quadrant.png" id="2_h6nj2"]
 
 [node name="Quadrant1" type="StaticBody2D" node_paths=PackedStringArray("healthManager")]
 collision_layer = 256

@@ -1,0 +1,147 @@
+[gd_scene load_steps=19 format=3 uid="uid://1maw45qqsqk"]
+
+[ext_resource type="Script" path="res://Scenes/CanvasLayers/CanvasLayer Scripts/Settings.gd" id="1_f7q6d"]
+[ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="2_fjr2j"]
+[ext_resource type="Texture2D" uid="uid://dkrabk2vh630" path="res://Assets/Sprites/PNG/UI/Music_Normal.png" id="3_40lhb"]
+[ext_resource type="Texture2D" uid="uid://b7jvoxecycbcl" path="res://Assets/Sprites/PNG/UI/settings_handle.png" id="3_w6o26"]
+[ext_resource type="Texture2D" uid="uid://dp66ukqr71x67" path="res://Assets/Sprites/PNG/UI/Sfx_Normal.png" id="4_umn54"]
+[ext_resource type="Shader" path="res://Scenes/CanvasLayers/SettingsScene.gdshader" id="5_dkom3"]
+[ext_resource type="Texture2D" uid="uid://70qcfbhty0mo" path="res://Assets/Sprites/PNG/Background/1bit_settings.png" id="6_tymsj"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayers/label.gd" id="7_rpes1"]
+[ext_resource type="Shader" path="res://Scenes/CanvasLayers/SettingsBackground.gdshader" id="8_c113w"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayers/sprite_wave_settings.gd" id="10_d8rxc"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ugcde"]
+color = Color(1, 1, 1, 1)
+grow_begin = -8.0
+grow_end = -8.0
+thickness = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoo8e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ary3g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doysx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nw3xq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ceiul"]
+shader = ExtResource("5_dkom3")
+shader_parameter/time = null
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6oloa"]
+font = ExtResource("2_fjr2j")
+font_size = 30
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lexfo"]
+shader = ExtResource("8_c113w")
+shader_parameter/time = null
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 10.0
+
+[node name="Settings" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Control" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f7q6d")
+bus_name_bgm = "bgm"
+
+[node name="BGMSlider" type="HSlider" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -29.0
+offset_right = 155.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("3_w6o26")
+theme_override_icons/grabber_highlight = ExtResource("3_w6o26")
+theme_override_icons/grabber_disabled = ExtResource("3_w6o26")
+theme_override_styles/slider = SubResource("StyleBoxLine_ugcde")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_aoo8e")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_ary3g")
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="BGM" type="AudioStreamPlayer" parent="Control"]
+
+[node name="BGMIcon" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 94.0
+offset_right = 122.0
+offset_bottom = 134.0
+texture = ExtResource("3_40lhb")
+
+[node name="SFXSlider" type="HSlider" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 32.0
+offset_right = 155.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("3_w6o26")
+theme_override_icons/grabber_highlight = ExtResource("3_w6o26")
+theme_override_icons/grabber_disabled = ExtResource("3_w6o26")
+theme_override_styles/slider = SubResource("StyleBoxLine_ugcde")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_doysx")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_nw3xq")
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SFX" type="AudioStreamPlayer" parent="Control"]
+
+[node name="SFXIcon" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 155.0
+offset_right = 122.0
+offset_bottom = 195.0
+texture = ExtResource("4_umn54")
+
+[node name="Label" type="Label" parent="Control"]
+material = SubResource("ShaderMaterial_ceiul")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 31.0
+offset_right = 37.0
+offset_bottom = 54.0
+grow_horizontal = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_6oloa")
+horizontal_alignment = 1
+script = ExtResource("7_rpes1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lexfo")
+position = Vector2(240, 135)
+texture = ExtResource("6_tymsj")
+script = ExtResource("10_d8rxc")
+
+[connection signal="value_changed" from="Control/BGMSlider" to="Control" method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="Control/SFXSlider" to="Control" method="_on_sfx_slider_value_changed"]
