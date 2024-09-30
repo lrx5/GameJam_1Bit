@@ -11,10 +11,13 @@ extends CanvasLayer
 @onready var clicked	 	: bool = false
 @onready var isDragging		: bool = false
 @onready var canDrop		: bool = false
+@onready var hasTowerBase 	: bool = false
+@onready var canPlaceTower	: bool = true
 
 
 var towerType
 var towerName
+var towerBase
 
 func _ready():
 	var nodeSorter = []
@@ -56,19 +59,39 @@ func _process(delta: float) -> void:
 		
 	if isDragging:
 		draggedTower()
-		if canDrop:
+		if previewTower and not towerBase:
+			getFootprint(previewTower)
+			
+		checkOverlap()
+		
+		if canDrop and canPlaceTower:
 			if Input.is_action_just_released("ui_LMB"):
 				droppedTower()
 	if Input.is_action_just_pressed("ui_RMB") and isDragging:
 		cancelDrag()
 		
+	
+
+func getFootprint(parent):
+	for child in parent.get_children():
+		if child is TowerBase:
+			towerBase = child
+			checkOverlap()
+				
+func checkOverlap():
+	if towerBase:
+		if towerBase.has_overlapping_areas():
+			canPlaceTower = false
+		else:
+			canPlaceTower = true
+
 func isJustClicked(input: InputEvent):
 	return input is InputEventMouseButton and input.button_mask == 1
 
 func clickedTower():
 	clicked = false
 	add_child(previewTower) 
-	previewTower.process_mode 		= Node.PROCESS_MODE_DISABLED
+	#previewTower.process_mode 		= Node.PROCESS_MODE_DISABLED
 	previewTower.name 				+= "Preview"
 	previewTower.modulate 			= Color("a5a5a596")
 	previewTower.global_position 	= getSnappedCanvasMousePos()
@@ -86,8 +109,10 @@ func droppedTower():
 	previewTower.global_position	= getSnappedCanvasMousePos()
 	previewTower = null
 	isDragging = false
+	towerBase = null
 	
 func cancelDrag():
+	towerBase = null
 	buildMode = false
 	isDragging = false
 	canDrop = false

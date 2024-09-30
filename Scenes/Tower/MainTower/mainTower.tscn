@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5l0rvo3d5vff"]
+[gd_scene load_steps=11 format=3 uid="uid://5l0rvo3d5vff"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/MainTower/mainTower.gd" id="1_rpmm2"]
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_102nf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="3_yrwgf"]
 [ext_resource type="Script" path="res://Scenes/Components/bulletSpawn.gd" id="5_yyx2b"]
 [ext_resource type="Script" path="res://Scenes/Components/attackRange.gd" id="7_w52sc"]
+[ext_resource type="Script" path="res://Scenes/Components/towerBase.gd" id="8_j5mqu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fw7y1"]
 radius = 125.0
@@ -36,7 +37,7 @@ rotation = 1.5708
 rotation = 3.14159
 
 [node name="Quadrant4" parent="." instance=ExtResource("3_5fpq1")]
-rotation = 4.71239
+rotation = -1.5708
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
 script = ExtResource("3_yrwgf")
@@ -71,3 +72,13 @@ offset_top = -125.0
 offset_right = 125.0
 offset_bottom = 125.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6ma37")
+
+[node name="TowerBase" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("8_j5mqu")
+
+[node name="TowerBaseShape" type="CollisionPolygon2D" parent="TowerBase"]
+polygon = PackedVector2Array(-15, -26, -26, -15, -26, 15, -15, 26, 15, 26, 26, 15, 26, -15, 15, -26)
+
+[connection signal="area_entered" from="TowerBase" to="TowerBase" method="_checkTowerArea"]
