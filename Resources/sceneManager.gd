@@ -12,7 +12,6 @@ extends Node
 @export var tower1Panel 			: PackedScene
 @export var mainMenuTextRect		: PackedScene
 @export var settingsTextRect		: PackedScene
-@export var TestScene				: PackedScene
 @export var world					: PackedScene
 
 #To update the dictionary simply make the variable name as string then use it
@@ -27,7 +26,6 @@ extends Node
 	"tower1Panel"				: tower1Panel,
 	"mainMenuTextRect"			: mainMenuTextRect,
 	"settingsTextRect"			: settingsTextRect,
-	"TestScene"					: TestScene,
 	"world"						: world
 }
 

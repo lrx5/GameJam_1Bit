@@ -12,7 +12,7 @@ var isRunning 	= "parameters/StateMachine/conditions/isRunning"
 func _ready():
 	_setInitTarget()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	move_and_slide()
 

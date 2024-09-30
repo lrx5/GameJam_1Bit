@@ -41,7 +41,7 @@ shader_parameter/time = null
 shader_parameter/amplitude = 5.0
 shader_parameter/frequency = 10.0
 
-[node name="Settings" type="CanvasLayer"]
+[node name="Settings2" type="CanvasLayer"]
 process_mode = 3
 
 [node name="Control" type="Control" parent="."]

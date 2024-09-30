@@ -80,5 +80,3 @@ script = ExtResource("8_j5mqu")
 
 [node name="TowerBaseShape" type="CollisionPolygon2D" parent="TowerBase"]
 polygon = PackedVector2Array(-15, -26, -26, -15, -26, 15, -15, 26, 15, 26, 26, 15, 26, -15, 15, -26)
-
-[connection signal="area_entered" from="TowerBase" to="TowerBase" method="_checkTowerArea"]

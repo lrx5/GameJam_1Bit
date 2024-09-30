@@ -6,7 +6,7 @@ extends Node2D
 func _ready():
 	print(inRange.targetPriority)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if inRange.target:
 		var enemyPosition = inRange.target.global_position
 		rotation = global_position.angle_to_point(enemyPosition)

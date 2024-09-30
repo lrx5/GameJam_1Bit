@@ -17,9 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-CanvasManager="*res://Scripts/CanvasManager.gd"
-SceneManager="*res://Resources/sceneManager.tscn"
 CanvasManager="*res://Scenes/CanvasLayers/CanvasLayer Scripts/CanvasManager.gd"
+SceneManager="*res://Resources/sceneManager.tscn"
 
 [display]
 

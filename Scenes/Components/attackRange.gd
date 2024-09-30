@@ -13,10 +13,10 @@ var enemiesStatDict : Dictionary
 func _ready() -> void:
 	pass
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_setTarget()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	enemiesDetected = get_overlapping_bodies()
 
 func _setTarget():

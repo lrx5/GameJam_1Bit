@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://gb2y6ecbyf3d"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/enemy.gd" id="1_eopo7"]
-[ext_resource type="Texture2D" uid="uid://baw01e27nf8g4" path="res://Sprites/[T] Test/1bit_ss_test.png" id="2_twhs5"]
+[ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_twhs5"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="3_8vmgq"]
 [ext_resource type="Script" path="res://Scenes/Characters/Character Scripts/moveStateMachine.gd" id="4_s7m62"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/States/enemyIdle.gd" id="5_a1k2w"]
@@ -10,7 +10,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kt5v2"]
 atlas = ExtResource("2_twhs5")
-region = Rect2(0, 0, 160, 20)
+region = Rect2(0, 0, 144, 18)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4heu"]
 radius = 5.0

@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://byaj84r1nn03j"]
+[gd_scene load_steps=12 format=3 uid="uid://byaj84r1nn03j"]
 
-[ext_resource type="Texture2D" uid="uid://br3p4m4d2c5ho" path="res://Sprites/Play_Normal.png" id="2_81vha"]
-[ext_resource type="Texture2D" uid="uid://ckk3ddjmibhn0" path="res://Sprites/Play_Hoverl.png" id="3_fne3b"]
-[ext_resource type="Texture2D" uid="uid://d011k1lj0q3qm" path="res://Sprites/Settings_Normal.png" id="4_c2mor"]
-[ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Sprites/Settings_Hover.png" id="5_u1ket"]
-[ext_resource type="Texture2D" uid="uid://yyntxpdrmfjj" path="res://Sprites/Quit_Normal.png" id="6_5yfli"]
-[ext_resource type="Texture2D" uid="uid://bshy1a3f0nw4i" path="res://Sprites/Quit_Hover.png" id="7_0ruod"]
-[ext_resource type="Texture2D" uid="uid://uusd6c8esw6y" path="res://Sprites/1bit_bg.png" id="8_dxven"]
+[ext_resource type="Texture2D" uid="uid://blxsuusrq64tg" path="res://Assets/Sprites/PNG/Background/1bit_bg_main.png" id="1_6r48k"]
+[ext_resource type="Texture2D" uid="uid://gylwgx722dai" path="res://Assets/Sprites/PNG/Background/1bit_bg_white.png" id="1_y8aac"]
+[ext_resource type="Texture2D" uid="uid://br3p4m4d2c5ho" path="res://Assets/Sprites/PNG/UI/Play_Normal.png" id="2_81vha"]
+[ext_resource type="Material" uid="uid://ci5ulxw7cu5tg" path="res://Scenes/CanvasLayers/CanvasLayer Scripts/smokeShader.tres" id="2_nv2sc"]
+[ext_resource type="Texture2D" uid="uid://dwcahf700kdab" path="res://Assets/Sprites/PNG/Background/1bit_bg_smoke.png" id="2_q7uaw"]
+[ext_resource type="Texture2D" uid="uid://ckk3ddjmibhn0" path="res://Assets/Sprites/PNG/UI/Play_Hoverl.png" id="3_fne3b"]
+[ext_resource type="Script" path="res://Scenes/UI/spriteWave.gd" id="4_8a61b"]
+[ext_resource type="Texture2D" uid="uid://d011k1lj0q3qm" path="res://Assets/Sprites/PNG/UI/Settings_Normal.png" id="4_c2mor"]
+[ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Assets/Sprites/PNG/UI/Settings_Hover.png" id="5_u1ket"]
+[ext_resource type="Texture2D" uid="uid://yyntxpdrmfjj" path="res://Assets/Sprites/PNG/UI/Quit_Normal.png" id="6_5yfli"]
+[ext_resource type="Texture2D" uid="uid://bshy1a3f0nw4i" path="res://Assets/Sprites/PNG/UI/Quit_Hover.png" id="7_0ruod"]
 
 [node name="MainMenu" type="CanvasLayer"]
 process_mode = 3
@@ -22,9 +26,23 @@ grow_vertical = 2
 
 [node name="BG" type="TextureRect" parent="Control"]
 layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_y8aac")
+
+[node name="BG_Smoke" type="TextureRect" parent="Control"]
+material = ExtResource("2_nv2sc")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_q7uaw")
+script = ExtResource("4_8a61b")
+
+[node name="FG" type="TextureRect" parent="Control"]
+layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
-texture = ExtResource("8_dxven")
+texture = ExtResource("1_6r48k")
 
 [node name="Play" type="TextureButton" parent="Control" groups=["menuControls"]]
 layout_mode = 0

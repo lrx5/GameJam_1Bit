@@ -27,7 +27,6 @@ func _input(event: InputEvent) -> void:
 	
 func onPressPlay():
 	mainMenuScene.queue_free()
-	settingsScene.queue_free()
 	var worldScene = SceneManager.getScene("world").instantiate()
 	var towerShopHotbar = SceneManager.getScene("towerShopHotbar").instantiate()
 	add_child(worldScene)
