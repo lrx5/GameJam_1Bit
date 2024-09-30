@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckk3ddjmibhn0"
-path="res://.godot/imported/Play_Hoverl.png-336f490f0cd068a3293be6b5c9c52ea8.ctex"
+uid="uid://cpiskrlxfwp8i"
+path="res://.godot/imported/TowerShop_Panel.png-b6865cf353a5bb6e2b057db730241acd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PNG/UI/Play_Hoverl.png"
-dest_files=["res://.godot/imported/Play_Hoverl.png-336f490f0cd068a3293be6b5c9c52ea8.ctex"]
+source_file="res://Assets/Sprites/PNG/UI/Game/TowerShop_Panel.png"
+dest_files=["res://.godot/imported/TowerShop_Panel.png-b6865cf353a5bb6e2b057db730241acd.ctex"]
 
 [params]
 

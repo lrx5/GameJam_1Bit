@@ -1,4 +1,4 @@
-extends Sprite2D
+extends TextureRect
 
 var time = 0.0
 

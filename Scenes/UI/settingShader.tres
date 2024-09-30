@@ -1,4 +1,7 @@
-shader_type canvas_item;
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dqrlqarhqnrdr"]
+
+[sub_resource type="Shader" id="Shader_3efiq"]
+code = "shader_type canvas_item;
 
 uniform float time;
 uniform float amplitude = 5.0;
@@ -22,3 +25,10 @@ void fragment() {
     // Sample the texture using the modified UVs
     COLOR = texture(TEXTURE, uv);
 }
+"
+
+[resource]
+shader = SubResource("Shader_3efiq")
+shader_parameter/time = null
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 10.0

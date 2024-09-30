@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://bbilceywr41gy"]
+[gd_scene load_steps=6 format=4 uid="uid://cxcxrne5beluq"]
 
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="1_lroyc"]
 [ext_resource type="PackedScene" uid="uid://5l0rvo3d5vff" path="res://Scenes/Tower/MainTower/mainTower.tscn" id="2_8acri"]

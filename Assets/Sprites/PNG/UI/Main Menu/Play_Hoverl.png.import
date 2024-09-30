@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br3p4m4d2c5ho"
-path="res://.godot/imported/Play_Normal.png-92446271ebf359e1cca9fc4cfc3eca81.ctex"
+uid="uid://ckk3ddjmibhn0"
+path="res://.godot/imported/Play_Hoverl.png-c7ebb0bcaad7efac49c00c9a79afd4f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PNG/UI/Play_Normal.png"
-dest_files=["res://.godot/imported/Play_Normal.png-92446271ebf359e1cca9fc4cfc3eca81.ctex"]
+source_file="res://Assets/Sprites/PNG/UI/Main Menu/Play_Hoverl.png"
+dest_files=["res://.godot/imported/Play_Hoverl.png-c7ebb0bcaad7efac49c00c9a79afd4f2.ctex"]
 
 [params]
 

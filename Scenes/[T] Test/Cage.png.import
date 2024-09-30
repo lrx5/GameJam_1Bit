@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp66ukqr71x67"
-path="res://.godot/imported/Sfx_Normal.png-7fa5796a31c245e7f9ac74e943acf07f.ctex"
+uid="uid://c0vbfmd5xhxfj"
+path="res://.godot/imported/Cage.png-a9fb9966a4d359e3f6786744969138a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PNG/UI/Sfx_Normal.png"
-dest_files=["res://.godot/imported/Sfx_Normal.png-7fa5796a31c245e7f9ac74e943acf07f.ctex"]
+source_file="res://Scenes/[T] Test/Cage.png"
+dest_files=["res://.godot/imported/Cage.png-a9fb9966a4d359e3f6786744969138a1.ctex"]
 
 [params]
 

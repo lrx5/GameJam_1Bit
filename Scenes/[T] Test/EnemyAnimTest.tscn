@@ -1,8 +1,11 @@
-[gd_scene load_steps=43 format=3 uid="uid://cheoswjpe1saa"]
+[gd_scene load_steps=47 format=3 uid="uid://cheoswjpe1saa"]
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
-[ext_resource type="Texture2D" uid="uid://c2rod5qgbiu31" path="res://Sprites/[T] Test/1bit_ss_test.png" id="2_3ayfd"]
+[ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/(explodr_enemy).gd" id="4_3erxk"]
+[ext_resource type="Shader" path="res://Scenes/[T] Test/RectangleShader.gdshader" id="4_bes7x"]
+[ext_resource type="Texture2D" uid="uid://cpiskrlxfwp8i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_Panel.png" id="5_ec6gx"]
+[ext_resource type="Texture2D" uid="uid://c0vbfmd5xhxfj" path="res://Scenes/[T] Test/Cage.png" id="6_tb5nn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_400ka"]
 load_path = "res://.godot/imported/enemy_spritesheet.png-7c46a12bcd647ec8bfa01d1ab9589264.ctex"
@@ -138,64 +141,64 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tl1mj"]
-atlas = ExtResource("2_3ayfd")
-region = Rect2(1, 20, 18, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hn36"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(0, 18, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dogf"]
-atlas = ExtResource("2_3ayfd")
-region = Rect2(21, 20, 18, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohdc1"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(18, 18, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_axcpw"]
-atlas = ExtResource("2_3ayfd")
-region = Rect2(41, 20, 18, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8pfx"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(36, 18, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_02bvg"]
-atlas = ExtResource("2_3ayfd")
-region = Rect2(61, 20, 18, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqgo0"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(54, 18, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f3wh5"]
-atlas = ExtResource("2_3ayfd")
-region = Rect2(81, 20, 18, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_naim2"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(72, 18, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_anbqb"]
-atlas = ExtResource("2_3ayfd")
-region = Rect2(101, 20, 18, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq3gv"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(90, 18, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yeyd2"]
-atlas = ExtResource("2_3ayfd")
-region = Rect2(121, 20, 18, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ts54"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(108, 18, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pj1u6"]
-atlas = ExtResource("2_3ayfd")
-region = Rect2(141, 20, 18, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4pn8"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(126, 18, 18, 18)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uvqi6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tl1mj")
+"texture": SubResource("AtlasTexture_5hn36")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0dogf")
+"texture": SubResource("AtlasTexture_ohdc1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_axcpw")
+"texture": SubResource("AtlasTexture_r8pfx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_02bvg")
+"texture": SubResource("AtlasTexture_hqgo0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f3wh5")
+"texture": SubResource("AtlasTexture_naim2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_anbqb")
+"texture": SubResource("AtlasTexture_aq3gv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yeyd2")
+"texture": SubResource("AtlasTexture_2ts54")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pj1u6")
+"texture": SubResource("AtlasTexture_x4pn8")
 }],
 "loop": true,
 "name": &"default",
@@ -269,13 +272,23 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e5y80"]
+shader = ExtResource("4_bes7x")
+shader_parameter/gradient_color = Vector4(0.6, 0.6, 1, 1)
+shader_parameter/gradient_strength = 1.0
+shader_parameter/scroll_speed = 1.0
+shader_parameter/wave_amplitude = 10.0
+shader_parameter/wave_frequency = 10.0
+
 [node name="TestScene" type="Node2D"]
+metadata/_edit_vertical_guides_ = [-90.0]
+metadata/_edit_horizontal_guides_ = [0.0]
 
 [node name="(FastEnemy)" type="AnimatedSprite2D" parent="."]
 position = Vector2(-31, 0)
 sprite_frames = SubResource("SpriteFrames_dgh2m")
 autoplay = "default"
-frame_progress = 0.15719
+frame_progress = 0.258959
 script = ExtResource("1_4qdmk")
 
 [node name="Camera2D" type="Camera2D" parent="(FastEnemy)"]
@@ -284,7 +297,7 @@ visible = false
 [node name="(BigEnemy)" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jocmj")
 autoplay = "default"
-frame_progress = 0.839955
+frame_progress = 0.164799
 script = ExtResource("1_4qdmk")
 
 [node name="Camera2D" type="Camera2D" parent="(BigEnemy)"]
@@ -294,7 +307,7 @@ visible = false
 position = Vector2(30, 0)
 sprite_frames = SubResource("SpriteFrames_uvqi6")
 autoplay = "default"
-frame_progress = 0.106179
+frame_progress = 0.35178
 script = ExtResource("1_4qdmk")
 
 [node name="Camera2D" type="Camera2D" parent="(MedEnemy)"]
@@ -304,7 +317,23 @@ visible = false
 position = Vector2(56, 0)
 sprite_frames = SubResource("SpriteFrames_l1a31")
 autoplay = "default"
-frame_progress = 0.22558
+frame_progress = 0.732074
 script = ExtResource("4_3erxk")
 
 [node name="Camera2D" type="Camera2D" parent="(ExplodrEnemy)"]
+
+[node name="ShaderTest" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_e5y80")
+position = Vector2(-151.5, 25)
+scale = Vector2(1.86111, 1.44444)
+texture = ExtResource("5_ec6gx")
+
+[node name="ShaderTest2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_e5y80")
+position = Vector2(-152, -21)
+scale = Vector2(1.86111, 1.44444)
+texture = ExtResource("5_ec6gx")
+
+[node name="Cage" type="Sprite2D" parent="."]
+position = Vector2(-153, -2)
+texture = ExtResource("6_tb5nn")

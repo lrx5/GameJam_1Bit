@@ -15,9 +15,12 @@ run/main_scene="res://Scenes/UI/SceneSwitcher.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Assets/Sounds/default_bus_layout.tres"
+
 [autoload]
 
-CanvasManager="*res://Scenes/CanvasLayers/CanvasLayer Scripts/CanvasManager.gd"
 SceneManager="*res://Resources/sceneManager.tscn"
 
 [display]

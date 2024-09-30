@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gqs132clygbk"
-path="res://.godot/imported/Settings_Hover.png-ef38441b925f80f030fbb3c87d9d2385.ctex"
+uid="uid://bk4bdpcadro7i"
+path="res://.godot/imported/TowerShop_HUD.png-68ca77a7492cc81878d17564bcc44e3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PNG/UI/Settings_Hover.png"
-dest_files=["res://.godot/imported/Settings_Hover.png-ef38441b925f80f030fbb3c87d9d2385.ctex"]
+source_file="res://Assets/Sprites/PNG/UI/Game/TowerShop_HUD.png"
+dest_files=["res://.godot/imported/TowerShop_HUD.png-68ca77a7492cc81878d17564bcc44e3c.ctex"]
 
 [params]
 
