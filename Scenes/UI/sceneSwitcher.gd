@@ -29,9 +29,11 @@ func onPressPlay():
 	mainMenuScene.queue_free()
 	var worldScene = SceneManager.getScene("world").instantiate()
 	var towerShopHotbar = SceneManager.getScene("towerShopHotbar").instantiate()
+	var gameHUD = SceneManager.getScene("gameHUD").instantiate()
 	add_child(worldScene)
 	add_child(towerShopHotbar)
-	
+	add_child(gameHUD)
+
 func onPressSettings():
 	settingsScene.visible = true
 	

@@ -13,6 +13,7 @@ extends Node
 @export var mainMenuTextRect		: PackedScene
 @export var settingsTextRect		: PackedScene
 @export var world					: PackedScene
+@export var gameHUD					: PackedScene
 
 #To update the dictionary simply make the variable name as string then use it
 #as the key, and the variable itself as the value
@@ -26,7 +27,8 @@ extends Node
 	"tower1Panel"				: tower1Panel,
 	"mainMenuTextRect"			: mainMenuTextRect,
 	"settingsTextRect"			: settingsTextRect,
-	"world"						: world
+	"world"						: world,
+	"gameHUD"					: gameHUD,
 }
 
 func getScene(sceneName : String): 
