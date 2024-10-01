@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://cxcxrne5beluq"]
+[gd_scene load_steps=8 format=4 uid="uid://cxcxrne5beluq"]
 
 [ext_resource type="Texture2D" uid="uid://rl62hshmfphl" path="res://Assets/Sprites/PNG/TIle/BlackTile.png" id="1_hc6ys"]
 [ext_resource type="PackedScene" uid="uid://5l0rvo3d5vff" path="res://Scenes/Tower/MainTower/mainTower.tscn" id="2_8acri"]
+[ext_resource type="PackedScene" uid="uid://28paxk21m0io" path="res://Scenes/Tower/BeamTower/beamTower.tscn" id="3_1bcqd"]
 [ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemy.tscn" id="3_5k6rm"]
+[ext_resource type="PackedScene" uid="uid://derno1dlhr656" path="res://Scenes/Tower/RocketTower/rocketTower.tscn" id="4_scynn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jv7dp"]
 texture = ExtResource("1_hc6ys")
@@ -23,19 +25,30 @@ tile_set = SubResource("TileSet_36y2x")
 [node name="TowerField" type="Node2D" parent="." groups=["towerField"]]
 
 [node name="MainTower" parent="TowerField" groups=["mainTower"] instance=ExtResource("2_8acri")]
+process_mode = 4
+physics_interpolation_mode = 2
+visible = false
+
+[node name="BeamTower" parent="TowerField" instance=ExtResource("3_1bcqd")]
+position = Vector2(-44, -16)
+attackSpeed = 200.0
+
+[node name="RocketTower" parent="TowerField" instance=ExtResource("4_scynn")]
+process_mode = 4
+position = Vector2(47, -1)
 
 [node name="ProjectileField" type="Node2D" parent="." groups=["projectileField"]]
 
 [node name="Malayo" parent="." instance=ExtResource("3_5k6rm")]
 position = Vector2(-167, 46)
-runSpeed = 5.0
+runSpeed = 4.0
+
+[node name="MalayongMalyo" parent="." instance=ExtResource("3_5k6rm")]
+position = Vector2(-229, -125)
+runSpeed = 4.0
 
 [node name="Malapit" parent="." instance=ExtResource("3_5k6rm")]
-position = Vector2(-36, -93)
+position = Vector2(-34, -92)
 runSpeed = 1.0
-
-[node name="Mabilis" parent="." instance=ExtResource("3_5k6rm")]
-position = Vector2(200, -107)
-runSpeed = 8.0
 
 [node name="Camera2D" type="Camera2D" parent="."]

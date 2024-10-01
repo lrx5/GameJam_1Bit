@@ -3,7 +3,8 @@ extends Area2D
 
 
 @onready var hasDetectedEnemy 	: bool = false
-@onready var target 			: Characters
+var target 			: Enemy
+var prevTarget		: Enemy
 
 @export_enum("Farthest","Nearest","Highest HP", "Fastest") var targetPriority = "Farthest"
 @export_range(20,100,1, "or_greater") var attackRange 	: int = 80	##Set the range of the tower
@@ -19,6 +20,7 @@ func _ready():
 		parent = parent.get_parent()
 		shape.radius = attackRange
 	connect("body_exited", _onEnemyExit)
+	connect("body_entered", _onEnemyEnter)
 	
 func _process(_delta: float) -> void:
 	_setTarget()
@@ -30,6 +32,17 @@ func _physics_process(_delta: float) -> void:
 				enemiesDetected.append(enemy)
 	else:
 		enemiesDetected = []
+		target = null		
+	
+	if prevTarget !=  target:
+		prevTarget = target
+		if prevTarget:
+			print("new target acquired ",prevTarget.name)
+
+func _onEnemyEnter(body: Node2D):
+	if body is Enemy:
+		if not enemiesDetected.has(body):
+			enemiesDetected.append(body)
 
 func _onEnemyExit(body: Node2D):
 	#Ensures that when an enemy dies within the range it would get removed from the enemies array
@@ -55,7 +68,6 @@ func _setTarget():
 			"Fastest":
 				for enemy in enemiesDetected:
 					enemiesStatDict[enemy] = enemy.runSpeed
-					print(enemy.runSpeed)
 					valueSort.append(enemy.runSpeed)
 				target =  enemiesStatDict.find_key(valueSort.max())
 			"HighestHP":

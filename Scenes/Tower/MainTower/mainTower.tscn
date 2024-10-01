@@ -59,6 +59,7 @@ script = ExtResource("7_w52sc")
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_fw7y1")
+disabled = true
 
 [node name="TowerBase" type="Area2D" parent="."]
 collision_layer = 64

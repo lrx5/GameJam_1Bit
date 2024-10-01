@@ -11,7 +11,6 @@ func _ready():
 	_setInitTarget()
 
 func _process(_delta: float) -> void:
-	pass
 	move_and_slide()
 
 func _setInitTarget():
@@ -23,6 +22,7 @@ func _setInitTarget():
 		if mainTower.get_child(child) is MainTowerQuadrant:
 			var quad = mainTower.get_child(child)
 			var quadVector = quad.defaultVector.rotated(quad.global_rotation)
+			#convert the value of the quad vector into the nearest tenths
 			var x = snappedf(quadVector.x, 0.1)
 			var y = snappedf(quadVector.y, 0.1)
 			quadVector = Vector2(x,y)
