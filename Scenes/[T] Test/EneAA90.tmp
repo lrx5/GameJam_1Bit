@@ -438,9 +438,6 @@ script = ExtResource("1_4qdmk")
 position = Vector2(-51, -35)
 texture = ExtResource("10_epxl7")
 
-[node name="Camera2D2" type="Camera2D" parent="RomanI"]
-zoom = Vector2(2, 2)
-
 [node name="RomanX" type="Sprite2D" parent="."]
 position = Vector2(-20, -35)
 texture = ExtResource("12_1u643")
@@ -452,6 +449,10 @@ one_shot = true
 [node name="ResetTimer" type="Timer" parent="RomanX"]
 wait_time = 3.0
 one_shot = true
+
+[node name="Camera2D2" type="Camera2D" parent="RomanX"]
+position = Vector2(76, 35)
+zoom = Vector2(2, 2)
 
 [connection signal="timeout" from="RomanX/WaitTimer" to="RomanX" method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="RomanX/ResetTimer" to="RomanX" method="_on_reset_timer_timeout"]

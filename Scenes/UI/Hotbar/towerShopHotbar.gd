@@ -14,12 +14,19 @@ extends CanvasLayer
 @onready var hasTowerBase 	: bool = false
 @onready var canPlaceTower	: bool = true
 
-
 var towerType
 var towerName
 var towerBase
 
+# Tween variables On Shop Open & Close
+var openedPos = offset.x
+var closedPos = offset.x + 80.0
+var isShopOpen = false
+var isTweening = false
+@onready var tween
+
 func _ready():
+	setDefaultPos()
 	var nodeSorter = []
 	_getTowers(self, nodeSorter)
 
@@ -147,4 +154,31 @@ func onMouseExit():
 		InputMap.action_add_event("shoot",leftClick)
 	else:
 		canDrop = true
+
+
+
+# Open & Close Tower Shop
+func setDefaultPos():
+	offset.x = closedPos
+
+func _on_shop_button_pressed() -> void:
+	if isTweening == false:
+		isTweening = true
+		isShopOpen = !isShopOpen
+		if isShopOpen:
+			openTowerShop()
+		else:
+			closeTowerShop()
+
+func openTowerShop():
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC).tween_property(self, "offset:x", openedPos, 1.0)
+	tween.finished.connect(_on_tween_finished)
 	
+func closeTowerShop():
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC).tween_property(self, "offset:x", closedPos, 1.0)
+	tween.finished.connect(_on_tween_finished)
+
+func _on_tween_finished():
+	isTweening = false
