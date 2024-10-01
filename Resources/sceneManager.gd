@@ -53,7 +53,8 @@ extends Node
 	"cannonPanel"				: cannonPanel,
 	"mainMenu"					: mainMenu,
 	"settings"					: settings,
-	"world"						: world
+	"world"						: world,
+	"gameHUD"					: gameHUD,
 }
 
 func getScene(sceneName : String): 
