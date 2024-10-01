@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectilePacker" load_steps=4 format=3 uid="uid://duixsi5od80pv"]
+
+[ext_resource type="Texture2D" uid="uid://bs3m03ryu0kv6" path="res://Assets/Sprites/PNG/Projectile/cannonTower_projectile1.png" id="1_qppct"]
+[ext_resource type="PackedScene" uid="uid://cethbk84oqk0g" path="res://Scenes/Projectiles/CannonTowerProjectile/cannonTowerProjectile.tscn" id="2_pu0rh"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/Resources/projectilePacker.gd" id="3_d8b2a"]
+
+[resource]
+script = ExtResource("3_d8b2a")
+projectileName = &"CannonProjectile"
+projectileIcon = ExtResource("1_qppct")
+projectileScene = ExtResource("2_pu0rh")

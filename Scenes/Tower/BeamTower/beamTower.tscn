@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://28paxk21m0io"]
+
+[ext_resource type="Script" path="res://Scenes/Tower/BeamTower/beamTower.gd" id="1_8exyt"]
+[ext_resource type="Script" path="res://Scenes/Components/towerBase.gd" id="2_5lptc"]
+[ext_resource type="Texture2D" uid="uid://rl62hshmfphl" path="res://Assets/Sprites/PNG/TIle/BlackTile.png" id="2_537no"]
+[ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="3_7qucq"]
+[ext_resource type="Script" path="res://Scenes/Components/projectileSpawner.gd" id="4_ncd52"]
+[ext_resource type="Resource" uid="uid://duixsi5od80pv" path="res://Scenes/Projectiles/CannonTowerProjectile/cannonTowerProjectile.tres" id="5_c4lln"]
+[ext_resource type="Texture2D" uid="uid://dd8wbfhwxqq6x" path="res://Assets/Sprites/PNG/Buildable Tower/beamTower_tier1.png" id="6_autxw"]
+[ext_resource type="Script" path="res://Scenes/Components/attackRange.gd" id="7_3xnkq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rinhm"]
+atlas = ExtResource("2_537no")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4h40k"]
+radius = 50.0
+
+[node name="BeamTower" type="StaticBody2D" node_paths=PackedStringArray("projectileSpawner", "attackRange", "gunPivot")]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("1_8exyt")
+projectileSpawner = NodePath("GunPivot/ProjectileSpawner")
+attackRange = NodePath("AttackRange")
+gunPivot = NodePath("GunPivot")
+attackSpeed = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_rinhm")
+
+[node name="BeamCollider" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(-6, -6, -6, 4, 6, 4, 6, -6)
+
+[node name="TowerBase" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("2_5lptc")
+
+[node name="TowerShape" type="CollisionPolygon2D" parent="TowerBase"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-6, -4, -6, 6, 6, 6, 6, -4)
+
+[node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
+script = ExtResource("3_7qucq")
+inRange = NodePath("../AttackRange")
+rotationSpeed = 0.7
+
+[node name="ProjectileSpawner" type="Node2D" parent="GunPivot" node_paths=PackedStringArray("gunPivot")]
+position = Vector2(0, -13)
+script = ExtResource("4_ncd52")
+gunPivot = NodePath("..")
+projectilePacker = ExtResource("5_c4lln")
+
+[node name="BeamSprite" type="Sprite2D" parent="GunPivot"]
+position = Vector2(0, -5)
+texture = ExtResource("6_autxw")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4096
+script = ExtResource("7_3xnkq")
+attackRange = 40
+
+[node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_4h40k")

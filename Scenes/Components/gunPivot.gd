@@ -1,22 +1,38 @@
 class_name GunPivot
 extends Node2D
 
-@export var inRange	: AttackRange
+@export var defaultSpriteDirection	: Vector2		= Vector2.DOWN
+@export var inRange					: AttackRange
+@export_range(0,1, 0.01, "or_greater") var rotationSpeed = 0.08
 
-func _ready():
-	print(inRange.targetPriority)
+@onready var startShooting : bool = false
 
 func _process(_delta: float) -> void:
-	if inRange.target:
-		var enemyPosition = inRange.target.global_position
-		rotation = global_position.angle_to_point(enemyPosition)
+	if inRange.prevTarget and is_instance_valid(inRange.prevTarget):
 		
-		
-	#get mouse position
-	#var mousePos = get_global_mouse_position()
-	#set the rotation of self into the direction of mouse
-	#calculates the angle of the line that forms from the
-	#global position of the launcher and the mouse position 
-	#rotation = global_position.angle_to_point(mousePos)
-
+		var currentRotation = rotation
+		var enemyPosition = inRange.prevTarget.global_position
+		var gunRotation = global_position.angle_to_point(enemyPosition)
+		var finalRotation = defaultSpriteDirection.rotated(gunRotation).angle()
 	
+		finalRotation = _adjustFinalRotation(currentRotation,finalRotation)
+		
+		rotation = move_toward(rotation,finalRotation, rotationSpeed)
+		
+		startShooting = true if round(rotation) == round(finalRotation) else false
+		
+	else:
+		rotation = move_toward(rotation,0,rotationSpeed)
+		startShooting = false
+
+func _adjustFinalRotation(currentRotation,finalRotation):
+		
+	if abs(sign(currentRotation)) != 0:
+		if sign(currentRotation) != sign(finalRotation):
+			if sign(currentRotation) == -1:
+				finalRotation -= deg_to_rad(360)
+			elif sign(currentRotation) == 1:
+				finalRotation += deg_to_rad(360)
+
+	return finalRotation
+		

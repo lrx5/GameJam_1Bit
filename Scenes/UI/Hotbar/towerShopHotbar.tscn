@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxcskcr2b6so0"]
 
-[ext_resource type="PackedScene" path="res://Scenes/UI/Hotbar/TowerPanel/tower1Panel.tscn" id="1_5k7b3"]
+[ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
 [ext_resource type="Texture2D" uid="uid://bk4bdpcadro7i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_HUD.png" id="2_3wm8y"]
 [ext_resource type="Texture2D" uid="uid://x0kh7v67w1na" path="res://Assets/Sprites/PNG/UI/Game/button_shop.png" id="2_6ke6g"]
@@ -34,6 +34,7 @@ grow_vertical = 2
 texture_normal = ExtResource("2_6ke6g")
 
 [node name="TowerShopBG" type="TextureRect" parent="TowerShop"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,25 +45,32 @@ texture = ExtResource("2_3wm8y")
 
 [node name="ShopGrid" type="GridContainer" parent="TowerShop"]
 layout_mode = 1
-anchors_preset = -1
-offset_left = 3.0
-offset_top = 3.0
-theme_override_constants/h_separation = 3
-columns = 2
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -58.0
+offset_bottom = 58.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="Tower1Panel" parent="TowerShop/ShopGrid" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
+[node name="CannonPanel" parent="TowerShop/ShopGrid" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
 z_index = 1
 layout_mode = 2
+size_flags_horizontal = 8
 script = null
 
 [node name="Tower2Panel" parent="TowerShop/ShopGrid" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
 z_index = 1
+custom_minimum_size = Vector2(27, 27)
 layout_mode = 2
 script = null
 
 [node name="PanelTemplate" type="Panel" parent="TowerShop/ShopGrid" groups=["buildTower"]]
 z_index = 1
-custom_minimum_size = Vector2(36, 36)
+custom_minimum_size = Vector2(27, 27)
 layout_mode = 2
 
 [connection signal="pressed" from="TowerShop/ShopButton" to="." method="_on_shop_button_pressed"]

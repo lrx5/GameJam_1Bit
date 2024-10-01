@@ -41,12 +41,12 @@ func _getTowers(parent : Node, children: Array):
 		#reiterates to scan the child of the towershop's child
 		_getTowers(child,children)
 
-func onShopHUDentered(input, tower):
+func onShopHUDentered(input, panel):
 	#Selecting tower based on the name of the main node
-	match tower.name:
-		"Tower1Panel":
+	match panel.name:
+		"CannonPanel":
 			#replace the towerType with the actual tower scene
-			towerType = SceneManager.getScene("mainTower")
+			towerType = SceneManager.getScene("cannonTower")
 		"Tower2Panel":
 			towerType = null
 		"PanelTemplate":
@@ -97,23 +97,21 @@ func isJustClicked(input: InputEvent):
 
 func clickedTower():
 	clicked = false
-	add_child(previewTower) 
+	towerField.add_child(previewTower) 
 	previewTower.process_mode 		= Node.PROCESS_MODE_DISABLED
 	previewTower.name 				+= "Preview"
 	previewTower.modulate 			= Color("a5a5a596")
-	previewTower.global_position 	= getSnappedCanvasMousePos()
+	previewTower.global_position 	= gridPlacement()
 	isDragging = true
 	
 func draggedTower():
-	previewTower.global_position = getSnappedCanvasMousePos()
+	previewTower.global_position = gridPlacement()
 	
 func droppedTower():
-	remove_child(previewTower)
-	towerField.add_child(previewTower)
 	previewTower.process_mode		= Node.PROCESS_MODE_ALWAYS
 	previewTower.name				= towerName
 	previewTower.modulate			= Color("ffffff")
-	previewTower.global_position	= getSnappedCanvasMousePos()
+	previewTower.global_position	= gridPlacement()
 	previewTower = null
 	isDragging = false
 	towerBase = null
@@ -127,18 +125,13 @@ func cancelDrag():
 		previewTower.queue_free()
 		previewTower = null
 	
-	
-func getSnappedCanvasMousePos():
-	return get_viewport().get_mouse_position().snapped(gridSize)
-
 func gridPlacement(): #Preparation for future use
-	var mousePos = get_viewport().get_mouse_position() / pow(tileMap.scale.x,2)
+	var mousePos = tileMap.get_global_mouse_position()
 	#convert the mouse position to tile position
 	var tilePos = tileMap.local_to_map(mousePos)
 	#convert the tile position to a global position being centered around the tile position
-	var cellPos = tileMap.map_to_local(tilePos) * tileMap.scale #multiplied since the tilemap is also scaled down to 0.25. If it is not scaled down there is no need to do this
-	var globalPos = tileMap.to_global(cellPos).snapped(gridSize)
-	return globalPos
+	var cellPos = tileMap.map_to_local(tilePos) #multiplied since the tilemap is also scaled down to 0.25. If it is not scaled down there is no need to do this
+	return cellPos
 
 
 func onMouseEnter():

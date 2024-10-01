@@ -13,3 +13,5 @@ extends CharacterBody2D
 @export_range(0,25,1,"or_greater") var fric			: float = 15
 
 var direction : Vector2
+
+@onready var hasDied : bool = false
