@@ -1,28 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce5kpfo525fhr"]
+[gd_scene load_steps=6 format=3 uid="uid://ce5kpfo525fhr"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/TowerPanel/towerPanels.gd" id="1_o6l4t"]
-[ext_resource type="Texture2D" uid="uid://rl62hshmfphl" path="res://Assets/Sprites/PNG/TIle/BlackTile.png" id="2_4ypmd"]
 [ext_resource type="Texture2D" uid="uid://bal7j5ackqghc" path="res://Assets/Sprites/PNG/Buildable Tower/cannonTower_tier1.png" id="3_rjlfi"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aht7e"]
+load_path = "res://.godot/imported/BlackTile.png-fc1b500172edb641ae37629590de473d.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5hkm"]
-atlas = ExtResource("2_4ypmd")
+atlas = SubResource("CompressedTexture2D_aht7e")
 region = Rect2(0, 0, 18, 18)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e17lp"]
+atlas = SubResource("CompressedTexture2D_aht7e")
+region = Rect2(18, 0, 18, 18)
+
 [node name="CannonPanel" type="Panel"]
-custom_minimum_size = Vector2(18, 18)
+custom_minimum_size = Vector2(27, 27)
 offset_right = 18.0
 offset_bottom = 18.0
 script = ExtResource("1_o6l4t")
 towerName = "mainTower"
 
 [node name="PanelBG" type="TextureRect" parent="."]
-layout_mode = 0
+visible = false
+layout_mode = 1
 offset_right = 18.0
 offset_bottom = 18.0
 texture = SubResource("AtlasTexture_u5hkm")
 
+[node name="PanelBGSprite2" type="Sprite2D" parent="."]
+position = Vector2(13.5, 13.5)
+scale = Vector2(1.15, 1.15)
+texture = SubResource("AtlasTexture_e17lp")
+
+[node name="PanelBGSprite" type="Sprite2D" parent="."]
+position = Vector2(13.5, 13.5)
+texture = SubResource("AtlasTexture_u5hkm")
+
 [node name="CannonSprite" type="Sprite2D" parent="."]
-position = Vector2(9, 9)
+position = Vector2(13.5, 13.5)
 texture = ExtResource("3_rjlfi")
 
 [connection signal="gui_input" from="." to="." method="_onUserInterfaceInput"]

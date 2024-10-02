@@ -34,7 +34,7 @@ texture = ExtResource("2_3wm8y")
 expand_mode = 5
 script = ExtResource("3_1cdgv")
 shopGrid = NodePath("../ShopGrid")
-bgPadding = 5.0
+bgPadding = 6.0
 
 [node name="ShopGrid" type="GridContainer" parent="TowerShop"]
 layout_mode = 1

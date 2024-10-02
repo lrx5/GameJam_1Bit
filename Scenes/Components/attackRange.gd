@@ -2,14 +2,14 @@ class_name AttackRange
 extends Area2D
 
 
-@onready var hasDetectedEnemy 	: bool = false
-var target 			: Enemy
-var prevTarget		: Enemy
-
 @export_enum("Farthest","Nearest","Highest HP", "Fastest") var targetPriority = "Farthest"
 @export_range(20,100,1, "or_greater") var attackRange 	: int = 80	##Set the range of the tower
 
 @onready var shape = get_child(0).shape
+
+@onready var hasDetectedEnemy 	: bool = false
+var target 			: Enemy
+var prevTarget		: Enemy
 
 var parent = self
 var enemiesDetected	: Array
@@ -36,8 +36,6 @@ func _physics_process(_delta: float) -> void:
 	
 	if prevTarget !=  target:
 		prevTarget = target
-		if prevTarget:
-			print("new target acquired ",prevTarget.name)
 
 func _onEnemyEnter(body: Node2D):
 	if body is Enemy:
