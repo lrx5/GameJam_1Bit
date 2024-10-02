@@ -18,12 +18,13 @@ var towerType
 var towerName
 var towerBase
 
-# Tween variables On Shop Open & Close
+#region New TowerShop Variables
 var openedPos = offset.x
 var closedPos = offset.x + 80.0
 var isShopOpen = false
 var isTweening = false
 @onready var tween
+#endregion
 
 func _ready():
 	setDefaultPos()
@@ -162,7 +163,8 @@ func onMouseExit():
 
 
 
-# Open & Close Tower Shop
+
+#region Open & Close Tower Shop - TESTING
 func setDefaultPos():
 	offset.x = closedPos
 
@@ -187,3 +189,4 @@ func closeTowerShop():
 
 func _on_tween_finished():
 	isTweening = false
+#endregion

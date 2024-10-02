@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/enemy.gd" id="1_eopo7"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_twhs5"]
-[ext_resource type="Material" uid="uid://ce0xxejqm026h" path="res://Scenes/Characters/Enemy/blackFade.tres" id="2_yv1f2"]
+[ext_resource type="Material" path="res://Scenes/Characters/Enemy/blackFade.tres" id="2_yv1f2"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="3_8vmgq"]
 [ext_resource type="Script" path="res://Scenes/Characters/Character Scripts/moveStateMachine.gd" id="4_s7m62"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/States/enemyIdle.gd" id="5_a1k2w"]
@@ -193,5 +193,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_exb5p")
 
 [node name="onHitSFX" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
 
 [connection signal="timeout" from="Hurtbox/DamageParticlesTimer" to="Hurtbox" method="_on_damage_particles_timer_timeout"]

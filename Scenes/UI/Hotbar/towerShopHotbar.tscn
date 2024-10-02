@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxcskcr2b6so0"]
+[gd_scene load_steps=7 format=3 uid="uid://dxcskcr2b6so0"]
 
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
 [ext_resource type="Texture2D" uid="uid://bk4bdpcadro7i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_HUD.png" id="2_3wm8y"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopBG.gd" id="3_1cdgv"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/shopGrid.gd" id="4_88ptn"]
+[ext_resource type="Texture2D" uid="uid://x0kh7v67w1na" path="res://Assets/Sprites/PNG/UI/Game/button_shop.png" id="6_542vb"]
 
 [node name="TowerShopHotbar" type="CanvasLayer"]
 script = ExtResource("1_nu803")
@@ -69,4 +70,18 @@ z_index = 1
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 
-[connection signal="pressed" from="TowerShop/ShopButton" to="." method="_on_shop_button_pressed"]
+[node name="ShopButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 151.0
+offset_top = -17.0
+offset_right = 160.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_542vb")
+
+[connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
