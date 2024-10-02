@@ -428,8 +428,8 @@ texture = ExtResource("6_tb5nn")
 script = ExtResource("6_7kevm")
 
 [node name="CrystalTower" type="AnimatedSprite2D" parent="."]
-position = Vector2(30, -36)
+position = Vector2(-60, 0)
 sprite_frames = SubResource("SpriteFrames_iq3cn")
 autoplay = "default"
-frame_progress = 0.922711
+frame_progress = 0.8313
 script = ExtResource("1_4qdmk")

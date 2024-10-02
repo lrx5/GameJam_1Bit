@@ -11,4 +11,5 @@ select = NodePath("CanvasLayer/Select")
 layer = 20
 
 [node name="Select" type="Sprite2D" parent="CanvasLayer"]
+visible = false
 texture = ExtResource("2_btlgl")

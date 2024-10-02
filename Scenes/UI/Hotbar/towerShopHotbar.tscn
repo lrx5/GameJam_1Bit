@@ -80,13 +80,14 @@ offset_top = -20.0
 offset_right = 73.0
 grow_vertical = 2
 
-[node name="VSplitContainer" type="VSplitContainer" parent="TowerInfo"]
+[node name="VSplitContainer" type="VBoxContainer" parent="TowerInfo"]
 layout_mode = 2
 
 [node name="TargetPriority" type="OptionButton" parent="TowerInfo/VSplitContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_13pyj")
 theme_override_font_sizes/font_size = 5
+text_overrun_behavior = 2
 selected = 0
 item_count = 4
 popup/item_0/text = "Nearest"
@@ -97,9 +98,15 @@ popup/item_2/id = 2
 popup/item_3/text = "Highest HP"
 popup/item_3/id = 3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="TowerInfo/VSplitContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TowerInfo/VSplitContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TowerInfo/VSplitContainer/HSplitContainer"]
+[node name="Label" type="Label" parent="TowerInfo/VSplitContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("7_13pyj")
+theme_override_font_sizes/font_size = 8
 text = "Cannon tower"
+
+[node name="UpgradeButton" type="Button" parent="TowerInfo/VSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
