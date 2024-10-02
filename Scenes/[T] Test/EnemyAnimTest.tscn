@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
-[ext_resource type="Material" path="res://Scenes/Characters/Enemy/blackFade.tres" id="3_a8kt7"]
+[ext_resource type="Material" uid="uid://du5lw2xbejfaf" path="res://Scenes/Characters/Enemy/blackFade.tres" id="3_a8kt7"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/(explodr_enemy).gd" id="4_3erxk"]
 [ext_resource type="Shader" path="res://Scenes/[T] Test/RectangleShader.gdshader" id="4_bes7x"]
 [ext_resource type="Texture2D" uid="uid://cpiskrlxfwp8i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_Panel.png" id="5_ec6gx"]

@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ce0xxejqm026h"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://du5lw2xbejfaf"]
 
 [ext_resource type="Shader" path="res://Scenes/[T] Test/EnemyOnHit.gdshader" id="1_kyf16"]
 
