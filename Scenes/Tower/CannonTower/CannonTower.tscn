@@ -25,6 +25,7 @@ attackRange = NodePath("AttackRange")
 gunPivot = NodePath("GunPivot")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
 texture = SubResource("AtlasTexture_snjoq")
 
 [node name="CannonCollider" type="CollisionPolygon2D" parent="."]

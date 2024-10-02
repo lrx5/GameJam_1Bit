@@ -1,8 +1,8 @@
-[gd_scene load_steps=66 format=3 uid="uid://cheoswjpe1saa"]
+[gd_scene load_steps=65 format=3 uid="uid://cheoswjpe1saa"]
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
-[ext_resource type="Shader" path="res://Scenes/[T] Test/EnemyOnHit.gdshader" id="3_hjn3d"]
+[ext_resource type="Material" uid="uid://ce0xxejqm026h" path="res://Scenes/Characters/Enemy/blackFade.tres" id="3_a8kt7"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/(explodr_enemy).gd" id="4_3erxk"]
 [ext_resource type="Shader" path="res://Scenes/[T] Test/RectangleShader.gdshader" id="4_bes7x"]
 [ext_resource type="Texture2D" uid="uid://cpiskrlxfwp8i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_Panel.png" id="5_ec6gx"]
@@ -211,11 +211,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s71xt"]
-shader = ExtResource("3_hjn3d")
-shader_parameter/damaged_color = Vector4(0, 0, 0, 1)
-shader_parameter/value = 0.0
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fddt"]
 load_path = "res://.godot/imported/enemy_spritesheet.png-7c46a12bcd647ec8bfa01d1ab9589264.ctex"
 
@@ -286,7 +281,7 @@ animations = [{
 [sub_resource type="Gradient" id="Gradient_mfmv7"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_sjs5o"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yp70h"]
 gradient = SubResource("Gradient_mfmv7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rm13y"]
@@ -295,7 +290,7 @@ spread = 180.0
 initial_velocity_min = 100.0
 initial_velocity_max = 200.0
 scale_max = 2.0
-color_ramp = SubResource("GradientTexture1D_sjs5o")
+color_ramp = SubResource("GradientTexture1D_yp70h")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5y80"]
 shader = ExtResource("4_bes7x")
@@ -394,7 +389,7 @@ frame_progress = 0.35178
 script = ExtResource("1_4qdmk")
 
 [node name="(ExplodrEnemy)" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_s71xt")
+material = ExtResource("3_a8kt7")
 position = Vector2(56, 0)
 sprite_frames = SubResource("SpriteFrames_l1a31")
 autoplay = "default"

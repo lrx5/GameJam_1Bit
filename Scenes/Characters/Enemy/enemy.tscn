@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://gb2y6ecbyf3d"]
+[gd_scene load_steps=27 format=3 uid="uid://gb2y6ecbyf3d"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/enemy.gd" id="1_eopo7"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_twhs5"]
+[ext_resource type="Material" uid="uid://ce0xxejqm026h" path="res://Scenes/Characters/Enemy/blackFade.tres" id="2_yv1f2"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="3_8vmgq"]
 [ext_resource type="Script" path="res://Scenes/Characters/Character Scripts/moveStateMachine.gd" id="4_s7m62"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/States/enemyIdle.gd" id="5_a1k2w"]
@@ -102,6 +103,20 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_pp7ln")
 nodes/StateMachine/position = Vector2(47.0588, 141.176)
 node_connections = [&"output", 0, &"StateMachine"]
 
+[sub_resource type="Gradient" id="Gradient_vjinq"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1k2r4"]
+gradient = SubResource("Gradient_vjinq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1l46u"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_1k2r4")
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_exb5p"]
 radius = 6.5
 height = 17.0
@@ -117,6 +132,7 @@ moveStateMach = NodePath("EnemyStateMachines/EnemyMoveStateMachine")
 actionStateMach = NodePath("EnemyStateMachines/EnemyActionStateMachine")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
+material = ExtResource("2_yv1f2")
 texture = SubResource("AtlasTexture_kt5v2")
 hframes = 8
 region_rect = Rect2(0, 0, 158, 18)
@@ -161,6 +177,21 @@ collision_mask = 0
 script = ExtResource("8_ktjs2")
 health = NodePath("../HealthManager")
 
+[node name="DamageParticles" type="GPUParticles2D" parent="Hurtbox"]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_1l46u")
+lifetime = 0.2
+explosiveness = 1.0
+
+[node name="DamageParticlesTimer" type="Timer" parent="Hurtbox"]
+wait_time = 0.2
+one_shot = true
+
 [node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_exb5p")
+
+[node name="onHitSFX" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="Hurtbox/DamageParticlesTimer" to="Hurtbox" method="_on_damage_particles_timer_timeout"]

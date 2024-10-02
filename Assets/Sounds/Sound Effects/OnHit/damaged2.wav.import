@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b4kfj18closuh"
+path="res://.godot/imported/damaged2.wav-ea5bca0337df722fb69d2c54ea55473b.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Sound Effects/OnHit/damaged2.wav"
+dest_files=["res://.godot/imported/damaged2.wav-ea5bca0337df722fb69d2c54ea55473b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

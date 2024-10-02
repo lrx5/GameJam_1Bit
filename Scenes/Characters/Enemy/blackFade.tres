@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ce0xxejqm026h"]
+
+[ext_resource type="Shader" path="res://Scenes/[T] Test/EnemyOnHit.gdshader" id="1_kyf16"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_kyf16")
+shader_parameter/damaged_color = Vector4(0, 0, 0, 1)
+shader_parameter/value = 0.0
