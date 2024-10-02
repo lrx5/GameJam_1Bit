@@ -5,7 +5,7 @@ signal buildModeToggle(inBuildMode: bool)
 signal selectionToggle(selected: bool, globalPos: Vector2)
 
 
-@export var select : TextureRect
+@export var select : Sprite2D
 
 @onready var buildMode 		: bool = false
 @onready var isSelecting	: bool = false
@@ -38,7 +38,8 @@ func onSelection(selected : bool, globalPos: Vector2):
 	if selected:
 		isSelecting = selected
 		select.visible = selected
-		select.global_position = globalPos
+		
+		select.global_position =  globalPos
 	else:
 		isSelecting = selected
 		select.visible = selected
