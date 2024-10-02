@@ -7,4 +7,4 @@ extends TextureRect
 func _ready():
 	if shopGrid:
 		size	 = shopGrid.size + Vector2(bgPadding,bgPadding)
-		position = shopGrid.position - Vector2(shopGrid.rightOffset*1.5,0)
+		position = shopGrid.position - Vector2(bgPadding,0)

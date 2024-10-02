@@ -1,70 +1,105 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxcskcr2b6so0"]
+[gd_scene load_steps=12 format=3 uid="uid://dxcskcr2b6so0"]
 
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
-[ext_resource type="Texture2D" uid="uid://bk4bdpcadro7i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_HUD.png" id="2_3wm8y"]
-[ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopBG.gd" id="3_1cdgv"]
-[ext_resource type="Script" path="res://Scenes/UI/Hotbar/shopGrid.gd" id="4_88ptn"]
+[ext_resource type="Texture2D" uid="uid://bk4bdpcadro7i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_HUD.png" id="2_fm37d"]
+[ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="6_bvpca"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/RocketPanel.tscn" id="7_8q5hs"]
+[ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="7_13pyj"]
+
+[sub_resource type="Animation" id="Animation_pqgmn"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_wt0m0"]
+resource_name = "hideShop"
+length = 0.3
+
+[sub_resource type="Animation" id="Animation_qxpk7"]
+resource_name = "showShop"
+length = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_46in6"]
+_data = {
+"RESET": SubResource("Animation_pqgmn"),
+"hideShop": SubResource("Animation_wt0m0"),
+"showShop": SubResource("Animation_qxpk7")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1c6m3"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_fm37d")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
 
 [node name="TowerShopHotbar" type="CanvasLayer"]
 script = ExtResource("1_nu803")
 
-[node name="TowerShop" type="Panel" parent="."]
+[node name="ShopAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_46in6")
+}
+
+[node name="TowerShop" type="PanelContainer" parent="."]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -80.0
+offset_left = -29.0
+offset_top = -45.5
+offset_bottom = 45.5
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1c6m3")
 
-[node name="TowerShopBG" type="TextureRect" parent="TowerShop" node_paths=PackedStringArray("shopGrid")]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -13.5
-offset_bottom = 13.5
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("2_3wm8y")
-expand_mode = 5
-script = ExtResource("3_1cdgv")
-shopGrid = NodePath("../ShopGrid")
-bgPadding = 5.0
+[node name="ShopContainer" type="VBoxContainer" parent="TowerShop"]
+layout_mode = 2
 
-[node name="ShopGrid" type="GridContainer" parent="TowerShop"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -18.0
-offset_top = -32.0
-offset_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/v_separation = 5
-script = ExtResource("4_88ptn")
-rightOffset = 5.0
-
-[node name="CannonPanel" parent="TowerShop/ShopGrid" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
+[node name="CannonPanel" parent="TowerShop/ShopContainer" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 8
 script = null
 
-[node name="Tower2Panel" parent="TowerShop/ShopGrid" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
-z_index = 1
+[node name="BeamPanel" parent="TowerShop/ShopContainer" instance=ExtResource("6_bvpca")]
 layout_mode = 2
-size_flags_horizontal = 8
-script = null
 
-[node name="PanelTemplate" type="Panel" parent="TowerShop/ShopGrid" groups=["buildTower"]]
-z_index = 1
-custom_minimum_size = Vector2(18, 18)
+[node name="RocketPanel" parent="TowerShop/ShopContainer" instance=ExtResource("7_8q5hs")]
 layout_mode = 2
+
+[node name="TowerInfo" type="PanelContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 73.0
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="TowerInfo"]
+layout_mode = 2
+
+[node name="TargetPriority" type="OptionButton" parent="TowerInfo/VSplitContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_13pyj")
+theme_override_font_sizes/font_size = 5
+selected = 0
+item_count = 4
+popup/item_0/text = "Nearest"
+popup/item_1/text = "Farthest"
+popup/item_1/id = 1
+popup/item_2/text = "Fastest"
+popup/item_2/id = 2
+popup/item_3/text = "Highest HP"
+popup/item_3/id = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="TowerInfo/VSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TowerInfo/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+text = "Cannon tower"

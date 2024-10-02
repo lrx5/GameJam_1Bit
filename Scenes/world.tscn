@@ -40,17 +40,14 @@ position = Vector2(47, -1)
 [node name="ProjectileField" type="Node2D" parent="." groups=["projectileField"]]
 
 [node name="Malayo" parent="." instance=ExtResource("3_5k6rm")]
-process_mode = 4
 position = Vector2(-167, 46)
 runSpeed = 4.0
 
 [node name="MalayongMalyo" parent="." instance=ExtResource("3_5k6rm")]
-process_mode = 4
 position = Vector2(-229, -125)
 runSpeed = 4.0
 
 [node name="Malapit" parent="." instance=ExtResource("3_5k6rm")]
-process_mode = 4
 position = Vector2(-34, -92)
 runSpeed = 1.0
 

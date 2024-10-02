@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://v61eqfjgvsfx"]
+[gd_scene load_steps=16 format=3 uid="uid://v61eqfjgvsfx"]
 
 [ext_resource type="Script" path="res://Resources/sceneManager.gd" id="1_vy3iy"]
 [ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemy.tscn" id="2_x4pv4"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://byaj84r1nn03j" path="res://Scenes/UI/MainMenu/mainMenu.tscn" id="9_do2f7"]
 [ext_resource type="PackedScene" uid="uid://bsfofk3gmlsdb" path="res://Scenes/UI/Settings/settings.tscn" id="10_281e6"]
 [ext_resource type="PackedScene" uid="uid://cxcxrne5beluq" path="res://Scenes/world.tscn" id="11_jp5b4"]
+[ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="14_4ovfj"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/RocketPanel.tscn" id="15_cpnoc"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_vy3iy")
@@ -28,3 +30,5 @@ settings = ExtResource("10_281e6")
 world = ExtResource("11_jp5b4")
 towerShopHotbar = ExtResource("6_ehogn")
 cannonPanel = ExtResource("7_rvuy1")
+beamPanel = ExtResource("14_4ovfj")
+rocketPanel = ExtResource("15_cpnoc")

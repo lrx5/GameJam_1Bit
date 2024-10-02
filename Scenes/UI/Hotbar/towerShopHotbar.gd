@@ -41,13 +41,11 @@ func onShopHUDentered(input, panel):
 		"CannonPanel":
 			#replace the towerType with the actual tower scene
 			towerType = SceneManager.getScene("cannonTower")
-		"Tower2Panel":
-			towerType = null
-		"PanelTemplate":
-			towerType = null
-			
+		"BeamPanel":
+			towerType = SceneManager.getScene("beamTower")
+		"RocketPanel":
+			towerType = SceneManager.getScene("rocketTower")
 
-	
 		
 			
 	if towerType and buildMode:

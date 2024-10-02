@@ -16,7 +16,6 @@ region = Rect2(18, 0, 18, 18)
 
 [node name="CannonPanel" type="Panel"]
 custom_minimum_size = Vector2(27, 27)
-anchors_preset = -1
 offset_right = 27.0
 offset_bottom = 27.0
 script = ExtResource("1_o6l4t")
