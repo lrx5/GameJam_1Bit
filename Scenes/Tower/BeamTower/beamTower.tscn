@@ -19,6 +19,7 @@ radius = 50.0
 [node name="BeamTower" type="StaticBody2D" node_paths=PackedStringArray("projectileSpawner", "attackRange", "gunPivot")]
 collision_layer = 256
 collision_mask = 256
+input_pickable = true
 script = ExtResource("1_8exyt")
 projectileSpawner = NodePath("GunPivot/ProjectileSpawner")
 attackRange = NodePath("AttackRange")
@@ -65,3 +66,6 @@ attackRange = 40
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_4h40k")
+
+[connection signal="mouse_entered" from="." to="." method="_onMouseEnter"]
+[connection signal="mouse_exited" from="." to="." method="_onMouseExit"]

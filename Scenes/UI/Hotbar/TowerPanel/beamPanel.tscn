@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmwscss16frcy"]
+
+[ext_resource type="Texture2D" uid="uid://dd8wbfhwxqq6x" path="res://Assets/Sprites/PNG/Buildable Tower/beamTower_tier1.png" id="1_kde0n"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aht7e"]
+load_path = "res://.godot/imported/BlackTile.png-fc1b500172edb641ae37629590de473d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e17lp"]
+atlas = SubResource("CompressedTexture2D_aht7e")
+region = Rect2(18, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5hkm"]
+atlas = SubResource("CompressedTexture2D_aht7e")
+region = Rect2(0, 0, 18, 18)
+
+[node name="BeamPanel" type="Panel" groups=["buildTower"]]
+z_index = 1
+custom_minimum_size = Vector2(27, 27)
+size_flags_horizontal = 8
+
+[node name="PanelBGSprite2" type="Sprite2D" parent="."]
+position = Vector2(13.5, 13.5)
+scale = Vector2(1.15, 1.15)
+texture = SubResource("AtlasTexture_e17lp")
+
+[node name="PanelBGSprite" type="Sprite2D" parent="."]
+position = Vector2(13.5, 13.5)
+texture = SubResource("AtlasTexture_u5hkm")
+
+[node name="BeamSprite" type="Sprite2D" parent="."]
+position = Vector2(13.5, 13.5)
+texture = ExtResource("1_kde0n")
+
+[connection signal="gui_input" from="." to="." method="_onUserInterfaceInput"]

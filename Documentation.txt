@@ -60,3 +60,6 @@ SceneManager.gd            # Contains Packed Scenes stored in a dictionary
 - Display
 Viewport Width:  480px
 Viewport Height: 270px
+
+[Known Bugs]
+Tower shop container visual is offset to the actual size

@@ -35,7 +35,6 @@ position = Vector2(-44, -16)
 attackSpeed = 200.0
 
 [node name="RocketTower" parent="TowerField" instance=ExtResource("4_scynn")]
-process_mode = 4
 position = Vector2(47, -1)
 
 [node name="ProjectileField" type="Node2D" parent="." groups=["projectileField"]]
