@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
-[ext_resource type="Material" uid="uid://du5lw2xbejfaf" path="res://Scenes/Characters/Enemy/blackFade.tres" id="3_a8kt7"]
+[ext_resource type="Material" path="res://Scenes/Characters/Enemy/blackFade.tres" id="3_a8kt7"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/(explodr_enemy).gd" id="4_3erxk"]
 [ext_resource type="Shader" path="res://Scenes/[T] Test/RectangleShader.gdshader" id="4_bes7x"]
 [ext_resource type="Texture2D" uid="uid://cpiskrlxfwp8i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_Panel.png" id="5_ec6gx"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://Scenes/[T] Test/rn_fade.gd" id="13_enn1w"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_400ka"]
-load_path = "res://.godot/imported/enemy_spritesheet.png-7c46a12bcd647ec8bfa01d1ab9589264.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqlrm"]
 atlas = SubResource("CompressedTexture2D_400ka")
@@ -212,7 +211,6 @@ animations = [{
 }]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fddt"]
-load_path = "res://.godot/imported/enemy_spritesheet.png-7c46a12bcd647ec8bfa01d1ab9589264.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_giqan"]
 atlas = SubResource("CompressedTexture2D_2fddt")

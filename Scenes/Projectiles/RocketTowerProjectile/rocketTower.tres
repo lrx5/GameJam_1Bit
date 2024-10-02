@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectilePacker" load_steps=4 format=3 uid="uid://dmc3ctsi6np42"]
+
+[ext_resource type="Texture2D" uid="uid://c62g3ujqmaisb" path="res://Assets/Sprites/PNG/Projectile/rocketTower_projectile1.png" id="1_vf3oo"]
+[ext_resource type="PackedScene" uid="uid://dlyke71cpwnru" path="res://Scenes/Projectiles/RocketTowerProjectile/rocketTowerProjectile.tscn" id="2_kh6ti"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/Resources/projectilePacker.gd" id="3_uneul"]
+
+[resource]
+script = ExtResource("3_uneul")
+projectileName = &"RocketProjectile"
+projectileIcon = ExtResource("1_vf3oo")
+projectileScene = ExtResource("2_kh6ti")

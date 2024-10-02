@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectilePacker" load_steps=4 format=3 uid="uid://dk141qnr1mlnd"]
+
+[ext_resource type="Texture2D" uid="uid://b0bbh2hgrbq7u" path="res://Assets/Sprites/PNG/Projectile/beamTower_projectile1.png" id="1_viqo1"]
+[ext_resource type="PackedScene" uid="uid://fs7kbvh0r3u3" path="res://Scenes/Projectiles/BeamTowerProjectile/beamTowerProjectile.tscn" id="2_byusf"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/Resources/projectilePacker.gd" id="3_15xuq"]
+
+[resource]
+script = ExtResource("3_15xuq")
+projectileName = &"BeamProjectile"
+projectileIcon = ExtResource("1_viqo1")
+projectileScene = ExtResource("2_byusf")

@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cethbk84oqk0g"]
+[gd_scene load_steps=10 format=3 uid="uid://cethbk84oqk0g"]
 
 [ext_resource type="Script" path="res://Scenes/Projectiles/Resources/projectile.gd" id="1_ed6s7"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/autoProjectileShape.gd" id="2_01suf"]
 [ext_resource type="Texture2D" uid="uid://bs3m03ryu0kv6" path="res://Assets/Sprites/PNG/Projectile/cannonTower_projectile1.png" id="2_xp4ea"]
 [ext_resource type="Script" path="res://Scenes/Components/hitbox.gd" id="3_qit5p"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/autoSprite.gd" id="4_sqn3r"]
+[ext_resource type="Texture2D" uid="uid://dppnmwkcwc5di" path="res://Assets/Sprites/PNG/Projectile/cannonTower_Projectile2.png" id="5_nu2kb"]
+[ext_resource type="Texture2D" uid="uid://byajtllugy8v3" path="res://Assets/Sprites/PNG/Projectile/cannonTower_projectile3.png" id="6_vfjxc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtqbb"]
 size = Vector2(2, 6)
@@ -11,19 +15,28 @@ size = Vector2(2, 6)
 radius = 1.5
 height = 7.0
 
-[node name="CannonTowerProjectile" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="CannonTowerProjectile" type="CharacterBody2D" node_paths=PackedStringArray("projectileSprite", "hitbox")]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_ed6s7")
+projectileSprite = NodePath("AutoProjectileSprite")
 hitbox = NodePath("Hitbox")
 
-[node name="ProjectileShape" type="CollisionShape2D" parent="."]
+[node name="AutoProjectileShape" type="CollisionShape2D" parent="." node_paths=PackedStringArray("projectileSprite", "screenMonitor", "hitbox")]
 shape = SubResource("RectangleShape2D_vtqbb")
+script = ExtResource("2_01suf")
+projectileSprite = NodePath("../AutoProjectileSprite")
+screenMonitor = NodePath("../VisibleOnScreenNotifier2D")
+hitbox = NodePath("../Hitbox/HitboxShape")
 
-[node name="ProjectileSprite" type="Sprite2D" parent="."]
+[node name="AutoProjectileSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_xp4ea")
 region_rect = Rect2(1360, 640, 32, 64)
+script = ExtResource("4_sqn3r")
+tier1 = ExtResource("2_xp4ea")
+tier2 = ExtResource("5_nu2kb")
+tier3 = ExtResource("6_vfjxc")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.1, 0.3)
