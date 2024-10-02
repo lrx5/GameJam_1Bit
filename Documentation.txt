@@ -63,3 +63,6 @@ Viewport Height: 270px
 
 [Known Bugs]
 Tower shop container visual is offset to the actual size
+
+[Remove On Final Export]
+1. ResourceManager.gd Debug

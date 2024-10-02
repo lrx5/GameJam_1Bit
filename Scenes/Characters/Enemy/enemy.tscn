@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/enemy.gd" id="1_eopo7"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_twhs5"]
-[ext_resource type="Material" path="res://Scenes/Characters/Enemy/blackFade.tres" id="2_yv1f2"]
+[ext_resource type="Material" uid="uid://du5lw2xbejfaf" path="res://Scenes/Characters/Enemy/blackFade.tres" id="2_yv1f2"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="3_8vmgq"]
 [ext_resource type="Script" path="res://Scenes/Characters/Character Scripts/moveStateMachine.gd" id="4_s7m62"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/States/enemyIdle.gd" id="5_a1k2w"]
@@ -99,8 +99,9 @@ states/Run/position = Vector2(523.059, 97.2445)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_hujra"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_r4fkx"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ftw1v")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_agrjj"]
+graph_offset = Vector2(-275.659, 63.4644)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_pp7ln")
-nodes/StateMachine/position = Vector2(47.0588, 141.176)
+nodes/StateMachine/position = Vector2(40, 140)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [sub_resource type="Gradient" id="Gradient_vjinq"]

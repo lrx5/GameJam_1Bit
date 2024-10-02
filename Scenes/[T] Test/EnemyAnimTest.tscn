@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cheoswjpe1saa"]
+[gd_scene load_steps=69 format=3 uid="uid://cheoswjpe1saa"]
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
@@ -364,6 +364,47 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy63w"]
+atlas = ExtResource("2_58n0c")
+region = Rect2(0, 0, 144, 18)
+
+[sub_resource type="Animation" id="Animation_qss1s"]
+resource_name = "new_animation"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_0el07"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ywub2"]
+_data = {
+"RESET": SubResource("Animation_0el07"),
+"new_animation": SubResource("Animation_qss1s")
+}
+
 [node name="TestScene" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-90.0]
 metadata/_edit_horizontal_guides_ = [0.0]
@@ -420,6 +461,8 @@ script = ExtResource("6_7kevm")
 [node name="Cage" type="Sprite2D" parent="."]
 position = Vector2(128.5, -2)
 texture = ExtResource("6_tb5nn")
+region_enabled = true
+region_rect = Rect2(0, 0, 62.9474, 65.5522)
 script = ExtResource("6_7kevm")
 
 [node name="CrystalTower" type="AnimatedSprite2D" parent="."]
@@ -447,6 +490,17 @@ one_shot = true
 [node name="ResetTimer" type="Timer" parent="RomanX"]
 wait_time = 3.0
 one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(128.5, -2)
+texture = SubResource("AtlasTexture_xy63w")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_ywub2")
+}
 
 [connection signal="timeout" from="RomanX/WaitTimer" to="RomanX" method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="RomanX/ResetTimer" to="RomanX" method="_on_reset_timer_timeout"]

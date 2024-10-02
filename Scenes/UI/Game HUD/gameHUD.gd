@@ -1,16 +1,24 @@
-extends CanvasLayer
+extends Control
 
-var round = 1
-@onready var round_label: Label = $Control/RoundLabel
+@onready var coins_label: Label = $CoinsLabel
+@onready var gems_label: Label = $GemsLabel
+@onready var round_label: Label = $RoundLabel
 
 func _ready():
-	updateRound(round)  # Initialize round_label on game start
+	labelsInit()
 
-# Convert and update the label with the round number
-func updateRound(new_round: int) -> void:
-	round = new_round
-	var roman_numeral = to_roman_numeral(round)
+func labelsInit():
+	updateRound(1)
+	updateCoins(0)
+	updateGems(0)
+
+func updateRound(new_value: int) -> void:
+	var roman_numeral = to_roman_numeral(new_value)
 	round_label.text = roman_numeral
+func updateCoins(new_value):
+	coins_label.text = str(new_value)
+func updateGems(new_value):
+	gems_label.text = str(new_value)
 
 # Function to convert number to roman numeral
 func to_roman_numeral(num: int) -> String:
@@ -18,12 +26,11 @@ func to_roman_numeral(num: int) -> String:
 	var numerals = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
 	var result = ""
 	var i = 0
-	
+
 	while num > 0:
 		if num >= values[i]:
 			num -= values[i]
 			result += numerals[i]
 		else:
 			i += 1
-			
 	return result
