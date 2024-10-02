@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cheoswjpe1saa"]
+[gd_scene load_steps=53 format=3 uid="uid://cheoswjpe1saa"]
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cpiskrlxfwp8i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_Panel.png" id="5_ec6gx"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTestSprite.gd" id="6_7kevm"]
 [ext_resource type="Texture2D" uid="uid://c0vbfmd5xhxfj" path="res://Scenes/[T] Test/Cage.png" id="6_tb5nn"]
-[ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="9_g53fh"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_400ka"]
 load_path = "res://.godot/imported/enemy_spritesheet.png-7c46a12bcd647ec8bfa01d1ab9589264.ctex"
@@ -302,70 +301,6 @@ shader_parameter/scroll_speed = 1.0
 shader_parameter/wave_amplitude = 10.0
 shader_parameter/wave_frequency = 10.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5v7ex"]
-atlas = ExtResource("9_g53fh")
-region = Rect2(0, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uqjws"]
-atlas = ExtResource("9_g53fh")
-region = Rect2(34, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7c2yy"]
-atlas = ExtResource("9_g53fh")
-region = Rect2(68, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pbqku"]
-atlas = ExtResource("9_g53fh")
-region = Rect2(102, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hf0q3"]
-atlas = ExtResource("9_g53fh")
-region = Rect2(136, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8pubw"]
-atlas = ExtResource("9_g53fh")
-region = Rect2(170, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6padi"]
-atlas = ExtResource("9_g53fh")
-region = Rect2(204, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_55lgs"]
-atlas = ExtResource("9_g53fh")
-region = Rect2(238, 0, 34, 34)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_iq3cn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5v7ex")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uqjws")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7c2yy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pbqku")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hf0q3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8pubw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6padi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_55lgs")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
 [node name="TestScene" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-90.0]
 metadata/_edit_horizontal_guides_ = [0.0]
@@ -426,10 +361,3 @@ script = ExtResource("6_7kevm")
 position = Vector2(128.5, -2)
 texture = ExtResource("6_tb5nn")
 script = ExtResource("6_7kevm")
-
-[node name="CrystalTower" type="AnimatedSprite2D" parent="."]
-position = Vector2(30, -36)
-sprite_frames = SubResource("SpriteFrames_iq3cn")
-autoplay = "default"
-frame_progress = 0.922711
-script = ExtResource("1_4qdmk")
