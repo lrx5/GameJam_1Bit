@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://hojigcp74mwi"]
+
+[ext_resource type="Script" path="res://Resources/sceneInteractions..gd" id="1_nabag"]
+[ext_resource type="Texture2D" uid="uid://8ud0kfllaxk2" path="res://Assets/Sprites/PNG/TIle/tempSelected.png" id="2_btlgl"]
+
+[node name="SceneInteractions" type="Node" node_paths=PackedStringArray("select")]
+script = ExtResource("1_nabag")
+select = NodePath("CanvasLayer/Select")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="Select" type="TextureRect" parent="CanvasLayer"]
+offset_right = 27.0
+offset_bottom = 27.0
+mouse_filter = 2
+texture = ExtResource("2_btlgl")
