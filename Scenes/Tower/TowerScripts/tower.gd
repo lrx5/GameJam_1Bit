@@ -32,9 +32,7 @@ func attackCooldown(delta):
 
 func _onMouseEnter() -> void:
 	if not SceneInteraction.buildMode:
-
 		SceneInteraction.toggleBuildMode(true)
-
 		SceneInteraction.toggleSelect(true,get_global_transform_with_canvas().origin)
 
 func _onMouseExit() -> void:

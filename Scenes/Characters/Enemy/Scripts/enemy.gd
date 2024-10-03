@@ -4,6 +4,8 @@ extends Characters
 
 @export var detectionRange 	: Area2D
 @export var hitbox			: EnemyHitbox
+var knockbackDir : Vector2
+
 
 var towersDetected	: Array
 var target			: Tower
@@ -20,10 +22,13 @@ var isRunning 	= "parameters/StateMachine/conditions/isRunning"
 
 
 func _process(_delta: float) -> void:
-	move_and_slide()
+	pass
+	
 	
 func _physics_process(delta: float) -> void:
 	_setNewTarget()
+	move_and_slide()
+
 
 func _setNewTarget():
 	if detectionRange.has_overlapping_bodies():

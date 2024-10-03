@@ -32,9 +32,7 @@ func _handleIdle():
 	
 func _handleRun():
 	if (character.initTarget or character.target) and not character.attackBool:
-
 		if moveStateMach.currentState != moveStateMach.states["Run"]:
-			print("move")
 			moveStateMach._onChangeState(moveStateMach.currentState,moveStateMach.states["Run"])
 	
 func _handleAttack():

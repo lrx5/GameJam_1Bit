@@ -16,20 +16,6 @@
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/States/ActionStates/enemyDeath.gd" id="11_2ft4s"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/enemyHitbox.gd" id="15_t2ish"]
 
-[sub_resource type="Gradient" id="Gradient_vjinq"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1k2r4"]
-gradient = SubResource("Gradient_vjinq")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1l46u"]
-particle_flag_disable_z = true
-spread = 180.0
-initial_velocity_min = 100.0
-initial_velocity_max = 200.0
-scale_max = 2.0
-color_ramp = SubResource("GradientTexture1D_1k2r4")
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kt5v2"]
 atlas = ExtResource("2_twhs5")
 region = Rect2(0, 0, 144, 18)
@@ -123,6 +109,20 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_pp7ln")
 nodes/StateMachine/position = Vector2(47.0588, 141.176)
 node_connections = [&"output", 0, &"StateMachine"]
 
+[sub_resource type="Gradient" id="Gradient_vjinq"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1k2r4"]
+gradient = SubResource("Gradient_vjinq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1l46u"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_1k2r4")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dyx47"]
 radius = 100.0
 
@@ -135,66 +135,15 @@ size = Vector2(18, 6)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("detectionRange", "hitbox", "animTree", "healthManager", "moveStateMach", "actionStateMach")]
 collision_layer = 4096
-collision_mask = 256
+collision_mask = 257
 motion_mode = 1
 script = ExtResource("1_eopo7")
 detectionRange = NodePath("DetectionRange")
 hitbox = NodePath("Hitbox")
 animTree = NodePath("EnemyAnimationTree")
 healthManager = NodePath("HealthManager")
-moveStateMach = NodePath("EnemyStateMachines/EnemyMoveStateMachine")
-actionStateMach = NodePath("EnemyStateMachines/EnemyActionStateMachine")
-
-[node name="EnemyStateHandler" type="Node" parent="." node_paths=PackedStringArray("actionStateMach", "moveStateMach")]
-script = ExtResource("5_vowgi")
-actionStateMach = NodePath("../EnemyStateMachines/EnemyActionStateMachine")
-moveStateMach = NodePath("../EnemyStateMachines/EnemyMoveStateMachine")
-
-[node name="EnemyStateMachines" type="Node" parent="."]
-
-[node name="EnemyMoveStateMachine" type="Node" parent="EnemyStateMachines" node_paths=PackedStringArray("initState")]
-script = ExtResource("4_s7m62")
-initState = NodePath("Run")
-
-[node name="Idle" type="Node" parent="EnemyStateMachines/EnemyMoveStateMachine"]
-script = ExtResource("5_a1k2w")
-
-[node name="Run" type="Node" parent="EnemyStateMachines/EnemyMoveStateMachine"]
-script = ExtResource("6_qd30f")
-
-[node name="EnemyActionStateMachine" type="Node" parent="EnemyStateMachines" node_paths=PackedStringArray("initState")]
-script = ExtResource("6_nbx4l")
-initState = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="EnemyStateMachines/EnemyActionStateMachine"]
-script = ExtResource("10_5g71a")
-
-[node name="Attack" type="Node" parent="EnemyStateMachines/EnemyActionStateMachine"]
-script = ExtResource("9_oc8ym")
-
-[node name="Hurt" type="Node" parent="EnemyStateMachines/EnemyActionStateMachine" node_paths=PackedStringArray("damage_particles", "damage_particles_timer", "enemy_sprite", "on_hit_sfx")]
-script = ExtResource("10_ygy6y")
-damage_particles = NodePath("DamageParticles")
-damage_particles_timer = NodePath("DamageParticlesTimer")
-enemy_sprite = NodePath("../../../EnemySprite")
-on_hit_sfx = NodePath("onHitSFX")
-
-[node name="DamageParticles" type="GPUParticles2D" parent="EnemyStateMachines/EnemyActionStateMachine/Hurt"]
-emitting = false
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_1l46u")
-lifetime = 0.2
-explosiveness = 1.0
-
-[node name="DamageParticlesTimer" type="Timer" parent="EnemyStateMachines/EnemyActionStateMachine/Hurt"]
-wait_time = 0.2
-one_shot = true
-
-[node name="onHitSFX" type="AudioStreamPlayer" parent="EnemyStateMachines/EnemyActionStateMachine/Hurt"]
-volume_db = -10.0
-
-[node name="Death" type="Node" parent="EnemyStateMachines/EnemyActionStateMachine"]
-script = ExtResource("11_2ft4s")
+moveStateMach = NodePath("EnemyStateHandler/EnemyMoveStateMachine")
+actionStateMach = NodePath("EnemyStateHandler/EnemyActionStateMachine")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 material = ExtResource("2_yv1f2")
@@ -220,6 +169,55 @@ parameters/StateMachine/conditions/isRunning = false
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("3_8vmgq")
 maxHealth = 250.0
+
+[node name="EnemyStateHandler" type="Node" parent="." node_paths=PackedStringArray("actionStateMach", "moveStateMach")]
+script = ExtResource("5_vowgi")
+actionStateMach = NodePath("EnemyActionStateMachine")
+moveStateMach = NodePath("EnemyMoveStateMachine")
+
+[node name="EnemyMoveStateMachine" type="Node" parent="EnemyStateHandler" node_paths=PackedStringArray("initState")]
+script = ExtResource("4_s7m62")
+initState = NodePath("Run")
+
+[node name="Idle" type="Node" parent="EnemyStateHandler/EnemyMoveStateMachine"]
+script = ExtResource("5_a1k2w")
+
+[node name="Run" type="Node" parent="EnemyStateHandler/EnemyMoveStateMachine"]
+script = ExtResource("6_qd30f")
+
+[node name="EnemyActionStateMachine" type="Node" parent="EnemyStateHandler" node_paths=PackedStringArray("initState")]
+script = ExtResource("6_nbx4l")
+initState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="EnemyStateHandler/EnemyActionStateMachine"]
+script = ExtResource("10_5g71a")
+
+[node name="Attack" type="Node" parent="EnemyStateHandler/EnemyActionStateMachine"]
+script = ExtResource("9_oc8ym")
+
+[node name="Hurt" type="Node" parent="EnemyStateHandler/EnemyActionStateMachine" node_paths=PackedStringArray("damage_particles", "damage_particles_timer", "enemy_sprite", "on_hit_sfx")]
+script = ExtResource("10_ygy6y")
+damage_particles = NodePath("DamageParticles")
+damage_particles_timer = NodePath("DamageParticlesTimer")
+enemy_sprite = NodePath("../../../EnemySprite")
+on_hit_sfx = NodePath("onHitSFX")
+
+[node name="DamageParticles" type="GPUParticles2D" parent="EnemyStateHandler/EnemyActionStateMachine/Hurt"]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_1l46u")
+lifetime = 0.2
+explosiveness = 1.0
+
+[node name="DamageParticlesTimer" type="Timer" parent="EnemyStateHandler/EnemyActionStateMachine/Hurt"]
+wait_time = 0.2
+one_shot = true
+
+[node name="onHitSFX" type="AudioStreamPlayer" parent="EnemyStateHandler/EnemyActionStateMachine/Hurt"]
+volume_db = -10.0
+
+[node name="Death" type="Node" parent="EnemyStateHandler/EnemyActionStateMachine"]
+script = ExtResource("11_2ft4s")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 0
@@ -249,6 +247,6 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ko7ct")
 debug_color = Color(0.982799, 0, 0.358914, 0.42)
 
-[connection signal="timeout" from="EnemyStateMachines/EnemyActionStateMachine/Hurt/DamageParticlesTimer" to="EnemyStateMachines/EnemyActionStateMachine/Hurt" method="_on_damage_particles_timer_timeout"]
+[connection signal="timeout" from="EnemyStateHandler/EnemyActionStateMachine/Hurt/DamageParticlesTimer" to="EnemyStateHandler/EnemyActionStateMachine/Hurt" method="_on_damage_particles_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="onTowerEnter"]
 [connection signal="area_exited" from="Hitbox" to="." method="onTowerExit"]

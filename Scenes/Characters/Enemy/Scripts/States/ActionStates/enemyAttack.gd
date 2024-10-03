@@ -8,5 +8,6 @@ func _exit():
 	pass
 
 func _processState(delta):
+	pass
 	if character.velocity != Vector2.ZERO:
 		character.velocity = Vector2.ZERO

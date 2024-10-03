@@ -15,11 +15,19 @@ var sfx_list = [
 #endregion
 
 func _enter():
+	print("Hurt")
+	#character.velocity = character.knockbackDir * 10
 	#region Call OnHit Effects - TESTING
 	onDamagedVFX()
 	onDamagedSFX()
 	#endregion
 	
+func _processState(delta: float) -> void:
+	character.velocity = character.knockbackDir * 10
+	character.velocity.x = move_toward(character.velocity.x, 0, 1)
+	character.velocity.y = move_toward(character.velocity.y, 0, 1)
+
+
 	
 #region OnHit VFX & SFX - TESTING
 func onDamagedVFX():
