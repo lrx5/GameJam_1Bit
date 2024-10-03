@@ -69,6 +69,7 @@ ui_RMB={
 2d_physics/layer_13="Enemy"
 2d_physics/layer_14="EnemyHitBox"
 2d_physics/layer_15="EnemyHurtBox"
+2d_physics/layer_16="DetectionRange"
 
 [rendering]
 

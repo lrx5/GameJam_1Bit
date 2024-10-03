@@ -3,7 +3,6 @@ extends StaticBody2D
 
 signal towerUpgraded
 
-
 @export var projectileSpawner	: ProjectileSpawner
 @export var attackRange			: AttackRange
 @export var gunPivot			: GunPivot
@@ -17,6 +16,9 @@ signal towerUpgraded
 	set(value):
 		emit_signal("towerUpgraded",value)
 		towerTier = value
+
+@export var healthManager : HealthManager
+
 
 var attackTimer : float = 0
 

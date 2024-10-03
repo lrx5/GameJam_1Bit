@@ -1,21 +1,22 @@
 class_name Hurtbox
 extends Area2D
 
-@export var health 				: HealthManager 
+
 @export_range(1,20,1, "or_greater") var immunityDuration : int = 2
 
 @onready var hit 				: bool = false
 @onready var startImmunityCounter : bool = false
 
 @onready var immune	: bool	= false
-var character = self
+@onready var character = get_parent()
+var health
 var immunityCounter : float = 0
 
 #region New OnHit Variables - TESTING
-@onready var damage_particles: GPUParticles2D = $DamageParticles
-@onready var damage_particles_timer: Timer = $DamageParticlesTimer
-@onready var enemy_sprite: Sprite2D = $"../EnemySprite"
-@onready var on_hit_sfx: AudioStreamPlayer = $"../onHitSFX"
+@export var damage_particles: GPUParticles2D 
+@export var damage_particles_timer: Timer 
+@export var enemy_sprite: Sprite2D 
+@export var on_hit_sfx: AudioStreamPlayer
 var sfx_list = [
 	preload("res://Assets/Sounds/Sound Effects/OnHit/damaged1.wav"),
 	preload("res://Assets/Sounds/Sound Effects/OnHit/damaged2.wav"),
@@ -25,22 +26,23 @@ var sfx_list = [
 
 
 func _ready() -> void:
-	_getCharacter()
-	if not health:
-		push_error("You forgot to add the Health Manager")
-
+	health = character.healthManager
+	
 func _process(delta: float) -> void:
 	_startImmunity(delta)
 
 func receiveDamage(damage: float):#, knockback: float):
 	if not immune:
 		health.currentHealth -= damage
+		if health.currentHealth > 0:
+			character.hurtBool = true
+		else:
+			character.deathBool = true
 		#region Call OnHit Effects - TESTING
-		onDamagedVFX()
-		onDamagedSFX()
+		#onDamagedVFX()
+		#onDamagedSFX()
+		
 		#endregion
-		if health.currentHealth <= 0:
-			character.queue_free()
 		#character.actionStateMach.states["Hurt"].knockbackDisplacement = knockback
 		#if health.currentHealth > 0:
 		#	character.hasBeenHurt = true
@@ -58,12 +60,9 @@ func _startImmunity(delta):
 		if immunityCounter > immunityDuration * delta:
 			#character.hasBeenHurt = false
 			startImmunityCounter = false
+			character.hurtBool = false
 			immune = false
 			immunityCounter = 0
-
-func _getCharacter(): ##Gets the parent character
-	while character is not Characters:
-		character = character.get_parent()
 
 
 #region OnHit VFX & SFX - TESTING

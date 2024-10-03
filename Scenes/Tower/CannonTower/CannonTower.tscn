@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ejx2wwt2081"]
+[gd_scene load_steps=16 format=3 uid="uid://ejx2wwt2081"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/CannonTower/cannonTower.gd" id="1_1g7cm"]
 [ext_resource type="Texture2D" uid="uid://rl62hshmfphl" path="res://Assets/Sprites/PNG/TIle/BlackTile.png" id="2_5xwb5"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://Scenes/Projectiles/autoSprite.gd" id="8_y2y5e"]
 [ext_resource type="Texture2D" uid="uid://bmjhbmmef3573" path="res://Assets/Sprites/PNG/Buildable Tower/cannonTower_tier2.png" id="9_h15hg"]
 [ext_resource type="Texture2D" uid="uid://dy3nledumhqau" path="res://Assets/Sprites/PNG/Buildable Tower/cannonTower_tier3.png" id="10_k6sjx"]
+[ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="12_q0u47"]
+[ext_resource type="Script" path="res://Scenes/Components/hurtbox.gd" id="13_1tahn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_snjoq"]
 atlas = ExtResource("2_5xwb5")
@@ -19,7 +21,7 @@ region = Rect2(0, 0, 18, 18)
 [sub_resource type="CircleShape2D" id="CircleShape2D_4h40k"]
 radius = 50.0
 
-[node name="CannonTower" type="StaticBody2D" node_paths=PackedStringArray("projectileSpawner", "attackRange", "gunPivot")]
+[node name="CannonTower" type="StaticBody2D" node_paths=PackedStringArray("projectileSpawner", "attackRange", "gunPivot", "healthManager")]
 collision_layer = 256
 collision_mask = 256
 input_pickable = true
@@ -27,6 +29,7 @@ script = ExtResource("1_1g7cm")
 projectileSpawner = NodePath("GunPivot/ProjectileSpawner")
 attackRange = NodePath("AttackRange")
 gunPivot = NodePath("GunPivot")
+healthManager = NodePath("HealthManager")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -10
@@ -41,7 +44,7 @@ collision_mask = 64
 script = ExtResource("2_7b43j")
 
 [node name="TowerShape" type="CollisionPolygon2D" parent="TowerBase"]
-polygon = PackedVector2Array(-4, -4, -4, 4, 4, 5, 4, -4)
+polygon = PackedVector2Array(-4, -4, -4, 5, 4, 5, 4, -4)
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
 script = ExtResource("3_vehgj")
@@ -69,6 +72,18 @@ attackRange = 70
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_4h40k")
+
+[node name="HealthManager" type="Node" parent="."]
+script = ExtResource("12_q0u47")
+maxHealth = 300.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("13_1tahn")
+
+[node name="HurtboxShape" type="CollisionPolygon2D" parent="Hurtbox"]
+polygon = PackedVector2Array(-4, -4, -4, 5, 4, 5, 4, -4)
 
 [connection signal="mouse_entered" from="." to="." method="_onMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="_onMouseExit"]

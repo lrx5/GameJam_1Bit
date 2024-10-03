@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var moveStateMach 	: MoveStateMachine
 @export var actionStateMach : ActionStateMachine
 
+
 @export_category("Character Variables")
 @export_range(0,150,1,"or_greater") var runSpeed 	: float = 125
 @export_range(0,25,1,"or_greater") var accel		: float = 10

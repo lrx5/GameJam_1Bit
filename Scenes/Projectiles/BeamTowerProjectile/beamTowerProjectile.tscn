@@ -21,8 +21,8 @@ collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_heygk")
 projectileSprite = NodePath("AutoProjectileSprite")
-projectileDamage = 0.5
-projectileSpeed = 400.0
+projectileDamage = 4.0
+projectileSpeed = 350.0
 hitbox = NodePath("Hitbox")
 
 [node name="AutoProjectileShape" type="CollisionShape2D" parent="." node_paths=PackedStringArray("projectileSprite", "screenMonitor", "hitbox")]

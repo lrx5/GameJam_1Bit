@@ -1,17 +1,50 @@
 class_name Enemy
 extends Characters
 
-var initTarget 	: MainTowerQuadrant
+
+@export var detectionRange 	: Area2D
+@export var hitbox			: EnemyHitbox
+
+var towersDetected	: Array
+var target			: Tower
+var initTarget 		: MainTowerQuadrant
 
 var isIdle 		= "parameters/StateMachine/conditions/isIdle"
 var isRunning 	= "parameters/StateMachine/conditions/isRunning"
 
 
-func _ready():
-	_setInitTarget()
+@onready var attackBool : bool = false
+@onready var detectBool : bool = false
+@onready var hurtBool 	: bool = false
+@onready var deathBool	: bool = false
+
 
 func _process(_delta: float) -> void:
 	move_and_slide()
+	
+func _physics_process(delta: float) -> void:
+	_setNewTarget()
+
+func _setNewTarget():
+	if detectionRange.has_overlapping_bodies():
+		detectBool = true
+		var sortDistance	: Array
+		var sortTargetTower : Dictionary
+		for tower in detectionRange.get_overlapping_bodies():
+			if tower is Tower and not tower in sortTargetTower:
+				sortDistance.append(global_position.distance_to(tower.global_position))
+				sortTargetTower[tower] = global_position.distance_to(tower.global_position)
+				
+		var closeDist = sortDistance.min()
+		var closeTarget = sortTargetTower.find_key(closeDist)
+		
+		if target != closeTarget:
+			target = closeTarget
+	
+	else:
+		target = null
+		detectBool = false
+
 
 func _setInitTarget():
 	var quadDict		: Dictionary
@@ -31,9 +64,11 @@ func _setInitTarget():
 			quadDict[quad] = distance
 			towerDistance.append(distance)
 
-	#print("I am enemy: ", name)
-	#print("The shortest distance to a quadrant is ", towerDistance.min(),". This quadrant is "\
-	#,quadDict.find_key(towerDistance.min()))
 	initTarget = quadDict.find_key(towerDistance.min())
-	
-	
+
+
+func onTowerExit(area: Area2D) -> void:
+	attackBool = false
+
+func onTowerEnter(area: Area2D) -> void:
+	attackBool = true
