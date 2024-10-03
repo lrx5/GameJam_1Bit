@@ -195,5 +195,6 @@ shape = SubResource("CapsuleShape2D_exb5p")
 
 [node name="onHitSFX" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
+bus = &"sfx"
 
 [connection signal="timeout" from="Hurtbox/DamageParticlesTimer" to="Hurtbox" method="_on_damage_particles_timer_timeout"]

@@ -23,6 +23,7 @@ buses/default_bus_layout="res://Assets/Sounds/default_bus_layout.tres"
 
 SceneManager="*res://Resources/sceneManager.tscn"
 SceneInteraction="*res://Resources/sceneInteractions.tscn"
+AudioManager="*res://Resources/audioManager.gd"
 
 [display]
 
