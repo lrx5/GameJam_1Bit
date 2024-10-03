@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsfofk3gmlsdb"]
+[gd_scene load_steps=16 format=3 uid="uid://bsfofk3gmlsdb"]
 
 [ext_resource type="Material" uid="uid://dqrlqarhqnrdr" path="res://Scenes/UI/settingShader.tres" id="1_8ilo1"]
+[ext_resource type="Script" path="res://Resources/audioManager.gd" id="1_voido"]
 [ext_resource type="Texture2D" uid="uid://b7jvoxecycbcl" path="res://Assets/Sprites/PNG/UI/Settings/settings_handle.png" id="2_1o6yq"]
 [ext_resource type="Script" path="res://Scenes/UI/Settings/spriteWaveSettings.gd" id="3_2bw7f"]
 [ext_resource type="Texture2D" uid="uid://dkrabk2vh630" path="res://Assets/Sprites/PNG/UI/Settings/Music_Normal.png" id="3_m2cib"]
 [ext_resource type="Texture2D" uid="uid://dp66ukqr71x67" path="res://Assets/Sprites/PNG/UI/Settings/Sfx_Normal.png" id="4_3yxql"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="5_bk6qq"]
+[ext_resource type="AudioStream" uid="uid://p64fshelcvid" path="res://Assets/Sounds/Background Music/cbts_bgm.wav" id="6_3p24o"]
 [ext_resource type="Texture2D" uid="uid://70qcfbhty0mo" path="res://Assets/Sprites/PNG/Background/1bit_settings.png" id="6_e82wk"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ugcde"]
@@ -26,8 +28,13 @@ thickness = 6
 font = ExtResource("5_bk6qq")
 font_size = 30
 
-[node name="Settings" type="CanvasLayer"]
+[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("bgm", "sfx")]
 process_mode = 3
+script = ExtResource("1_voido")
+bus_name_bgm = "bgm"
+bus_name_sfx = "sfx"
+bgm = NodePath("Control/BGM")
+sfx = NodePath("Control/SFX")
 
 [node name="Control" type="Control" parent="."]
 z_index = 1
@@ -70,6 +77,9 @@ step = 0.001
 value = 1.0
 
 [node name="BGM" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("6_3p24o")
+autoplay = true
+bus = &"bgm"
 
 [node name="BGMIcon" type="TextureRect" parent="Control"]
 layout_mode = 0
@@ -103,6 +113,7 @@ step = 0.001
 value = 1.0
 
 [node name="SFX" type="AudioStreamPlayer" parent="Control"]
+bus = &"sfx"
 
 [node name="SFXIcon" type="TextureRect" parent="Control"]
 layout_mode = 0
@@ -126,5 +137,5 @@ text = "SETTINGS"
 label_settings = SubResource("LabelSettings_6oloa")
 horizontal_alignment = 1
 
-[connection signal="value_changed" from="Control/BGMSlider" to="Control" method="_on_bgm_slider_value_changed"]
-[connection signal="value_changed" from="Control/SFXSlider" to="Control" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="Control/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="Control/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

@@ -1,33 +1,38 @@
-extends Node
+extends CanvasLayer
 
 var coins
 var gems
-var round 
+var round
 
-var gameHUD
+@onready var control: Control = $Control
 
-func _ready() -> void:
+func _ready():
 	resourcesInit()
 
 func resourcesInit():
 	coins = 0
 	gems = 0
 	round = 1
-
+	
+#region INFO Resource Manager Methods
 func changeRound(value: int):
 	round += value
-	# Try to get gameHUD if it doesn't already exist
-	if gameHUD == null:
-		var potential_gameHUD = get_node_or_null("/root/SceneSwitcher/GameHUD")
-		if potential_gameHUD:
-			gameHUD = potential_gameHUD
+	control.updateRound(round)
+func changeCoins(value: int):
+	coins += value
+	control.updateCoins(coins)
+func changeGems(value: int):
+	gems += value
+	control.updateGems(gems)
+#endregion
 
-	# If gameHUD exists, update it
-	if gameHUD:
-		gameHUD.updateRound(round)
-	else:
-		print("GameHUD not yet available")
 
+#region CAUTION - DEBUG ONLY - DONT FORGET TO REMOVE
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_backspace"):
-		changeRound(1)
+		changeRound(+1)
+	if event.is_action_pressed("ui_page_down"):
+		changeCoins(+1)
+	if event.is_action_pressed("ui_page_up"):
+		changeGems(+1)
+#endregion

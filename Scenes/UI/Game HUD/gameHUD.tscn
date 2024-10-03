@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dul6urpny4ssk"]
+[gd_scene load_steps=7 format=3 uid="uid://dul6urpny4ssk"]
 
+[ext_resource type="Script" path="res://Resources/resourceManager.gd" id="1_edfr8"]
 [ext_resource type="Script" path="res://Scenes/UI/Game HUD/gameHUD.gd" id="1_f6a5x"]
 [ext_resource type="FontFile" uid="uid://bx3y0eh5kbicb" path="res://Assets/Fonts/Dico/Dico.ttf" id="2_hx8e1"]
 [ext_resource type="FontFile" uid="uid://c3plqli5lmcnp" path="res://Assets/Fonts/Awfully Digital/AwfullyDigital.ttf" id="3_5kpkm"]
@@ -14,7 +15,7 @@ font_size = 17
 
 [node name="GameHUD" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_f6a5x")
+script = ExtResource("1_edfr8")
 
 [node name="Control" type="Control" parent="."]
 z_index = 1
@@ -25,6 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_f6a5x")
 
 [node name="CoinsLabel" type="Label" parent="Control"]
 layout_mode = 0
