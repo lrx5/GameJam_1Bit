@@ -4,8 +4,6 @@ uniform float value = 0;
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
 	color = mix(color, damaged_color, value * color.a);
-	
+
 	COLOR = color;
 }
-
-

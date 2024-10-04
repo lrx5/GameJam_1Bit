@@ -1,8 +1,8 @@
-[gd_scene load_steps=69 format=3 uid="uid://cheoswjpe1saa"]
+[gd_scene load_steps=74 format=3 uid="uid://cheoswjpe1saa"]
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
-[ext_resource type="Material" path="res://Scenes/Characters/Enemy/blackFade.tres" id="3_a8kt7"]
+[ext_resource type="Material" uid="uid://du5lw2xbejfaf" path="res://Scenes/Characters/Enemy/blackFade.tres" id="3_a8kt7"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/(explodr_enemy).gd" id="4_3erxk"]
 [ext_resource type="Shader" path="res://Scenes/[T] Test/RectangleShader.gdshader" id="4_bes7x"]
 [ext_resource type="Texture2D" uid="uid://cpiskrlxfwp8i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_Panel.png" id="5_ec6gx"]
@@ -11,7 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="9_g53fh"]
 [ext_resource type="Texture2D" uid="uid://uq44uytk5q5i" path="res://Assets/Sprites/PNG/Roman Numeral/roman_i.png" id="10_epxl7"]
 [ext_resource type="Texture2D" uid="uid://dc1owiw2q44h0" path="res://Assets/Sprites/PNG/Roman Numeral/roman_x.png" id="12_1u643"]
+[ext_resource type="Script" path="res://Scenes/[T] Test/Quad/quad_walker.gd" id="13_7mxty"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/rn_fade.gd" id="13_enn1w"]
+[ext_resource type="Script" path="res://Scenes/[T] Test/Quad/marker_container.gd" id="13_iej34"]
+[ext_resource type="Texture2D" uid="uid://clnxel4p1f1ax" path="res://Assets/Sprites/PNG/Enemy/dominator_packed.png" id="13_os1xh"]
+[ext_resource type="Script" path="res://Scenes/[T] Test/Quad/line_pod.gd" id="14_p6sxj"]
+[ext_resource type="Script" path="res://Scenes/[T] Test/Quad/top_level.gd" id="14_yuelr"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_400ka"]
 
@@ -499,6 +504,125 @@ root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_ywub2")
 }
+
+[node name="QuadWalker" type="CharacterBody2D" parent="." node_paths=PackedStringArray("pod1", "pod2", "pod3", "pod4", "marker1", "marker2", "marker3", "marker4")]
+position = Vector2(-109, 0)
+script = ExtResource("13_7mxty")
+pod1 = NodePath("Pod/Pod1")
+pod2 = NodePath("Pod/Pod2")
+pod3 = NodePath("Pod/Pod3")
+pod4 = NodePath("Pod/Pod4")
+marker1 = NodePath("PodMarker/Marker1")
+marker2 = NodePath("PodMarker/Marker2")
+marker3 = NodePath("PodMarker/Marker3")
+marker4 = NodePath("PodMarker/Marker4")
+
+[node name="Base" type="Sprite2D" parent="QuadWalker"]
+texture = ExtResource("13_os1xh")
+region_enabled = true
+region_rect = Rect2(0, 0, 20, 19)
+
+[node name="BaseCollision" type="CollisionShape2D" parent="QuadWalker"]
+
+[node name="PodMarker" type="Node2D" parent="QuadWalker"]
+
+[node name="Marker1" type="Marker2D" parent="QuadWalker/PodMarker"]
+position = Vector2(-14, -14)
+
+[node name="Marker2" type="Marker2D" parent="QuadWalker/PodMarker"]
+position = Vector2(14, -14)
+
+[node name="Marker3" type="Marker2D" parent="QuadWalker/PodMarker"]
+position = Vector2(14, 14)
+
+[node name="Marker4" type="Marker2D" parent="QuadWalker/PodMarker"]
+position = Vector2(-14, 14)
+
+[node name="Pod" type="Node2D" parent="QuadWalker"]
+
+[node name="Pod1" type="Sprite2D" parent="QuadWalker/Pod" node_paths=PackedStringArray("step_target", "adjacent_target")]
+position = Vector2(-14, -14)
+texture = ExtResource("13_os1xh")
+region_enabled = true
+region_rect = Rect2(21, 6, 7, 7)
+script = ExtResource("14_yuelr")
+step_target = NodePath("../../Marker/Marker1")
+adjacent_target = NodePath("../Pod2")
+
+[node name="Pod2" type="Sprite2D" parent="QuadWalker/Pod" node_paths=PackedStringArray("step_target", "adjacent_target")]
+position = Vector2(14, -14)
+texture = ExtResource("13_os1xh")
+region_enabled = true
+region_rect = Rect2(21, 6, 7, 7)
+script = ExtResource("14_yuelr")
+step_target = NodePath("../../Marker/Marker2")
+adjacent_target = NodePath("../Pod1")
+
+[node name="Pod3" type="Sprite2D" parent="QuadWalker/Pod" node_paths=PackedStringArray("step_target", "adjacent_target")]
+position = Vector2(14, 14)
+texture = ExtResource("13_os1xh")
+region_enabled = true
+region_rect = Rect2(21, 6, 7, 7)
+script = ExtResource("14_yuelr")
+step_target = NodePath("../../Marker/Marker3")
+adjacent_target = NodePath("../Pod4")
+
+[node name="Pod4" type="Sprite2D" parent="QuadWalker/Pod" node_paths=PackedStringArray("step_target", "adjacent_target")]
+position = Vector2(-14, 14)
+texture = ExtResource("13_os1xh")
+region_enabled = true
+region_rect = Rect2(21, 6, 7, 7)
+script = ExtResource("14_yuelr")
+step_target = NodePath("../../Marker/Marker4")
+adjacent_target = NodePath("../Pod3")
+
+[node name="Marker" type="Node2D" parent="QuadWalker"]
+script = ExtResource("13_iej34")
+
+[node name="Marker1" type="Marker2D" parent="QuadWalker/Marker"]
+position = Vector2(-14, -14)
+
+[node name="Marker2" type="Marker2D" parent="QuadWalker/Marker"]
+position = Vector2(14, -14)
+
+[node name="Marker3" type="Marker2D" parent="QuadWalker/Marker"]
+position = Vector2(14, 14)
+
+[node name="Marker4" type="Marker2D" parent="QuadWalker/Marker"]
+position = Vector2(-14, 14)
+
+[node name="LegLine" type="Node2D" parent="QuadWalker"]
+
+[node name="LinePod1" type="Line2D" parent="QuadWalker/LegLine" node_paths=PackedStringArray("base", "target", "line")]
+width = 4.0
+script = ExtResource("14_p6sxj")
+base = NodePath("../../Base")
+target = NodePath("../../PodMarker/Marker1")
+line = NodePath(".")
+
+[node name="LinePod2" type="Line2D" parent="QuadWalker/LegLine" node_paths=PackedStringArray("base", "target", "line")]
+width = 4.0
+script = ExtResource("14_p6sxj")
+base = NodePath("../../Base")
+target = NodePath("../../PodMarker/Marker2")
+line = NodePath(".")
+
+[node name="LinePod3" type="Line2D" parent="QuadWalker/LegLine" node_paths=PackedStringArray("base", "target", "line")]
+width = 4.0
+script = ExtResource("14_p6sxj")
+base = NodePath("../../Base")
+target = NodePath("../../PodMarker/Marker3")
+line = NodePath(".")
+
+[node name="LinePod4" type="Line2D" parent="QuadWalker/LegLine" node_paths=PackedStringArray("base", "target", "line")]
+width = 4.0
+script = ExtResource("14_p6sxj")
+base = NodePath("../../Base")
+target = NodePath("../../PodMarker/Marker4")
+line = NodePath(".")
+
+[node name="Camera2D" type="Camera2D" parent="QuadWalker"]
+zoom = Vector2(5, 5)
 
 [connection signal="timeout" from="RomanX/WaitTimer" to="RomanX" method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="RomanX/ResetTimer" to="RomanX" method="_on_reset_timer_timeout"]
