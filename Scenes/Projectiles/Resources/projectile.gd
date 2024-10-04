@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export_category("Projectile Variables")
 @export_range(0,50,0.5, "or_greater") var projectileDamage			: float = 1		##Damage dealt by the projectile
 @export_range(100,400,10, "or_greater") var projectileSpeed			: float = 250	##Movement speed of the projectile
-@export_range(50,150,10, "or_greater")	var projectileKnockback		: float = 10
+@export_range(0,40,0.5, "or_greater")	var projectileKnockback		: float = 5
 
 @export_category("Hitbox")
 @export var hitbox : Hitbox :

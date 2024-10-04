@@ -9,7 +9,6 @@ var myRot
 
 func _enter():
 	character.animTree.set(character.isRunning, true)
-	print("Enemy Run")
 	setInitTarget()
 	
 func _exit():
@@ -26,10 +25,8 @@ func setInitTarget():
 	character._setInitTarget()
 	
 	if character.target:
-		print("has target")
 		targetPos = character.target.global_position
 	elif character.initTarget and not character.target:
-		print("has inittarget")
 		targetPos = character.initTarget.global_position
 	else:
 		return
