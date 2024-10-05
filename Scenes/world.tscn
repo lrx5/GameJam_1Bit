@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://rl62hshmfphl" path="res://Assets/Sprites/PNG/TIle/BlackTile.png" id="1_hc6ys"]
 [ext_resource type="PackedScene" uid="uid://5l0rvo3d5vff" path="res://Scenes/Tower/MainTower/mainTower.tscn" id="2_8acri"]
-[ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemyBig.tscn" id="4_w0rgp"]
-[ext_resource type="PackedScene" uid="uid://gfqm5aeu778c" path="res://Scenes/Characters/Enemy/enemyFast.tscn" id="5_c5dcv"]
-[ext_resource type="PackedScene" uid="uid://bvwpo16purf5l" path="res://Scenes/Characters/Enemy/enemyMedium.tscn" id="5_jd4rl"]
-[ext_resource type="PackedScene" uid="uid://ce5u7h6qtud8p" path="res://Scenes/Characters/Enemy/enemyExplode.tscn" id="6_r5lu5"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Enemy/enemy.tscn" id="4_w0rgp"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Enemy/enemyFast.tscn" id="5_c5dcv"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Enemy/enemyMedium.tscn" id="5_jd4rl"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Enemy/enemyExplode.tscn" id="6_r5lu5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jv7dp"]
 texture = ExtResource("1_hc6ys")
