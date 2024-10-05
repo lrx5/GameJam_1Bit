@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://v61eqfjgvsfx"]
 
 [ext_resource type="Script" path="res://Resources/sceneManager.gd" id="1_vy3iy"]
-[ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemy.tscn" id="2_x4pv4"]
+[ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemyBig.tscn" id="2_x4pv4"]
 [ext_resource type="PackedScene" uid="uid://5l0rvo3d5vff" path="res://Scenes/Tower/MainTower/mainTower.tscn" id="3_bv6go"]
 [ext_resource type="PackedScene" uid="uid://by027ilxvnhvq" path="res://Scenes/Tower/Quadrant/mainTowerQuadrant.tscn" id="4_gwrce"]
-[ext_resource type="PackedScene" uid="uid://ejx2wwt2081" path="res://Scenes/Tower/CannonTower/CannonTower.tscn" id="5_dtqwi"]
+[ext_resource type="PackedScene" uid="uid://ejx2wwt2081" path="res://Scenes/Tower/CannonTower/cannonTower.tscn" id="5_dtqwi"]
 [ext_resource type="PackedScene" uid="uid://dxcskcr2b6so0" path="res://Scenes/UI/Hotbar/towerShopHotbar.tscn" id="6_ehogn"]
 [ext_resource type="PackedScene" uid="uid://cethbk84oqk0g" path="res://Scenes/Projectiles/CannonTowerProjectile/cannonTowerProjectile.tscn" id="6_ixf5y"]
 [ext_resource type="PackedScene" uid="uid://28paxk21m0io" path="res://Scenes/Tower/BeamTower/beamTower.tscn" id="6_ro4fu"]

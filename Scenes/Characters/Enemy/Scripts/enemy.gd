@@ -1,9 +1,9 @@
 class_name Enemy
 extends Characters
 
-
+@export_range(0,100,0.5,"or_greater") var damage : float = 10
 @export var detectionRange 	: Area2D
-@export var hitbox			: EnemyHitbox
+@export var hitbox			: Hitbox
 var knockbackDir : Vector2
 
 
@@ -13,17 +13,14 @@ var initTarget 		: MainTowerQuadrant
 
 var isIdle 		= "parameters/StateMachine/conditions/isIdle"
 var isRunning 	= "parameters/StateMachine/conditions/isRunning"
+var isAttacking = "parameters/isAttacking/request"
 
-
+@onready var damaging	: bool = false
 @onready var attackBool : bool = false
 @onready var detectBool : bool = false
 @onready var hurtBool 	: bool = false
 @onready var deathBool	: bool = false
 
-
-func _process(_delta: float) -> void:
-	pass
-	
 	
 func _physics_process(delta: float) -> void:
 	_setNewTarget()
@@ -73,6 +70,8 @@ func _setInitTarget():
 
 
 func onTowerExit(area: Area2D) -> void:
+	if target.is_ancestor_of(area):
+		target = null
 	attackBool = false
 
 func onTowerEnter(area: Area2D) -> void:

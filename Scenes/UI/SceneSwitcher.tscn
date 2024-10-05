@@ -12,4 +12,5 @@ settingsScene = NodePath("Settings")
 [node name="MainMenu" parent="." instance=ExtResource("1_qw5cb")]
 
 [node name="Settings" parent="." instance=ExtResource("3_5hpbb")]
+process_mode = 4
 visible = false

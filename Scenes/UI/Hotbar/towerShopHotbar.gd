@@ -44,7 +44,7 @@ func _getTowers(parent : Node, children: Array):
 
 func onShopHUDentered(input, panel):
 	#Turn on selection toggle
-	SceneInteraction.toggleSelect(true,panel.global_position + SceneInteraction.select.get_rect().size/2)
+	SceneInteraction.toggleSelect(true,panel.global_position + panel.get_rect().size/2)
 	#Selecting tower based on the name of the main node
 	match panel.name:
 		"CannonPanel":
@@ -55,7 +55,7 @@ func onShopHUDentered(input, panel):
 		"RocketPanel":
 			towerType = SceneManager.getScene("rocketTower")
 
-		
+			
 			
 	if towerType and buildMode:
 		if isJustClicked(input):

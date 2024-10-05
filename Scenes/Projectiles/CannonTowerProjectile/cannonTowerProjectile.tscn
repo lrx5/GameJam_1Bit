@@ -23,6 +23,7 @@ script = ExtResource("1_ed6s7")
 projectileSprite = NodePath("AutoProjectileSprite")
 projectileDamage = 8.0
 projectileSpeed = 200.0
+projectileKnockback = 3.0
 hitbox = NodePath("Hitbox")
 
 [node name="AutoProjectileShape" type="CollisionShape2D" parent="." node_paths=PackedStringArray("projectileSprite", "screenMonitor", "hitbox")]

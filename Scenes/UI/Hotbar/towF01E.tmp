@@ -1,0 +1,154 @@
+[gd_scene load_steps=15 format=3 uid="uid://dxcskcr2b6so0"]
+
+[ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerInfo.gd" id="5_2bidv"]
+[ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="6_bvpca"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/rocketPanel.tscn" id="7_8q5hs"]
+[ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="7_13pyj"]
+
+[sub_resource type="Animation" id="Animation_pqgmn"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_wt0m0"]
+resource_name = "hideShop"
+length = 0.3
+
+[sub_resource type="Animation" id="Animation_qxpk7"]
+resource_name = "showShop"
+length = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_46in6"]
+_data = {
+"RESET": SubResource("Animation_pqgmn"),
+"hideShop": SubResource("Animation_wt0m0"),
+"showShop": SubResource("Animation_qxpk7")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timo4"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+anti_aliasing = false
+
+[sub_resource type="GDScript" id="GDScript_fpi1y"]
+script/source = "extends PanelContainer
+
+func _ready() -> void:
+	get_rect().position.y - 1
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i3b3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ba7k"]
+
+[node name="TowerShopHotbar" type="CanvasLayer"]
+script = ExtResource("1_nu803")
+
+[node name="ShopAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_46in6")
+}
+
+[node name="TowerShop" type="PanelContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -45.0
+offset_right = -5.0
+offset_bottom = 46.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_timo4")
+script = SubResource("GDScript_fpi1y")
+
+[node name="ShopContainer" type="VBoxContainer" parent="TowerShop"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="CannonPanel" parent="TowerShop/ShopContainer" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="BeamPanel" parent="TowerShop/ShopContainer" instance=ExtResource("6_bvpca")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="RocketPanel" parent="TowerShop/ShopContainer" instance=ExtResource("7_8q5hs")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="TowerInfo" type="VBoxContainer" parent="." node_paths=PackedStringArray("towerShop")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -50.0
+offset_right = -39.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("5_2bidv")
+towerShop = NodePath("../TowerShop")
+
+[node name="TowerName" type="Label" parent="TowerInfo"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_13pyj")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_8i3b3")
+text = "Tower"
+
+[node name="GoldCost" type="Label" parent="TowerInfo"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_13pyj")
+theme_override_font_sizes/font_size = 5
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ba7k")
+text = "Gold Cost : 5"
+
+[node name="TowerUpgrade" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 73.0
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="TowerUpgrade"]
+layout_mode = 2
+
+[node name="TargetPriority" type="OptionButton" parent="TowerUpgrade/VSplitContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_13pyj")
+theme_override_font_sizes/font_size = 5
+selected = 0
+item_count = 4
+popup/item_0/text = "Nearest"
+popup/item_1/text = "Farthest"
+popup/item_1/id = 1
+popup/item_2/text = "Fastest"
+popup/item_2/id = 2
+popup/item_3/text = "Highest HP"
+popup/item_3/id = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="TowerUpgrade/VSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TowerUpgrade/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+text = "Cannon tower"

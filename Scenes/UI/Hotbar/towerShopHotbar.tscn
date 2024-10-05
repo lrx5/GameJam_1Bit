@@ -8,8 +8,12 @@
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/GemShop/gem_shop_button.gd" id="4_aech8"]
 [ext_resource type="Texture2D" uid="uid://d011k1lj0q3qm" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Normal.png" id="4_p0cgk"]
 [ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Hover.png" id="5_tjqic"]
+[ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
+[ext_resource type="StyleBox" uid="uid://ckaea4jf0s5lu" path="res://Scenes/UI/Hotbar/towerShopHotbar.tres" id="2_25nmg"]
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerInfo.gd" id="5_2bidv"]
 [ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="6_bvpca"]
-[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/RocketPanel.tscn" id="7_8q5hs"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/rocketPanel.tscn" id="7_8q5hs"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="7_13pyj"]
 [ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="11_o1tfd"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/GemShop/gem_shop.gd" id="12_a38j8"]
@@ -131,6 +135,14 @@ font_size = 32
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
+[sub_resource type="GDScript" id="GDScript_fpi1y"]
+script/source = "extends PanelContainer
+
+func _ready() -> void:
+	get_rect().position.y - 1
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6ugj"]
 
 [node name="TowerShopHotbar" type="CanvasLayer"]
 script = ExtResource("1_nu803")
@@ -180,29 +192,79 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -29.0
-offset_top = -45.5
-offset_bottom = 45.5
+offset_left = -34.0
+offset_top = -45.0
+offset_right = -5.0
+offset_bottom = 46.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_1c6m3")
+theme_override_styles/panel = ExtResource("2_25nmg")
+script = SubResource("GDScript_fpi1y")
 
 [node name="ShopContainer" type="VBoxContainer" parent="TowerShop"]
 layout_mode = 2
+theme_override_constants/separation = 7
 
 [node name="CannonPanel" parent="TowerShop/ShopContainer" groups=["buildTower"] instance=ExtResource("1_5k7b3")]
 z_index = 1
 layout_mode = 2
-size_flags_horizontal = 8
-script = null
+size_flags_horizontal = 4
+size_flags_vertical = 6
 
 [node name="BeamPanel" parent="TowerShop/ShopContainer" instance=ExtResource("6_bvpca")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 
 [node name="RocketPanel" parent="TowerShop/ShopContainer" instance=ExtResource("7_8q5hs")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 
-[node name="TowerInfo" type="PanelContainer" parent="."]
+[node name="TowerInfo" type="PanelContainer" parent="." node_paths=PackedStringArray("towerShop")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -45.0
+offset_right = -43.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_25nmg")
+script = ExtResource("5_2bidv")
+towerShop = NodePath("../TowerShop")
+
+[node name="InfoContainer" type="VBoxContainer" parent="TowerInfo"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TowerName" type="Label" parent="TowerInfo/InfoContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_13pyj")
+theme_override_font_sizes/font_size = 10
+text = "Cannon Tower"
+
+[node name="GoldCost" type="Label" parent="TowerInfo/InfoContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_13pyj")
+theme_override_font_sizes/font_size = 6
+text = "Gold Cost : 20"
+
+[node name="Stats" type="Label" parent="TowerInfo/InfoContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_13pyj")
+theme_override_font_sizes/font_size = 5
+theme_override_styles/normal = SubResource("StyleBoxTexture_k6ugj")
+text = "Damage: 8
+Range: 4
+Fire Rate: 2/sec
+Health: 300"
+
+[node name="TowerUpgrade" type="PanelContainer" parent="."]
+visible = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -210,10 +272,10 @@ offset_top = -20.0
 offset_right = 73.0
 grow_vertical = 2
 
-[node name="VSplitContainer" type="VSplitContainer" parent="TowerInfo"]
+[node name="VSplitContainer" type="VSplitContainer" parent="TowerUpgrade"]
 layout_mode = 2
 
-[node name="TargetPriority" type="OptionButton" parent="TowerInfo/VSplitContainer"]
+[node name="TargetPriority" type="OptionButton" parent="TowerUpgrade/VSplitContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_13pyj")
 theme_override_font_sizes/font_size = 5
@@ -227,10 +289,10 @@ popup/item_2/id = 2
 popup/item_3/text = "Highest HP"
 popup/item_3/id = 3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="TowerInfo/VSplitContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="TowerUpgrade/VSplitContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TowerInfo/VSplitContainer/HSplitContainer"]
+[node name="Label" type="Label" parent="TowerUpgrade/VSplitContainer/HSplitContainer"]
 layout_mode = 2
 text = "Cannon tower"
 
