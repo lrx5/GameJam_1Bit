@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="3_tqb0f"]
 [ext_resource type="Script" path="res://Scenes/Components/projectileSpawner.gd" id="4_d61fj"]
 [ext_resource type="Texture2D" uid="uid://cakph5gxbts6m" path="res://Assets/Sprites/PNG/Buildable Tower/rocketTower_tier1.png" id="6_eaifq"]
-[ext_resource type="Resource" uid="uid://dmc3ctsi6np42" path="res://Scenes/Projectiles/RocketTowerProjectile/rocketTower.tres" id="6_okgy2"]
+[ext_resource type="Resource" uid="uid://dmc3ctsi6np42" path="res://Scenes/Projectiles/RocketTowerProjectile/rocketTowerProjectile.tres" id="6_okgy2"]
 [ext_resource type="Script" path="res://Scenes/Components/attackRange.gd" id="7_lg0xc"]
 [ext_resource type="Script" path="res://Scenes/Projectiles/autoSprite.gd" id="10_kimfm"]
 [ext_resource type="Texture2D" uid="uid://vugl7jiysjti" path="res://Assets/Sprites/PNG/Buildable Tower/rocketTower_tier2.png" id="11_8fvai"]
@@ -68,7 +68,7 @@ tier3 = ExtResource("12_l2ghk")
 collision_layer = 0
 collision_mask = 4096
 script = ExtResource("7_lg0xc")
-attackRange = 100
+attackRange = 99
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_4h40k")

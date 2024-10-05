@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform float outline_thickness = 1.0;
 uniform vec4 white = vec4(1.0, 1.0, 1.0, 1.0);
-uniform vec4 normal = vec4(0.0, 0.0, 0.0, 1.0); 
+uniform vec4 normal = vec4(0.0, 0.0, 0.0, 1.0);
 uniform bool hover_effect = false;
 
 void fragment() {
