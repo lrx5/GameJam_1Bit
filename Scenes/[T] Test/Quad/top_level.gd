@@ -20,6 +20,6 @@ func step():
 	is_stepping = true
 	
 	var tween = create_tween()
-	tween.tween_property(self, "global_position", half_way, 0.5)
-	tween.tween_property(self, "global_position", target_pos, 0.5)
+	tween.tween_property(self, "global_position", half_way, 0.4)
+	tween.tween_property(self, "global_position", target_pos, 0.6)
 	tween.tween_callback(func(): is_stepping = false)

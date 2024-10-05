@@ -10,20 +10,17 @@ func _ready():
 	resourcesInit()
 
 func resourcesInit():
-	coins = 0
-	gems = 0
+	coins = 999
+	gems = 99
 	round = 1
 	
 #region INFO Resource Manager Methods
 func changeRound(value: int):
 	round += value
-	control.updateRound(round)
 func changeCoins(value: int):
 	coins += value
-	control.updateCoins(coins)
 func changeGems(value: int):
 	gems += value
-	control.updateGems(gems)
 #endregion
 
 

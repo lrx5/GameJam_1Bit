@@ -1,24 +1,30 @@
-extends Control
+extends CanvasLayer
 
-@onready var coins_label: Label = $CoinsLabel
-@onready var gems_label: Label = $GemsLabel
-@onready var round_label: Label = $RoundLabel
+var coins
+var gems
+var round
+@onready var coins_label: Label = $Control/CoinsLabel
+@onready var gems_label: Label = $Control/GemsLabel
+@onready var round_label: Label = $Control/RoundLabel
 
 func _ready():
 	labelsInit()
 
 func labelsInit():
-	updateRound(1)
-	updateCoins(0)
-	updateGems(0)
+	updateRound()
+	updateCoins()
+	updateGems()
 
-func updateRound(new_value: int) -> void:
-	var roman_numeral = to_roman_numeral(new_value)
+func updateRound():
+	var new_round = ResourceManager.round
+	var roman_numeral = to_roman_numeral(new_round)
 	round_label.text = roman_numeral
-func updateCoins(new_value):
-	coins_label.text = str(new_value)
-func updateGems(new_value):
-	gems_label.text = str(new_value)
+func updateCoins():
+	var new_coins = ResourceManager.coins
+	coins_label.text = str(new_coins)
+func updateGems():
+	var new_gems = ResourceManager.gems
+	gems_label.text = str(new_gems)
 
 # Function to convert number to roman numeral
 func to_roman_numeral(num: int) -> String:
