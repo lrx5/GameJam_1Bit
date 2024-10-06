@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/States/ActionStates/enemyAttack.gd" id="8_e0xr7"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/States/ActionStates/enemyHurt.gd" id="9_rie2x"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/States/ActionStates/enemyDeath.gd" id="10_jie1p"]
-[ext_resource type="Material" path="res://Scenes/Characters/Enemy/blackFade.tres" id="11_ckvsx"]
+[ext_resource type="Material" uid="uid://du5lw2xbejfaf" path="res://Scenes/Characters/Enemy/blackFade.tres" id="11_ckvsx"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="12_3fxq5"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="13_eybs6"]
 [ext_resource type="Script" path="res://Scenes/Components/hurtbox.gd" id="14_uuwf1"]

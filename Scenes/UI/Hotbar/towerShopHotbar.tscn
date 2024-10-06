@@ -1,19 +1,18 @@
-[gd_scene load_steps=34 format=3 uid="uid://dxcskcr2b6so0"]
+[gd_scene load_steps=39 format=3 uid="uid://dxcskcr2b6so0"]
 
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
+[ext_resource type="StyleBox" uid="uid://ckaea4jf0s5lu" path="res://Scenes/UI/Hotbar/towerShopHotbar.tres" id="2_25nmg"]
 [ext_resource type="Texture2D" uid="uid://mgwy4o0jmdw0" path="res://Assets/Sprites/PNG/UI/Game/shop_button_normal.png" id="2_as8qe"]
 [ext_resource type="Texture2D" uid="uid://bk4bdpcadro7i" path="res://Assets/Sprites/PNG/UI/Game/TowerShop_HUD.png" id="2_fm37d"]
 [ext_resource type="Texture2D" uid="uid://cug7trnmid8o" path="res://Assets/Sprites/PNG/UI/Game/shop_button_hover.png" id="3_d0iqv"]
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/tower_shop_button.gd" id="4_a5swv"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/GemShop/gem_shop_button.gd" id="4_aech8"]
 [ext_resource type="Texture2D" uid="uid://d011k1lj0q3qm" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Normal.png" id="4_p0cgk"]
-[ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Hover.png" id="5_tjqic"]
-[ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
-[ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
-[ext_resource type="StyleBox" uid="uid://ckaea4jf0s5lu" path="res://Scenes/UI/Hotbar/towerShopHotbar.tres" id="2_25nmg"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerInfo.gd" id="5_2bidv"]
+[ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Hover.png" id="5_tjqic"]
 [ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="6_bvpca"]
-[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/rocketPanel.tscn" id="7_8q5hs"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/RocketPanel.tscn" id="7_8q5hs"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="7_13pyj"]
 [ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="11_o1tfd"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/GemShop/gem_shop.gd" id="12_a38j8"]
@@ -37,16 +36,14 @@ _data = {
 "showShop": SubResource("Animation_qxpk7")
 }
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1c6m3"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-texture = ExtResource("2_fm37d")
-texture_margin_left = 5.0
-texture_margin_top = 5.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
+[sub_resource type="GDScript" id="GDScript_fpi1y"]
+script/source = "extends PanelContainer
+
+func _ready() -> void:
+	get_rect().position.y - 1
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6ugj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fp1k8"]
 atlas = ExtResource("11_o1tfd")
@@ -112,6 +109,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1c6m3"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_fm37d")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_rpm8x"]
 font = ExtResource("12_epymy")
 font_size = 13
@@ -135,14 +143,6 @@ font_size = 32
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
-[sub_resource type="GDScript" id="GDScript_fpi1y"]
-script/source = "extends PanelContainer
-
-func _ready() -> void:
-	get_rect().position.y - 1
-"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6ugj"]
 
 [node name="TowerShopHotbar" type="CanvasLayer"]
 script = ExtResource("1_nu803")
@@ -157,6 +157,7 @@ texture_normal = ExtResource("2_as8qe")
 texture_pressed = ExtResource("3_d0iqv")
 texture_hover = ExtResource("3_d0iqv")
 texture_focused = ExtResource("2_as8qe")
+script = ExtResource("4_a5swv")
 
 [node name="MainShopButton" type="TextureButton" parent="."]
 offset_left = 413.0
@@ -222,6 +223,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 
 [node name="TowerInfo" type="PanelContainer" parent="." node_paths=PackedStringArray("towerShop")]
+visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -264,7 +266,6 @@ Fire Rate: 2/sec
 Health: 300"
 
 [node name="TowerUpgrade" type="PanelContainer" parent="."]
-visible = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -433,7 +434,14 @@ offset_bottom = -58.0
 text = "GEM UPGRADES"
 label_settings = SubResource("LabelSettings_qppei")
 
+[connection signal="pressed" from="TowerShopButton" to="TowerShopButton" method="_on_pressed"]
 [connection signal="pressed" from="MainShopButton" to="MainShopButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="TowerShop/ShopContainer/CannonPanel" to="TowerInfo" method="_on_cannon_panel_mouse_entered"]
+[connection signal="mouse_exited" from="TowerShop/ShopContainer/CannonPanel" to="TowerInfo" method="_on_cannon_panel_mouse_exited"]
+[connection signal="mouse_entered" from="TowerShop/ShopContainer/BeamPanel" to="TowerInfo" method="_on_beam_panel_mouse_entered"]
+[connection signal="mouse_exited" from="TowerShop/ShopContainer/BeamPanel" to="TowerInfo" method="_on_beam_panel_mouse_exited"]
+[connection signal="mouse_entered" from="TowerShop/ShopContainer/RocketPanel" to="TowerInfo" method="_on_rocket_panel_mouse_entered"]
+[connection signal="mouse_exited" from="TowerShop/ShopContainer/RocketPanel" to="TowerInfo" method="_on_rocket_panel_mouse_exited"]
 [connection signal="gui_input" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_gui_input"]
 [connection signal="mouse_entered" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_mouse_entered"]
 [connection signal="mouse_exited" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_mouse_exited"]
