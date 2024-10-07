@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5l0rvo3d5vff"]
+[gd_scene load_steps=20 format=3 uid="uid://5l0rvo3d5vff"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/MainTower/mainTower.gd" id="1_rpmm2"]
 [ext_resource type="Texture2D" uid="uid://wlhhlq50pwb8" path="res://Assets/Top Down Tower Defense/towerDefenseSpriteSheet.tres" id="2_102nf"]
@@ -6,8 +6,73 @@
 [ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="3_yrwgf"]
 [ext_resource type="Resource" uid="uid://duixsi5od80pv" path="res://Scenes/Projectiles/CannonTowerProjectile/cannonTowerProjectile.tres" id="5_4hi4g"]
 [ext_resource type="Script" path="res://Scenes/Components/projectileSpawner.gd" id="5_yyx2b"]
+[ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="7_3icej"]
 [ext_resource type="Script" path="res://Scenes/Components/attackRange.gd" id="7_w52sc"]
 [ext_resource type="Script" path="res://Scenes/Components/towerBase.gd" id="8_j5mqu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f32n4"]
+atlas = ExtResource("7_3icej")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aofm"]
+atlas = ExtResource("7_3icej")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luhd2"]
+atlas = ExtResource("7_3icej")
+region = Rect2(68, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urqrv"]
+atlas = ExtResource("7_3icej")
+region = Rect2(102, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp1ym"]
+atlas = ExtResource("7_3icej")
+region = Rect2(136, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cbmt"]
+atlas = ExtResource("7_3icej")
+region = Rect2(170, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7sgb"]
+atlas = ExtResource("7_3icej")
+region = Rect2(204, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bdcp"]
+atlas = ExtResource("7_3icej")
+region = Rect2(238, 0, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htjfa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f32n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aofm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luhd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urqrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp1ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cbmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7sgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bdcp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fw7y1"]
 radius = 125.0
@@ -46,10 +111,16 @@ gunPivot = NodePath("..")
 projectilePacker = ExtResource("5_4hi4g")
 
 [node name="Gun" type="Sprite2D" parent="GunPivot/ProjectileSpawner"]
+visible = false
 position = Vector2(0, 27)
 texture = ExtResource("2_102nf")
 region_enabled = true
 region_rect = Rect2(1216, 640, 64, 64)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GunPivot/ProjectileSpawner"]
+position = Vector2(0, 39)
+sprite_frames = SubResource("SpriteFrames_htjfa")
+autoplay = "default"
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 0

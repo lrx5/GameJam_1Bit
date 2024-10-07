@@ -2,12 +2,18 @@ class_name CannonTower
 extends Tower
 
 var tween
+var mouseEntered = false
+var _offset = Vector2(20.0, 0.0)
 @onready var cannon_sprite: Sprite2D = $GunPivot/CannonSprite
 
 func _process(delta: float) -> void:
 	if attackRange.target and attackCooldown(delta) and gunPivot.startShooting:
 		projectileSpawner.shoot()
 		startTweening()
+	if Input.is_action_just_pressed("ui_LMB") and mouseEntered:
+		print("Turret Clicked!")
+		var upgradePanel = get_node("/root/SceneInteraction/CanvasLayer/UpgradePanel")
+		upgradePanel.position = position + _offset
 
 #region Turret Recoil Tween TESTING
 func startTweening():
@@ -17,4 +23,7 @@ func startTweening():
 	# Cannon Recoil Reset
 	tween.set_ease(Tween.EASE_IN_OUT).tween_property(cannon_sprite, "position:y", -2, 1).as_relative()
 #endregion
-		
+
+func _on_mouse_entered() -> void:
+	UpgradesManager.selected_turret_position = position
+	mouseEntered = true

@@ -19,7 +19,8 @@ signal towerUpgraded
 
 @export var healthManager : HealthManager
 
-
+@onready var turret_pos: Vector2 = position
+@onready var panelOffset = Vector2(50.0,0.0)
 var attackTimer : float = 0
 
 func attackCooldown(delta):
@@ -34,7 +35,9 @@ func _onMouseEnter() -> void:
 	if not SceneInteraction.buildMode:
 		SceneInteraction.toggleBuildMode(true)
 		SceneInteraction.toggleSelect(true,get_global_transform_with_canvas().origin)
-
+		turret_pos = UpgradesManager.selected_turret_position
+		print(turret_pos)
+		
 func _onMouseExit() -> void:
 	if SceneInteraction.buildMode:
 		SceneInteraction.toggleBuildMode(false)

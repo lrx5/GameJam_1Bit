@@ -12,3 +12,9 @@ layer = 20
 
 [node name="Select" type="Sprite2D" parent="CanvasLayer"]
 texture = ExtResource("2_btlgl")
+
+[node name="UpgradePanel" type="OptionButton" parent="CanvasLayer"]
+offset_left = 176.0
+offset_top = 55.0
+offset_right = 208.0
+offset_bottom = 75.0

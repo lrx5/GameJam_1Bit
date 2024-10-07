@@ -1,4 +1,6 @@
 extends Node
+var selected_turret_position : Vector2
+var is_clicked = false
 
 # TODO - Change Range Values!
 var turret_data = {

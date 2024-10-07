@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://cheoswjpe1saa"]
+[gd_scene load_steps=75 format=3 uid="uid://cheoswjpe1saa"]
 
 [ext_resource type="Script" path="res://Scenes/[T] Test/EnemyTest.gd" id="1_4qdmk"]
 [ext_resource type="Texture2D" uid="uid://bgacod7m5tuq0" path="res://Assets/Sprites/Spritesheet/enemy_packed.png" id="2_58n0c"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://clnxel4p1f1ax" path="res://Assets/Sprites/PNG/Enemy/dominator_packed.png" id="13_os1xh"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/Quad/line_pod.gd" id="14_p6sxj"]
 [ext_resource type="Script" path="res://Scenes/[T] Test/Quad/top_level.gd" id="14_yuelr"]
+[ext_resource type="FontFile" uid="uid://c3plqli5lmcnp" path="res://Assets/Fonts/Awfully Digital/AwfullyDigital.ttf" id="18_gbge8"]
+[ext_resource type="Script" path="res://Scenes/[T] Test/option_button.gd" id="19_8tubw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ii5u"]
 atlas = ExtResource("2_58n0c")
@@ -404,6 +406,9 @@ _data = {
 "new_animation": SubResource("Animation_qss1s")
 }
 
+[sub_resource type="Theme" id="Theme_qorkh"]
+default_font = ExtResource("18_gbge8")
+
 [node name="TestScene" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-90.0]
 metadata/_edit_horizontal_guides_ = [0.0]
@@ -619,6 +624,22 @@ line = NodePath(".")
 
 [node name="Camera2D" type="Camera2D" parent="QuadWalker"]
 zoom = Vector2(5, 5)
+
+[node name="OptionButton" type="OptionButton" parent="."]
+texture_filter = 1
+offset_left = -165.0
+offset_top = -96.0
+offset_right = -61.0
+offset_bottom = -72.0
+tooltip_text = "Tooltip!"
+theme = SubResource("Theme_qorkh")
+theme_override_fonts/font = ExtResource("18_gbge8")
+selected = 0
+item_count = 2
+popup/item_0/text = "Number 1"
+popup/item_1/text = "Number 2"
+popup/item_1/id = 1
+script = ExtResource("19_8tubw")
 
 [connection signal="timeout" from="RomanX/WaitTimer" to="RomanX" method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="RomanX/ResetTimer" to="RomanX" method="_on_reset_timer_timeout"]
