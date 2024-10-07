@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var gridSize	 	: Vector2 = Vector2(18,18)
+@export var towerInfo		: PanelContainer
 
 @onready var world 			= get_tree().get_first_node_in_group("world")
 @onready var towerField 	= get_tree().get_first_node_in_group("towerField")
@@ -50,10 +51,19 @@ func onShopHUDentered(input, panel):
 		"CannonPanel":
 			#replace the towerType with the actual tower scene
 			towerType = SceneManager.getScene("cannonTower")
+			towerInfo.setLabelInfo("cannon")
+			towerInfo.tower_name.text = "CANNON TOWER"
+			towerInfo.visible = true
 		"BeamPanel":
 			towerType = SceneManager.getScene("beamTower")
+			towerInfo.setLabelInfo("beam")
+			towerInfo.tower_name.text = "BEAM TOWER"
+			towerInfo.visible = true
 		"RocketPanel":
 			towerType = SceneManager.getScene("rocketTower")
+			towerInfo.setLabelInfo("rocket")
+			towerInfo.tower_name.text = "ROCKET TOWER"
+			towerInfo.visible = true
 
 			
 			
@@ -147,9 +157,9 @@ func onMouseEnter():
 	canDrop = false
 	SceneInteraction.toggleBuildMode(true)
 	InputMap.action_erase_events("shoot")
-	
 
 func onMouseExit():
+	towerInfo.visible = false
 	if not isDragging:
 		SceneInteraction.toggleBuildMode(false)
 		SceneInteraction.toggleSelect(false)
@@ -158,9 +168,6 @@ func onMouseExit():
 		InputMap.action_add_event("shoot",leftClick)
 	else:
 		canDrop = true
-
-
-
 
 #region Open & Close Tower Shop - TESTING
 #func setDefaultPos():

@@ -4,7 +4,7 @@ var coins
 var gems
 var round
 
-@onready var control: Control = $Control
+
 
 func _ready():
 	resourcesInit()

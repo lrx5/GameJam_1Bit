@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dxcskcr2b6so0"]
+[gd_scene load_steps=37 format=3 uid="uid://dxcskcr2b6so0"]
 
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
@@ -12,8 +12,7 @@
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerInfo.gd" id="5_2bidv"]
 [ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Hover.png" id="5_tjqic"]
 [ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="6_bvpca"]
-[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/RocketPanel.tscn" id="7_8q5hs"]
-[ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="7_13pyj"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/rocketPanel.tscn" id="7_8q5hs"]
 [ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="11_o1tfd"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/GemShop/gem_shop.gd" id="12_a38j8"]
 [ext_resource type="FontFile" uid="uid://c3plqli5lmcnp" path="res://Assets/Fonts/Awfully Digital/AwfullyDigital.ttf" id="12_epymy"]
@@ -35,13 +34,6 @@ _data = {
 "hideShop": SubResource("Animation_wt0m0"),
 "showShop": SubResource("Animation_qxpk7")
 }
-
-[sub_resource type="GDScript" id="GDScript_fpi1y"]
-script/source = "extends PanelContainer
-
-func _ready() -> void:
-	get_rect().position.y - 1
-"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6ugj"]
 
@@ -144,8 +136,9 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
-[node name="TowerShopHotbar" type="CanvasLayer"]
+[node name="TowerShopHotbar" type="CanvasLayer" node_paths=PackedStringArray("towerInfo")]
 script = ExtResource("1_nu803")
+towerInfo = NodePath("TowerInfo")
 
 [node name="TowerShopButton" type="TextureButton" parent="."]
 offset_left = 390.0
@@ -200,7 +193,6 @@ offset_bottom = 46.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_25nmg")
-script = SubResource("GDScript_fpi1y")
 
 [node name="ShopContainer" type="VBoxContainer" parent="TowerShop"]
 layout_mode = 2
@@ -245,57 +237,25 @@ size_flags_horizontal = 0
 
 [node name="TowerName" type="Label" parent="TowerInfo/InfoContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7_13pyj")
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = ExtResource("12_epymy")
+theme_override_font_sizes/font_size = 13
 text = "Cannon Tower"
 
 [node name="GoldCost" type="Label" parent="TowerInfo/InfoContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7_13pyj")
-theme_override_font_sizes/font_size = 6
+theme_override_fonts/font = ExtResource("12_epymy")
+theme_override_font_sizes/font_size = 9
 text = "Gold Cost : 20"
 
 [node name="Stats" type="Label" parent="TowerInfo/InfoContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7_13pyj")
-theme_override_font_sizes/font_size = 5
+theme_override_fonts/font = ExtResource("12_epymy")
+theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxTexture_k6ugj")
 text = "Damage: 8
 Range: 4
 Fire Rate: 2/sec
 Health: 300"
-
-[node name="TowerUpgrade" type="PanelContainer" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 73.0
-grow_vertical = 2
-
-[node name="VSplitContainer" type="VSplitContainer" parent="TowerUpgrade"]
-layout_mode = 2
-
-[node name="TargetPriority" type="OptionButton" parent="TowerUpgrade/VSplitContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_13pyj")
-theme_override_font_sizes/font_size = 5
-selected = 0
-item_count = 4
-popup/item_0/text = "Nearest"
-popup/item_1/text = "Farthest"
-popup/item_1/id = 1
-popup/item_2/text = "Fastest"
-popup/item_2/id = 2
-popup/item_3/text = "Highest HP"
-popup/item_3/id = 3
-
-[node name="HSplitContainer" type="HSplitContainer" parent="TowerUpgrade/VSplitContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="TowerUpgrade/VSplitContainer/HSplitContainer"]
-layout_mode = 2
-text = "Cannon tower"
 
 [node name="GemShop" type="Control" parent="."]
 layout_mode = 3
@@ -436,12 +396,6 @@ label_settings = SubResource("LabelSettings_qppei")
 
 [connection signal="pressed" from="TowerShopButton" to="TowerShopButton" method="_on_pressed"]
 [connection signal="pressed" from="MainShopButton" to="MainShopButton" method="_on_pressed"]
-[connection signal="mouse_entered" from="TowerShop/ShopContainer/CannonPanel" to="TowerInfo" method="_on_cannon_panel_mouse_entered"]
-[connection signal="mouse_exited" from="TowerShop/ShopContainer/CannonPanel" to="TowerInfo" method="_on_cannon_panel_mouse_exited"]
-[connection signal="mouse_entered" from="TowerShop/ShopContainer/BeamPanel" to="TowerInfo" method="_on_beam_panel_mouse_entered"]
-[connection signal="mouse_exited" from="TowerShop/ShopContainer/BeamPanel" to="TowerInfo" method="_on_beam_panel_mouse_exited"]
-[connection signal="mouse_entered" from="TowerShop/ShopContainer/RocketPanel" to="TowerInfo" method="_on_rocket_panel_mouse_entered"]
-[connection signal="mouse_exited" from="TowerShop/ShopContainer/RocketPanel" to="TowerInfo" method="_on_rocket_panel_mouse_exited"]
 [connection signal="gui_input" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_gui_input"]
 [connection signal="mouse_entered" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_mouse_entered"]
 [connection signal="mouse_exited" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_mouse_exited"]

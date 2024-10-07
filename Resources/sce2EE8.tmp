@@ -36,7 +36,6 @@ texture = ExtResource("2_btlgl")
 
 [node name="UpgradePanel" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("left", "targetLabel", "right", "towerName", "stats")]
 process_mode = 4
-visible = false
 offset_right = 64.0
 offset_bottom = 62.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vpt8e")

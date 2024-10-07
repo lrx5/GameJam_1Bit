@@ -20,7 +20,6 @@ extends CharacterBody2D
 		if is_instance_valid(hitbox):
 			hitbox.hit.connect(_onHit)
 
-
 func _process(delta: float) -> void:
 	move_and_slide()
 

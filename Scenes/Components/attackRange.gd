@@ -18,12 +18,15 @@ var enemiesStatDict : Dictionary
 func _ready():
 	while not parent is Tower:
 		parent = parent.get_parent()
-		shape.radius = attackRange
+	
+	shape.radius = attackRange
 	connect("body_exited", _onEnemyExit)
 	connect("body_entered", _onEnemyEnter)
 	
 func _process(_delta: float) -> void:
 	_setTarget()
+	if shape.radius != attackRange:
+		shape.radius = attackRange
 
 func _physics_process(_delta: float) -> void:
 	if get_overlapping_bodies():

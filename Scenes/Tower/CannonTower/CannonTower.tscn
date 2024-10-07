@@ -85,6 +85,4 @@ script = ExtResource("13_1tahn")
 [node name="HurtboxShape" type="CollisionPolygon2D" parent="Hurtbox"]
 polygon = PackedVector2Array(-4, -4, -4, 5, 4, 5, 4, -4)
 
-[connection signal="mouse_entered" from="." to="." method="_onMouseEnter"]
-[connection signal="mouse_exited" from="." to="." method="_onMouseExit"]
 [connection signal="towerUpgraded" from="." to="GunPivot/CannonSprite" method="_onTowerUpgraded"]

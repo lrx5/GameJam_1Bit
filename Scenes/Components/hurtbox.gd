@@ -27,8 +27,9 @@ func receiveDamage(damage: float, knockback: Vector2 = Vector2.ZERO):
 			if character is Enemy:
 				character.knockbackDir = knockback
 				character.hurtBool = true
-			else:
-				print(damage)
+			else: 
+				print("Damaged Received should be:",damage)
+				print("Current Health: ", health.currentHealth)
 		else:
 			if character is Enemy:
 				character.deathBool = true

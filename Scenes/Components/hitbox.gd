@@ -27,6 +27,7 @@ func processDamage(hurtbox: Hurtbox):
 			hit.emit(hurtbox)
 			
 		if hurtbox.get_parent() is Tower:
+			print("Tower detected")
 			hurtbox.receiveDamage(get_parent().damage)
 			hit.emit(hurtbox)
 			

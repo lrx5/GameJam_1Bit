@@ -24,6 +24,9 @@ func shoot():
 	projectile.global_position = projectileSpawner.global_position
 	#Set projectile tier depending on the tier of the tower
 	projectile.setProjectile(tower.towerTier)
+	if tower.towerStats:
+		projectile.projectileDamage = tower.towerStats["damage"]
+	
 	#Direction the gun is looking offseted by the default angle
 	var gunDirection = defaultAngle.rotated(gunPivot.global_rotation)
 	#Sprite rotation of the projectile
