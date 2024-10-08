@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dxcskcr2b6so0"]
+[gd_scene load_steps=38 format=3 uid="uid://dxcskcr2b6so0"]
 
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
@@ -12,7 +12,8 @@
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerInfo.gd" id="5_2bidv"]
 [ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Hover.png" id="5_tjqic"]
 [ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="6_bvpca"]
-[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/rocketPanel.tscn" id="7_8q5hs"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/RocketPanel.tscn" id="7_8q5hs"]
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/settings_button.gd" id="8_opwsr"]
 [ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="11_o1tfd"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/GemShop/gem_shop.gd" id="12_a38j8"]
 [ext_resource type="FontFile" uid="uid://c3plqli5lmcnp" path="res://Assets/Fonts/Awfully Digital/AwfullyDigital.ttf" id="12_epymy"]
@@ -174,6 +175,7 @@ texture_normal = ExtResource("4_p0cgk")
 texture_pressed = ExtResource("5_tjqic")
 texture_hover = ExtResource("5_tjqic")
 texture_focused = ExtResource("4_p0cgk")
+script = ExtResource("8_opwsr")
 
 [node name="ShopAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -396,6 +398,7 @@ label_settings = SubResource("LabelSettings_qppei")
 
 [connection signal="pressed" from="TowerShopButton" to="TowerShopButton" method="_on_pressed"]
 [connection signal="pressed" from="MainShopButton" to="MainShopButton" method="_on_pressed"]
+[connection signal="pressed" from="SettingsButton" to="SettingsButton" method="_on_pressed"]
 [connection signal="gui_input" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_gui_input"]
 [connection signal="mouse_entered" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_mouse_entered"]
 [connection signal="mouse_exited" from="GemShop/MainShop/MainShopContainer/VBoxContainer/Upgrade1" to="GemShop" method="_on_upgrade_1_mouse_exited"]

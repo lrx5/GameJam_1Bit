@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dkrabk2vh630" path="res://Assets/Sprites/PNG/UI/Settings/Music_Normal.png" id="3_m2cib"]
 [ext_resource type="Texture2D" uid="uid://dp66ukqr71x67" path="res://Assets/Sprites/PNG/UI/Settings/Sfx_Normal.png" id="4_3yxql"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="5_bk6qq"]
-[ext_resource type="AudioStream" uid="uid://p64fshelcvid" path="res://Assets/Sounds/Background Music/cbts_bgm.wav" id="6_3p24o"]
+[ext_resource type="AudioStream" uid="uid://fdgfhbual57b" path="res://Assets/Sounds/Background Music/1bit_bgm_calm.wav" id="6_6ex1b"]
 [ext_resource type="Texture2D" uid="uid://70qcfbhty0mo" path="res://Assets/Sprites/PNG/Background/1bit_settings.png" id="6_e82wk"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ugcde"]
@@ -30,6 +30,8 @@ font_size = 30
 
 [node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("bgm", "sfx")]
 process_mode = 3
+layer = 5
+visible = false
 script = ExtResource("1_voido")
 bus_name_bgm = "bgm"
 bus_name_sfx = "sfx"
@@ -74,10 +76,10 @@ theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_aoo8e")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_ary3g")
 max_value = 1.0
 step = 0.001
-value = 1.0
+value = 0.5
 
 [node name="BGM" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("6_3p24o")
+stream = ExtResource("6_6ex1b")
 autoplay = true
 bus = &"bgm"
 
@@ -110,7 +112,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_doysx")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_nw3xq")
 max_value = 1.0
 step = 0.001
-value = 1.0
+value = 0.5
 
 [node name="SFX" type="AudioStreamPlayer" parent="Control"]
 bus = &"sfx"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://byaj84r1nn03j"]
+[gd_scene load_steps=17 format=3 uid="uid://byaj84r1nn03j"]
 
 [ext_resource type="Texture2D" uid="uid://blxsuusrq64tg" path="res://Assets/Sprites/PNG/Background/1bit_bg_main.png" id="1_6r48k"]
 [ext_resource type="Texture2D" uid="uid://gylwgx722dai" path="res://Assets/Sprites/PNG/Background/1bit_bg_white.png" id="1_y8aac"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Hover.png" id="5_u1ket"]
 [ext_resource type="Texture2D" uid="uid://yyntxpdrmfjj" path="res://Assets/Sprites/PNG/UI/Main Menu/Quit_Normal.png" id="6_5yfli"]
 [ext_resource type="Texture2D" uid="uid://bshy1a3f0nw4i" path="res://Assets/Sprites/PNG/UI/Main Menu/Quit_Hover.png" id="7_0ruod"]
+[ext_resource type="Script" path="res://Scenes/UI/MainMenu/change_bgm.gd" id="9_y3va4"]
+[ext_resource type="AudioStream" uid="uid://yjtokt28t3wi" path="res://Assets/Sounds/Background Music/1bit_bgm.wav" id="10_c6dj4"]
 
 [sub_resource type="GDScript" id="GDScript_u6wbf"]
 script/source = "extends TextureRect  # or any other node with a shader
@@ -93,6 +95,8 @@ texture_normal = ExtResource("2_81vha")
 texture_pressed = ExtResource("2_81vha")
 texture_hover = ExtResource("3_fne3b")
 texture_focused = ExtResource("3_fne3b")
+script = ExtResource("9_y3va4")
+new_audio_stream = ExtResource("10_c6dj4")
 
 [node name="Settings" type="TextureButton" parent="Control" groups=["menuControls"]]
 layout_mode = 0
@@ -117,5 +121,6 @@ texture_hover = ExtResource("7_0ruod")
 texture_disabled = ExtResource("7_0ruod")
 
 [connection signal="pressed" from="Control/Play" to="Control" method="_on_play_pressed"]
+[connection signal="pressed" from="Control/Play" to="Control/Play" method="_on_pressed"]
 [connection signal="pressed" from="Control/Settings" to="Control" method="_on_settings_pressed"]
 [connection signal="pressed" from="Control/Quit" to="Control" method="_on_quit_pressed"]

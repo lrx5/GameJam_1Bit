@@ -26,6 +26,7 @@ SceneInteraction="*res://Resources/sceneInteractions.tscn"
 AudioManager="*res://Resources/audioManager.gd"
 ResourceManager="*res://Resources/resourceManager.gd"
 UpgradesManager="*res://Resources/upgradesManager.gd"
+WaveManager="*res://Resources/waveManager.gd"
 
 [display]
 
