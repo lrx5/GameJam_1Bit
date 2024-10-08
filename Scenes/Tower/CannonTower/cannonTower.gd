@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 	
 	if attackRange.target and attackCooldown(delta) and gunPivot.startShooting:
 		projectileSpawner.shoot()
-		startTweening()
+		#startTweening()
 
 func _input(event: InputEvent) -> void:
 	mouseSelect(event)
@@ -23,9 +23,9 @@ func _input(event: InputEvent) -> void:
 func startTweening():
 	tween = create_tween()
 	# Cannon Recoil
-	tween.set_ease(Tween.EASE_IN_OUT).tween_property(cannon_sprite, "position:y", attackSpeed, 0.1).as_relative()
+	tween.set_ease(Tween.EASE_IN_OUT).tween_property(cannon_sprite, "position:y", 1/attackSpeed/2, 0.1).as_relative()
 	# Cannon Recoil Reset
-	tween.set_ease(Tween.EASE_IN_OUT).tween_property(cannon_sprite, "position:y", -attackSpeed, 1).as_relative()
+	tween.set_ease(Tween.EASE_IN_OUT).tween_property(cannon_sprite, "position:y", -1/attackSpeed/2, 1).as_relative()
 
 #endregion
 		

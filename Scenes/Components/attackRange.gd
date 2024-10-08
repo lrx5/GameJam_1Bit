@@ -1,34 +1,33 @@
 class_name AttackRange
 extends Area2D
 
-
-@export_enum("Farthest","Nearest","Highest HP", "Fastest") var targetPriority = "Farthest"
+@export var tower : Tower
+@export_enum("Farthest","Nearest","Highest HP", "Fastest") var targetPriority = "Nearest"
 @export_range(20,100,1, "or_greater") var attackRange 	: int = 80	##Set the range of the tower
 
-@onready var shape = get_child(0).shape
+@export var range : CollisionShape2D
 
 @onready var hasDetectedEnemy 	: bool = false
 var target 			: Enemy
 var prevTarget		: Enemy
 
-var parent = self
 var enemiesDetected	: Array
 var enemiesStatDict : Dictionary
+
+var newRange
 	
 func _ready():
-	while not parent is Tower:
-		parent = parent.get_parent()
-	
-	shape.radius = attackRange
 	connect("body_exited", _onEnemyExit)
 	connect("body_entered", _onEnemyEnter)
 	
+	createNewRange()
+	
 func _process(_delta: float) -> void:
 	_setTarget()
-	if shape.radius != attackRange:
-		shape.radius = attackRange
 
 func _physics_process(_delta: float) -> void:
+	updateRange()
+	
 	if get_overlapping_bodies():
 		for enemy in get_overlapping_bodies():
 			if enemy is Enemy and not enemy in enemiesDetected:
@@ -78,3 +77,16 @@ func _setTarget():
 						valueSort.append(enemy.healthManager.currentHealth)
 					target = enemiesStatDict.find_key(valueSort.max())
 		
+func createNewRange():
+	if newRange:
+		newRange = null	
+	newRange = CircleShape2D.new()
+	newRange.radius = attackRange
+	if range:
+		range.shape = newRange
+		
+func updateRange():
+	if range and is_instance_valid(range):
+		if range.shape.radius != attackRange:
+			range.shape.radius = attackRange
+	

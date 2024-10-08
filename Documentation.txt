@@ -65,7 +65,9 @@ Viewport Width:  480px
 Viewport Height: 270px
 
 [Known Bugs]
-Tower shop container visual is offset to the actual size
+Enemy damage triggers immediately upon contact with tower
+Everything works okay with this bug except for the exploder, 
+it triggers its damage twice so a temporary fix is to halve its damage
 
 [Remove On Final Export]
 1. ResourceManager.gd Debug

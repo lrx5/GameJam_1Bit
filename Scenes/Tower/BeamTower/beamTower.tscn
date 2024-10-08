@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://28paxk21m0io"]
+[gd_scene load_steps=16 format=3 uid="uid://28paxk21m0io"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/BeamTower/beamTower.gd" id="1_8exyt"]
 [ext_resource type="Script" path="res://Scenes/Components/towerBase.gd" id="2_5lptc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://brkxvuwlwadfp" path="res://Assets/Sprites/PNG/Buildable Tower/beamTower_tier2.png" id="9_vbj36"]
 [ext_resource type="Texture2D" uid="uid://8vf6sog8gu3v" path="res://Assets/Sprites/PNG/Buildable Tower/beamTower_tier3.png" id="10_03oge"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="12_jwv24"]
+[ext_resource type="Script" path="res://Scenes/Components/hurtbox.gd" id="13_svu8n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rinhm"]
 atlas = ExtResource("2_537no")
@@ -66,11 +67,13 @@ tier1 = ExtResource("6_autxw")
 tier2 = ExtResource("9_vbj36")
 tier3 = ExtResource("10_03oge")
 
-[node name="AttackRange" type="Area2D" parent="."]
+[node name="AttackRange" type="Area2D" parent="." node_paths=PackedStringArray("tower", "range")]
 collision_layer = 0
 collision_mask = 4096
 script = ExtResource("7_3xnkq")
+tower = NodePath("..")
 attackRange = 45
+range = NodePath("AttackRangeShape")
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(0, -1)
@@ -79,5 +82,14 @@ shape = SubResource("CircleShape2D_4h40k")
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("12_jwv24")
 maxHealth = 100.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("13_svu8n")
+
+[node name="HurtboxShape" type="CollisionPolygon2D" parent="Hurtbox"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-6, -4, -6, 6, 6, 6, 6, -4)
 
 [connection signal="towerUpgraded" from="." to="GunPivot/BeamSprite" method="_onTowerUpgraded"]

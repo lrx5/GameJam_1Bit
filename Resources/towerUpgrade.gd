@@ -3,8 +3,13 @@ extends PanelContainer
 @export var left 		: Panel
 @export var targetLabel : Label
 @export var right		: Panel
+
 @export var towerName	: Label
 @export var stats		: Label
+
+@export var upgrade		: PanelContainer
+@export var sell		: Label
+
 
 var targetOptions = {
 	0:"Nearest",
@@ -14,7 +19,7 @@ var targetOptions = {
 }
 
 @onready var canUpgrade : bool = true
-
+@onready var justUpgraded : bool = false
 @onready var targetIndex = 0
 var target
 var newTower
@@ -26,6 +31,11 @@ func _ready():
 	left.connect("gui_input",_onMouseClickLeft)
 	right.connect("gui_input",_onMouseClickRight)
 
+func _onMouseClickSell(event: InputEvent):
+	print("sell connected")
+	if event is InputEventMouseButton and event.button_mask == 1:
+		print("Clicked Sell")
+
 func _process(_delta) -> void:
 	if is_instance_valid(newTower):
 		towerName.text = setTowerName()
@@ -33,14 +43,26 @@ func _process(_delta) -> void:
 		
 	else:
 		cancelUpgrade()
-		#towerName.text = setTowerName(newTower)
-		#print(newTower.towerStats)
 
 
 func _input(event: InputEvent) -> void:
 	if isUpgrading(event):
 		if not get_global_rect().has_point(get_global_mouse_position()):
 			cancelUpgrade()
+	if hoveredSell() and mouseClick(event):
+		print("sell")
+		newTower.queue_free()
+	if hoveredUpgrade() and mouseClick(event) and not justUpgraded:
+		match newTower.towerTier:
+			"tier1":
+				newTower.towerTier = "tier2"
+			"tier2":
+				newTower.towerTier = "tier3"
+			"tier3":
+				upgrade.visible = false
+		justUpgraded = true
+		await get_tree().create_timer(0.13).timeout
+		justUpgraded = false
 
 func _onMouseClickLeft(event: InputEvent):
 	if event is InputEventMouseButton and event.button_mask == 1:
@@ -60,9 +82,11 @@ func setTarget(index: int):
 
 func setTower(tower: Tower):
 	newTower = tower
+	upgrade.visible = false if newTower.towerTier == "tier3" else true
 	canUpgrade = false
 	await get_tree().create_timer(0.13).timeout
 	canUpgrade = true
+	justUpgraded = false
 	
 func setTowerName():
 	var towerString = ""
@@ -82,9 +106,18 @@ func setStats():
 					+ "Health: " + str(newTower.healthManager.currentHealth)
 					
 	return statsString
+
+func mouseClick(event):
+	return event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
+
+func hoveredSell():
+	return sell.get_global_rect().has_point(get_global_mouse_position())
+	
+func hoveredUpgrade():
+	return upgrade.get_global_rect().has_point(get_global_mouse_position())
 	
 func isUpgrading(event):
-	return canUpgrade and SceneInteraction.buildMode and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
+	return canUpgrade and SceneInteraction.buildMode and mouseClick(event)
 	
 func cancelUpgrade():
 	canUpgrade = false

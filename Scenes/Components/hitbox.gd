@@ -6,9 +6,11 @@ signal hit(target: Hurtbox) ##A node has to reference this hitbox to connect
 
 var towersDetected
 
+
 func _ready() -> void:
 	area_entered.connect(_onAreaEntered)
 	
+
 func _physics_process(delta: float) -> void:
 	if get_parent() is Enemy:
 		if has_overlapping_areas():
@@ -27,7 +29,6 @@ func processDamage(hurtbox: Hurtbox):
 			hit.emit(hurtbox)
 			
 		if hurtbox.get_parent() is Tower:
-			print("Tower detected")
 			hurtbox.receiveDamage(get_parent().damage)
 			hit.emit(hurtbox)
 			

@@ -11,9 +11,10 @@ var towersDetected	: Array
 var target			: Tower
 var initTarget 		: MainTowerQuadrant
 
-var isIdle 		= "parameters/StateMachine/conditions/isIdle"
-var isRunning 	= "parameters/StateMachine/conditions/isRunning"
-var isAttacking = "parameters/isAttacking/request"
+var isIdle 			= "parameters/StateMachine/conditions/isIdle"
+var isRunning 		= "parameters/StateMachine/conditions/isRunning"
+var isAttacking 	= "parameters/isAttacking/request"
+var attackTimeScale = "parameters/attackTimeScale/scale"
 
 @onready var damaging	: bool = false
 @onready var attackBool : bool = false

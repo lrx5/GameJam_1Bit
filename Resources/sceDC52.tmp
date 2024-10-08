@@ -43,7 +43,6 @@ texture = ExtResource("2_btlgl")
 
 [node name="UpgradePanel" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("left", "targetLabel", "right", "towerName", "stats", "upgrade", "sell")]
 process_mode = 4
-visible = false
 offset_right = 64.0
 offset_bottom = 62.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vpt8e")
@@ -53,7 +52,7 @@ targetLabel = NodePath("MarginContainer/UpgradeContainer/TargetSelection/TargetP
 right = NodePath("MarginContainer/UpgradeContainer/TargetSelection/TargetPriority/Right")
 towerName = NodePath("MarginContainer/UpgradeContainer/TowerName")
 stats = NodePath("MarginContainer/UpgradeContainer/Stats")
-upgrade = NodePath("MarginContainer/UpgradeContainer/Upgrade")
+upgrade = NodePath(".")
 sell = NodePath("MarginContainer/UpgradeContainer/SellTower/Sell")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UpgradePanel"]
@@ -125,7 +124,6 @@ offset_bottom = 5.0
 texture = ExtResource("4_xauxl")
 
 [node name="Upgrade" type="PanelContainer" parent="CanvasLayer/UpgradePanel/MarginContainer/UpgradeContainer"]
-custom_minimum_size = Vector2(58, 11)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_h7q8f")
 

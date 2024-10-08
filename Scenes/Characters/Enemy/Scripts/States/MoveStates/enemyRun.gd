@@ -38,7 +38,8 @@ func setInitTarget():
 
 func setTarget():
 	if character.target:
-		targetPos = character.target.global_position
+		if is_instance_valid(character.target):
+			targetPos = character.target.global_position
 	elif character.initTarget and not character.target:
 		targetPos = character.initTarget.global_position
 	

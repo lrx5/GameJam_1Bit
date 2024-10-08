@@ -23,9 +23,9 @@ func _enter():
 	#endregion
 	
 func _processState(delta: float) -> void:
-	character.velocity = character.knockbackDir * 10
-	character.velocity.x = move_toward(character.velocity.x, 0, 1)
-	character.velocity.y = move_toward(character.velocity.y, 0, 1)
+	character.velocity = character.knockbackDir
+	character.velocity.x = move_toward(character.velocity.x, 0, delta)
+	character.velocity.y = move_toward(character.velocity.y, 0, delta)
 
 
 	

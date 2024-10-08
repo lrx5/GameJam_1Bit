@@ -32,7 +32,7 @@ func _ready():
 
 func attackCooldown(delta):
 	attackTimer += delta
-	if attackTimer >= attackSpeed:
+	if attackTimer >= 1/attackSpeed:
 		attackTimer = 0
 		return true
 	else:
@@ -47,13 +47,13 @@ func setTowerStats(towerType: String):
 			towerStats = UpgradesManager.get_turret_stats(towerType,2)
 		"tier3":
 			towerStats = UpgradesManager.get_turret_stats(towerType,3)
-			
+	
 	if attackSpeed != towerStats["fire_rate"]:
 		attackSpeed = towerStats["fire_rate"]
-	if attackRange.attackRange != towerStats["range"]*18:
-		attackRange.attackRange = towerStats["range"]*18
 	if healthManager.maxHealth != towerStats["hp"]:
 		healthManager.maxHealth = towerStats["hp"]
+	if attackRange.attackRange != towerStats["range"] * 18:
+		attackRange.attackRange = towerStats["range"] * 18
 	if damage != towerStats["damage"]:
 		damage = towerStats["damage"]
 

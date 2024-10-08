@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 	_startImmunity(delta)
 
 func receiveDamage(damage: float, knockback: Vector2 = Vector2.ZERO):
+	
 	if not immune:
 		health.currentHealth -= damage
 		if health.currentHealth > 0:

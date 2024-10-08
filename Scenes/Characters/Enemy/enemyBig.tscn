@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://gb2y6ecbyf3d"]
+[gd_scene load_steps=39 format=3 uid="uid://gb2y6ecbyf3d"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Scripts/enemy.gd" id="1_bs7p2"]
 [ext_resource type="Script" path="res://Scenes/Characters/Character Scripts/stateHandler.gd" id="2_b617t"]
@@ -200,17 +200,22 @@ states/Run/node = SubResource("AnimationNodeAnimation_m5ggm")
 states/Run/position = Vector2(523.059, 97.2445)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_hujra"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_r4fkx"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ftw1v")]
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hpfn0"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_2jkcf"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_agrjj"]
+graph_offset = Vector2(-440.498, 180.46)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_amdad")
-nodes/Attack/position = Vector2(188.235, 329.412)
+nodes/Attack/position = Vector2(0, 400)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_pp7ln")
 nodes/StateMachine/position = Vector2(40, 140)
+nodes/attackTimeScale/node = SubResource("AnimationNodeTimeScale_hpfn0")
+nodes/attackTimeScale/position = Vector2(211.765, 329.412)
 nodes/isAttacking/node = SubResource("AnimationNodeOneShot_2jkcf")
 nodes/isAttacking/position = Vector2(376.471, 141.176)
 nodes/output/position = Vector2(588.235, 141.176)
-node_connections = [&"isAttacking", 0, &"StateMachine", &"isAttacking", 1, &"Attack", &"output", 0, &"isAttacking"]
+node_connections = [&"attackTimeScale", 0, &"Attack", &"isAttacking", 0, &"StateMachine", &"isAttacking", 1, &"attackTimeScale", &"output", 0, &"isAttacking"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dyx47"]
 radius = 80.0
@@ -220,7 +225,7 @@ radius = 6.5
 height = 17.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ko7ct"]
-size = Vector2(18, 6)
+size = Vector2(12, 12.5)
 
 [node name="EnemyBig" type="CharacterBody2D" node_paths=PackedStringArray("detectionRange", "hitbox", "animTree", "healthManager", "moveStateMach", "actionStateMach")]
 collision_layer = 4096
@@ -308,6 +313,7 @@ tree_root = SubResource("AnimationNodeBlendTree_agrjj")
 anim_player = NodePath("../EnemyAnimationPlayer")
 parameters/StateMachine/conditions/isIdle = false
 parameters/StateMachine/conditions/isRunning = false
+parameters/attackTimeScale/scale = 1.0
 parameters/isAttacking/active = false
 parameters/isAttacking/internal_active = false
 parameters/isAttacking/request = 0
@@ -340,7 +346,7 @@ collision_mask = 1024
 script = ExtResource("15_fdh0s")
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 8)
+position = Vector2(0, 3.75)
 shape = SubResource("RectangleShape2D_ko7ct")
 debug_color = Color(0.982799, 0, 0.358914, 0.42)
 
