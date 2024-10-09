@@ -9,6 +9,10 @@ extends CharacterBody2D
 @export_range(100,400,10, "or_greater") var projectileSpeed			: float = 250	##Movement speed of the projectile
 @export_range(0,40,0.5, "or_greater")	var projectileKnockback		: float = 5
 
+@export var inRange : Area2D
+
+var boundary 
+
 @export_category("Hitbox")
 @export var hitbox : Hitbox :
 	set(value):
@@ -22,6 +26,17 @@ extends CharacterBody2D
 
 func _process(delta: float) -> void:
 	move_and_slide()
+	
+	await get_tree().create_timer(0.017).timeout
+	if is_instance_valid(boundary):
+		var canMove: bool
+		if inRange.get_overlapping_areas().has(boundary):
+			canMove = true
+		else:
+			canMove = false
+	
+		if not canMove:
+			queue_free()
 
 
 func shoot(projectileDirection : Vector2):
@@ -30,6 +45,8 @@ func shoot(projectileDirection : Vector2):
 func _onHit(target : Hurtbox):
 	queue_free()
 
+func setBoundaries(attackRange: Area2D):
+	boundary = attackRange
 
 func setProjectile(type: StringName):	##Set tier of projectile
 	var newProjectile : Texture2D

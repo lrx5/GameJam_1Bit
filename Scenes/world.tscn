@@ -1,12 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://cxcxrne5beluq"]
+[gd_scene load_steps=6 format=4 uid="uid://cxcxrne5beluq"]
 
 [ext_resource type="Texture2D" uid="uid://rl62hshmfphl" path="res://Assets/Sprites/PNG/TIle/BlackTile.png" id="1_hc6ys"]
 [ext_resource type="PackedScene" uid="uid://5l0rvo3d5vff" path="res://Scenes/Tower/MainTower/mainTower.tscn" id="2_8acri"]
 [ext_resource type="PackedScene" uid="uid://cte034xlksnh" path="res://Scenes/enemyField.tscn" id="3_jnh4j"]
-[ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemyBig.tscn" id="4_533rm"]
-[ext_resource type="PackedScene" uid="uid://gfqm5aeu778c" path="res://Scenes/Characters/Enemy/enemyFast.tscn" id="5_c5dcv"]
-[ext_resource type="PackedScene" uid="uid://bvwpo16purf5l" path="res://Scenes/Characters/Enemy/enemyMedium.tscn" id="5_jd4rl"]
-[ext_resource type="PackedScene" uid="uid://ce5u7h6qtud8p" path="res://Scenes/Characters/Enemy/enemyExplode.tscn" id="6_r5lu5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jv7dp"]
 texture = ExtResource("1_hc6ys")
@@ -35,16 +31,3 @@ physics_interpolation_mode = 2
 [node name="EnwmyField" parent="." instance=ExtResource("3_jnh4j")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="EnemyMedium" parent="." instance=ExtResource("5_jd4rl")]
-position = Vector2(234, -128)
-
-[node name="EnemyBig" parent="." instance=ExtResource("4_533rm")]
-position = Vector2(-169, -82)
-
-[node name="Enemy" parent="." instance=ExtResource("5_c5dcv")]
-position = Vector2(-228, 123)
-runSpeed = 60.0
-
-[node name="EnemyExplode" parent="." instance=ExtResource("6_r5lu5")]
-position = Vector2(147, 91)

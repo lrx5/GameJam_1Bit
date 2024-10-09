@@ -13,6 +13,14 @@ extends Node2D
 var tower = self
 var projectile
 
+
+
+#var mainFR  = [0.5,0.75,0.9,1.2,1.5]
+#var mainDMG = [50,75,100,125,150]
+#var mainRNG = [5,5.5,6,7.5,10]
+
+
+
 func _ready():
 	while not tower is Tower:
 		tower = tower.get_parent()
@@ -26,7 +34,10 @@ func shoot():
 	projectile.setProjectile(tower.towerTier)
 	if tower.towerStats:
 		projectile.projectileDamage = tower.towerStats["damage"]
-	
+	if tower is MainTower:
+		projectile.projectileDamage = UpgradesManager.mainDMG[tower.DMGlvl]
+		
+	projectile.setBoundaries(tower.attackRange)
 	#Direction the gun is looking offseted by the default angle
 	var gunDirection = defaultAngle.rotated(gunPivot.global_rotation)
 	#Sprite rotation of the projectile

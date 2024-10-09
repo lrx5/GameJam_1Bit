@@ -2,6 +2,10 @@ extends CanvasLayer
 
 @export var gridSize	 	: Vector2 = Vector2(18,18)
 @export var towerInfo		: PanelContainer
+@export var mainShopButton	: TextureButton
+@export var towerShopButton	: TextureButton
+@export var settingsButton	: TextureButton
+@export var towerShop		: PanelContainer
 
 @onready var world 			= get_tree().get_first_node_in_group("world")
 @onready var towerField 	= get_tree().get_first_node_in_group("towerField")
@@ -156,16 +160,12 @@ func onMouseEnter():
 	#buildMode = true
 	canDrop = false
 	SceneInteraction.toggleBuildMode(true)
-	InputMap.action_erase_events("shoot")
 
 func onMouseExit():
 	towerInfo.visible = false
 	if not isDragging:
 		SceneInteraction.toggleBuildMode(false)
 		SceneInteraction.toggleSelect(false)
-		var leftClick = InputEventMouseButton.new()
-		leftClick.button_index = MOUSE_BUTTON_LEFT
-		InputMap.action_add_event("shoot",leftClick)
 	else:
 		canDrop = true
 

@@ -67,7 +67,7 @@ tier2 = ExtResource("11_8fvai")
 tier3 = ExtResource("12_l2ghk")
 
 [node name="AttackRange" type="Area2D" parent="." node_paths=PackedStringArray("tower", "range")]
-collision_layer = 0
+collision_layer = 32
 collision_mask = 4096
 script = ExtResource("7_lg0xc")
 tower = NodePath("..")

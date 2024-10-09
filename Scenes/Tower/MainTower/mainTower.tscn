@@ -114,9 +114,8 @@ sprite_frames = SubResource("SpriteFrames_hgvq2")
 frame_progress = 0.634233
 
 [node name="AttackRange" type="Area2D" parent="." node_paths=PackedStringArray("tower", "range")]
-collision_layer = 0
+collision_layer = 32
 collision_mask = 0
-monitorable = false
 script = ExtResource("7_w52sc")
 tower = NodePath("..")
 attackRange = 125

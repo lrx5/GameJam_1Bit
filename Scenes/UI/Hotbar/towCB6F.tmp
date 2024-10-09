@@ -137,13 +137,9 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
-[node name="TowerShopHotbar" type="CanvasLayer" node_paths=PackedStringArray("towerInfo", "mainShopButton", "towerShopButton", "settingsButton", "towerShop")]
+[node name="TowerShopHotbar" type="CanvasLayer" node_paths=PackedStringArray("towerInfo")]
 script = ExtResource("1_nu803")
 towerInfo = NodePath("TowerInfo")
-mainShopButton = NodePath("MainShopButton")
-towerShopButton = NodePath("TowerShopButton")
-settingsButton = NodePath("SettingsButton")
-towerShop = NodePath("TowerShop")
 
 [node name="TowerShopButton" type="TextureButton" parent="." groups=["hudButtons"]]
 offset_left = 390.0

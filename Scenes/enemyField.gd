@@ -24,7 +24,7 @@ var newEnemyMedium
 var newEnemyFast
 var newEnemyExplode
 
-var waveTimer : float = 5
+var waveTimer : float = 90
 var waveNumber : int = 0
 
 
@@ -35,7 +35,7 @@ func _ready():
 	
 func _process(delta):
 	waveTimer += delta
-	if waveTimer >= 1:
+	if waveTimer >= 90:
 		canSpawn = true
 		waveNumber += 1
 		bigCount = null

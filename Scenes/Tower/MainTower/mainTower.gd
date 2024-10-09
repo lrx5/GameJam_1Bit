@@ -18,6 +18,10 @@ var quad1Health : float = 0
 var cooldown : float = 0
 var stillAlive : bool = true
 
+var FRlvl = 0
+var DMGlvl = 0
+var RNGlvl = 0
+
 
 func _ready():
 	super._ready()
@@ -30,7 +34,10 @@ func _process(delta: float) -> void:
 	
 	if not quadrants:
 		SceneInteraction.gameEnd = true
-
+		
+	attackRange.attackRange = UpgradesManager.mainRNG[RNGlvl]*18
+	
+	print(attackRange.attackRange)
 	
 	if Input.is_action_just_pressed("shoot") and canShoot:
 		projectileSpawner.shoot()
@@ -39,8 +46,9 @@ func _process(delta: float) -> void:
 	if not canShoot:
 		shootCooldown(delta)
 			
+			
 func shootCooldown(delta):
 	cooldown += delta
-	if cooldown > 5:
+	if cooldown > UpgradesManager.mainFR[FRlvl]:
 		canShoot = true
 		cooldown = 0

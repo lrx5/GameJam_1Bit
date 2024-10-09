@@ -15,7 +15,7 @@ size = Vector2(2, 6)
 radius = 1.5
 height = 7.0
 
-[node name="RocketTowerProjectile" type="CharacterBody2D" node_paths=PackedStringArray("projectileSprite", "hitbox")]
+[node name="RocketTowerProjectile" type="CharacterBody2D" node_paths=PackedStringArray("projectileSprite", "inRange", "hitbox")]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
@@ -23,6 +23,7 @@ script = ExtResource("1_d34kg")
 projectileSprite = NodePath("AutoProjectileSprite")
 projectileDamage = 40.0
 projectileKnockback = 20.0
+inRange = NodePath("InRange")
 hitbox = NodePath("Hitbox")
 
 [node name="AutoProjectileShape" type="CollisionShape2D" parent="." node_paths=PackedStringArray("projectileSprite", "screenMonitor", "hitbox")]
@@ -51,5 +52,16 @@ projectileType = NodePath("..")
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_iqq3x")
+
+[node name="InRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="InRangeShape" type="CollisionShape2D" parent="InRange" node_paths=PackedStringArray("projectileSprite", "screenMonitor", "hitbox")]
+shape = SubResource("RectangleShape2D_vtqbb")
+script = ExtResource("2_058aw")
+projectileSprite = NodePath("../../AutoProjectileSprite")
+screenMonitor = NodePath("../../VisibleOnScreenNotifier2D")
+hitbox = NodePath("../../Hitbox/HitboxShape")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_onScreenExit"]

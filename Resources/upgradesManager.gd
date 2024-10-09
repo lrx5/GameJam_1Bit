@@ -1,6 +1,11 @@
 extends Node
 
-# TODO - Change Range Values!
+var mainFR  = [1.25,1,0.6,0.4,0.15]
+var mainDMG = [50,75,100,125,150]
+var mainRNG = [6,7,8,11.5,15]
+
+
+
 var turret_data = {
 	"cannon1": {"price": 20, "hp": 300, "fire_rate": 1, "damage": 8, "range": 4},
 	"cannon2": {"price": 20, "hp": 400, "fire_rate": 2, "damage": 12, "range": 4.5},
