@@ -1,0 +1,102 @@
+[gd_scene load_steps=3 format=3 uid="uid://i0aa7xhsm3by"]
+
+[ext_resource type="Texture2D" uid="uid://cyft8rdcui074" path="res://Assets/Sprites/PNG/Background/1bit_bg_blur.png" id="1_ng48p"]
+[ext_resource type="FontFile" uid="uid://c3plqli5lmcnp" path="res://Assets/Fonts/Awfully Digital/AwfullyDigital.ttf" id="2_wkxfk"]
+
+[node name="GameEnd" type="CanvasLayer"]
+layer = 10
+visible = false
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("1_ng48p")
+
+[node name="YouWin" type="RichTextLabel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -98.0
+offset_right = 75.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_wkxfk")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][wave amp=25.0 freq=5.0 connected=1] 
+YOU WIN[/wave][/center]"
+
+[node name="WinText" type="RichTextLabel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -22.0
+offset_right = 124.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("2_wkxfk")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]You have succesfully repelled 50 waves from the invasion and have transmitted the necessary data. Help is now coming. Great Job Commander![/center]"
+
+[node name="Defeat" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -98.0
+offset_right = 75.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_wkxfk")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][wave amp=25.0 freq=5.0 connected=1] 
+DEFEAT[/wave][/center]"
+
+[node name="LoseText" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.5
+offset_top = 0.5
+offset_right = 124.5
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("2_wkxfk")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]The swarm was too much to handle, the sector is lost, together with the lives of your crew in the crystal station.[/center]"

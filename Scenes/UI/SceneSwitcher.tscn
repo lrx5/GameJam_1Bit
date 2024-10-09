@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c26k1walm7wgi"]
+[gd_scene load_steps=5 format=3 uid="uid://c26k1walm7wgi"]
 
 [ext_resource type="Script" path="res://Scenes/UI/sceneSwitcher.gd" id="1_n8hva"]
 [ext_resource type="PackedScene" uid="uid://byaj84r1nn03j" path="res://Scenes/UI/MainMenu/mainMenu.tscn" id="1_qw5cb"]
 [ext_resource type="PackedScene" uid="uid://bsfofk3gmlsdb" path="res://Scenes/UI/Settings/settings.tscn" id="3_5hpbb"]
+[ext_resource type="PackedScene" uid="uid://i0aa7xhsm3by" path="res://Scenes/UI/GameEnd/game_end.tscn" id="4_0iemd"]
 
 [node name="SceneSwitcher" type="Node" node_paths=PackedStringArray("mainMenuScene", "settingsScene")]
 script = ExtResource("1_n8hva")
@@ -13,4 +14,5 @@ settingsScene = NodePath("Settings")
 
 [node name="Settings" parent="." instance=ExtResource("3_5hpbb")]
 layer = 1
-visible = true
+
+[node name="GameEnd" parent="." instance=ExtResource("4_0iemd")]
