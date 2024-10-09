@@ -42,8 +42,6 @@ func _setNewTarget():
 					sortDistance.append(global_position.distance_to(tower.global_position))
 					sortTargetTower[tower] = global_position.distance_to(tower.global_position)
 		
-		
-		
 		#region Main Tower Quadrant as part of towers detected
 		#if not global_position.distance_to(initTarget.global_position) in sortDistance:
 		#	sortDistance.append(global_position.distance_to(initTarget.global_position))

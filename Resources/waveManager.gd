@@ -15,6 +15,7 @@ var waves_data = {
 	10: [0,0,1],
 	# 11~20 Light Attacks 
 	11: [0,0,3], #stagerred
+	12: [2,0,3],
 	13: [6,0,1], #stagerred
 	14: [9], #stagerred
 	15: [4,0,4], #clump

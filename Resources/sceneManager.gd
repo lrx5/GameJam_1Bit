@@ -7,8 +7,10 @@ extends Node
 @export_category("Enemies")
 
 @export_group("Enemies")
-@export var enemy 					: PackedScene
-
+@export var enemyBig 				: PackedScene
+@export var enemyMedium				: PackedScene
+@export var enemyFast				: PackedScene
+@export var enemyExplode			: PackedScene
 
 @export_category("Towers")
 
@@ -44,7 +46,10 @@ extends Node
 #as the key, and the variable itself as the value
 
 @onready var scenes : Dictionary = {
-	"enemy"						: enemy,
+	"enemyBig"					: enemyBig,
+	"enemyMedium"				: enemyMedium,
+	"enemyFast"					: enemyFast,
+	"enemyExplode"				: enemyExplode,
 	"mainTower"					: mainTower,
 	"mainTowerQuadrant"			: mainTowerQuadrant,
 	"cannonTower"				: cannonTower,

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectilePacker" load_steps=4 format=3 uid="uid://kgtcm613em4t"]
+
+[ext_resource type="Texture2D" uid="uid://dc16nio6dlqt7" path="res://Assets/Sprites/PNG/Projectile/Sample_mainTower_projectile.png" id="1_7hi10"]
+[ext_resource type="PackedScene" uid="uid://chmkeedj87e4d" path="res://Scenes/Projectiles/MainTowerProjectile/mainTowerProjectile.tscn" id="2_phmb3"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/Resources/projectilePacker.gd" id="3_aqlif"]
+
+[resource]
+script = ExtResource("3_aqlif")
+projectileName = &"MainTowerProjectile"
+projectileIcon = ExtResource("1_7hi10")
+projectileScene = ExtResource("2_phmb3")
