@@ -13,8 +13,8 @@
 radius = 125.0
 
 [node name="MainTower" type="StaticBody2D" node_paths=PackedStringArray("quadrant1", "quadrant2", "quadrant3", "quadrant4", "projectileSpawner", "attackRange", "gunPivot")]
-collision_layer = 256
-collision_mask = 256
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_rpmm2")
 quadrant1 = NodePath("Quadrant1")
 quadrant2 = NodePath("Quadrant2")
@@ -70,4 +70,5 @@ script = ExtResource("8_j5mqu")
 polygon = PackedVector2Array(-15, -26, -26, -15, -26, 15, -15, 26, 15, 26, 26, 15, 26, -15, 15, -26)
 
 [node name="MainTowerShape" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-15, -26, -26, -15, -26, 15, -15, 26, 15, 26, 26, 15, 26, -15, 15, -26)

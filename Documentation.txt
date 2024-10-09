@@ -69,5 +69,8 @@ Enemy damage triggers immediately upon contact with tower
 Everything works okay with this bug except for the exploder, 
 it triggers its damage twice so a temporary fix is to halve its damage
 
+Enemy gets stuck in attack state without actually attacking when its target quadrant is destroyed.
+Something to do with the canStartAttacking boolean.
+
 [Remove On Final Export]
 1. ResourceManager.gd Debug

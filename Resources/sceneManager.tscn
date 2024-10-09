@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://v61eqfjgvsfx"]
+[gd_scene load_steps=19 format=3 uid="uid://v61eqfjgvsfx"]
 
 [ext_resource type="Script" path="res://Resources/sceneManager.gd" id="1_vy3iy"]
 [ext_resource type="PackedScene" uid="uid://gb2y6ecbyf3d" path="res://Scenes/Characters/Enemy/enemyBig.tscn" id="2_x4pv4"]
@@ -11,9 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://derno1dlhr656" path="res://Scenes/Tower/RocketTower/rocketTower.tscn" id="7_lol6e"]
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="7_rvuy1"]
 [ext_resource type="PackedScene" uid="uid://byaj84r1nn03j" path="res://Scenes/UI/MainMenu/mainMenu.tscn" id="9_do2f7"]
+[ext_resource type="PackedScene" uid="uid://fs7kbvh0r3u3" path="res://Scenes/Projectiles/BeamTowerProjectile/beamTowerProjectile.tscn" id="9_goaxt"]
 [ext_resource type="PackedScene" uid="uid://bsfofk3gmlsdb" path="res://Scenes/UI/Settings/settings.tscn" id="10_281e6"]
+[ext_resource type="PackedScene" uid="uid://dlyke71cpwnru" path="res://Scenes/Projectiles/RocketTowerProjectile/rocketTowerProjectile.tscn" id="10_msv1h"]
 [ext_resource type="PackedScene" uid="uid://cxcxrne5beluq" path="res://Scenes/world.tscn" id="11_jp5b4"]
 [ext_resource type="PackedScene" uid="uid://dul6urpny4ssk" path="res://Scenes/UI/Game HUD/gameHUD.tscn" id="12_6uoa5"]
+[ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="17_vilss"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/rocketPanel.tscn" id="18_vqgu0"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_vy3iy")
@@ -24,9 +28,13 @@ cannonTower = ExtResource("5_dtqwi")
 beamTower = ExtResource("6_ro4fu")
 rocketTower = ExtResource("7_lol6e")
 cannonTowerProjectile = ExtResource("6_ixf5y")
+beamTowerProjectile = ExtResource("9_goaxt")
+rocketTowerProjectile = ExtResource("10_msv1h")
 mainMenu = ExtResource("9_do2f7")
 settings = ExtResource("10_281e6")
 world = ExtResource("11_jp5b4")
 gameHUD = ExtResource("12_6uoa5")
 towerShopHotbar = ExtResource("6_ehogn")
 cannonPanel = ExtResource("7_rvuy1")
+beamPanel = ExtResource("17_vilss")
+rocketPanel = ExtResource("18_vqgu0")

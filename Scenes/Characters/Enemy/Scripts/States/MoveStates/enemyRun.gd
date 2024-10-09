@@ -18,6 +18,7 @@ func _processState(delta):
 	#	print("I should have a target now in the name of: ",character.initTarget.name)
 	setTarget()
 	
+	
 func _processPhysics(_delta):
 	pass
 
@@ -39,9 +40,13 @@ func setInitTarget():
 func setTarget():
 	if character.target:
 		if is_instance_valid(character.target):
-			targetPos = character.target.global_position
+			if character.target is MainTowerQuadrant:
+				targetPos = quadrantOffset(character.target)
+			else:
+				targetPos = character.target.global_position
 	elif character.initTarget and not character.target:
-		targetPos = character.initTarget.global_position
+		if is_instance_valid(character.initTarget):
+			targetPos = character.initTarget.global_position
 	
 	myPos = character.global_position
 	var newDirection = myPos.direction_to(targetPos)
@@ -49,11 +54,17 @@ func setTarget():
 	character.rotation = newDirection.angle() - deg_to_rad(90)
 
 
-func directionToDestination(pos):
-	var newX = abs(round(pos.x))
-	var newY = abs(round(pos.y))
-	var newPos = Vector2(newX,newY)
-	if newPos == Vector2.ZERO:
-		character.direction = Vector2.ZERO
-	else:
-		character.direction = myPos.direction_to(targetPos)
+
+func quadrantOffset(target):
+	var quadrantNewPos
+	match target.name:
+		"Quadrant1":
+			quadrantNewPos = target.global_position + Vector2(-5,-5)
+		"Quadrant2":
+			quadrantNewPos = target.global_position + Vector2(5,-5)
+		"Quadrant3":
+			quadrantNewPos = target.global_position + Vector2(5,5)
+		"Quadrant4":
+			quadrantNewPos = target.global_position + Vector2(-5,5)
+	
+	return quadrantNewPos

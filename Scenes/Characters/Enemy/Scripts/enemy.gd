@@ -35,14 +35,29 @@ func _setNewTarget():
 		var sortTargetTower : Dictionary
 		for tower in detectionRange.get_overlapping_bodies():
 			if tower is Tower and not tower in sortTargetTower:
-				sortDistance.append(global_position.distance_to(tower.global_position))
-				sortTargetTower[tower] = global_position.distance_to(tower.global_position)
-				
+				if tower is MainTowerQuadrant:
+					sortDistance.append(global_position.distance_to(quadrantOffset(tower)))
+					sortTargetTower[tower] = global_position.distance_to(quadrantOffset(tower))
+				else:
+					sortDistance.append(global_position.distance_to(tower.global_position))
+					sortTargetTower[tower] = global_position.distance_to(tower.global_position)
+		
+		
+		
+		#region Main Tower Quadrant as part of towers detected
+		#if not global_position.distance_to(initTarget.global_position) in sortDistance:
+		#	sortDistance.append(global_position.distance_to(initTarget.global_position))
+		#if not sortTargetTower.has(initTarget):
+		#	sortTargetTower[initTarget] = global_position.distance_to(initTarget.global_position)
+		#endregion
+		
 		var closeDist = sortDistance.min()
 		var closeTarget = sortTargetTower.find_key(closeDist)
 		
+		
 		if target != closeTarget:
 			target = closeTarget
+	
 	
 	else:
 		target = null
@@ -69,10 +84,26 @@ func _setInitTarget():
 
 	initTarget = quadDict.find_key(towerDistance.min())
 
+func quadrantOffset(tower):
+	var quadrantNewPos
+	match tower.name:
+		"Quadrant1":
+			quadrantNewPos = tower.global_position + Vector2(-27,-27)
+		"Quadrant2":
+			quadrantNewPos = tower.global_position + Vector2(27,-27)
+		"Quadrant3":
+			quadrantNewPos = tower.global_position + Vector2(27,27)
+		"Quadrant4":
+			quadrantNewPos = tower.global_position + Vector2(-27,27)
+	
+	return quadrantNewPos
+
+
 
 func onTowerExit(area: Area2D) -> void:
-	if target.is_ancestor_of(area):
-		target = null
+	if target and is_instance_valid(target):
+		if target.is_ancestor_of(area):
+			target = null
 	attackBool = false
 
 func onTowerEnter(area: Area2D) -> void:

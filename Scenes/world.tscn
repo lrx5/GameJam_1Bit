@@ -27,7 +27,6 @@ tile_set = SubResource("TileSet_36y2x")
 [node name="TowerField" type="Node2D" parent="." groups=["towerField"]]
 
 [node name="MainTower" parent="TowerField" groups=["mainTower"] instance=ExtResource("2_8acri")]
-process_mode = 4
 physics_interpolation_mode = 2
 
 [node name="ProjectileField" type="Node2D" parent="." groups=["projectileField"]]

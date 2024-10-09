@@ -15,6 +15,9 @@ func labelsInit():
 	updateCoins()
 	updateGems()
 
+func _process(_delta):
+	coins_label.text = str(ResourceManager.coins)
+
 func updateRound():
 	var new_round = ResourceManager.round
 	var roman_numeral = to_roman_numeral(new_round)
