@@ -6,9 +6,9 @@ extends Tower
 @export var quadrant2: MainTowerQuadrant
 @export var quadrant3: MainTowerQuadrant
 @export var quadrant4: MainTowerQuadrant
+@onready var quadrants = [quadrant1,quadrant2,quadrant3,quadrant4]
 
 var quad1Health : float = 0
-
 
 @onready var wantToShoot: bool = false
 @export var animGun : AnimatedSprite2D
@@ -16,12 +16,22 @@ var quad1Health : float = 0
 @onready var canShoot = true
 
 var cooldown : float = 0
+var stillAlive : bool = true
+
 
 func _ready():
 	super._ready()
 	animGun.play()
-
+	#print(get_children())
 func _process(delta: float) -> void:
+	for quad in quadrants:
+		if not is_instance_valid(quad):
+			quadrants.erase(quad)
+	
+	if not quadrants:
+		SceneInteraction.gameEnd = true
+
+	
 	if Input.is_action_just_pressed("shoot") and canShoot:
 		projectileSpawner.shoot()
 		canShoot = false

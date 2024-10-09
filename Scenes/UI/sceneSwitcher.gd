@@ -4,7 +4,13 @@ extends Node
 @export var mainMenuScene : CanvasLayer		##Reference to main menu
 @export var settingsScene : CanvasLayer		##Reference to settings
 
+var worldScene
+var towerShopHotbar
+var gameHUD
+
 var menuControls
+
+@onready var gameEnded = false
 
 func _ready():
 	if mainMenuScene:
@@ -25,11 +31,24 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
 		settingsScene.visible = false
 	
+func _process(_delta: float) -> void:
+	if SceneInteraction.gameEnd:
+		gameEnd()
+		SceneInteraction.gameEnd = false
+
+func gameEnd():
+	if is_instance_valid(worldScene):
+		worldScene.queue_free()
+	if is_instance_valid(towerShopHotbar):
+		towerShopHotbar.queue_free()
+	if is_instance_valid(gameHUD):
+		gameHUD.queue_free()
+
 func onPressPlay():
 	mainMenuScene.queue_free()
-	var worldScene = SceneManager.getScene("world").instantiate()
-	var towerShopHotbar = SceneManager.getScene("towerShopHotbar").instantiate()
-	var gameHUD = SceneManager.getScene("gameHUD").instantiate()
+	worldScene = SceneManager.getScene("world").instantiate()
+	towerShopHotbar = SceneManager.getScene("towerShopHotbar").instantiate()
+	gameHUD = SceneManager.getScene("gameHUD").instantiate()
 	add_child(worldScene)
 	add_child(towerShopHotbar)
 	add_child(gameHUD)

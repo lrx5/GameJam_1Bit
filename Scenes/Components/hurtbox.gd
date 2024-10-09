@@ -35,8 +35,8 @@ func receiveDamage(damage: float, knockback: Vector2 = Vector2.ZERO):
 			if character is Enemy:
 				character.deathBool = true
 			else:
+					
 				character.queue_free()
-			
 		startImmunityCounter = true
 
 func isNotDeadYet():
