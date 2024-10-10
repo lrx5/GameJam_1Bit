@@ -85,6 +85,37 @@ func _process(delta):
 			
 	gemRewards()
 		
+func _draw() -> void:	
+	#vertical
+	draw_line(vertices(quadrants[0])[1],vertices(quadrants[0])[0],Color(255,255,255),3)
+	#horizontal
+	draw_line(vertices(quadrants[0])[2],vertices(quadrants[0])[0],Color(255,255,255),3)
+	
+	if  ResourceManager.round > 10:
+		#vertical
+		draw_line(vertices(quadrants[1])[1],vertices(quadrants[1])[0],Color(255,255,255),1)
+		#horizontal
+		draw_line(vertices(quadrants[1])[2],vertices(quadrants[1])[0],Color(255,255,255),1)
+		
+	if  ResourceManager.round > 20:
+		#vertical
+		draw_line(vertices(quadrants[2])[1],vertices(quadrants[2])[0],Color(255,255,255),1)
+		#horizontal
+		draw_line(vertices(quadrants[2])[2],vertices(quadrants[2])[0],Color(255,255,255),1)
+		
+	if  ResourceManager.round > 30:
+		#vertical
+		draw_line(vertices(quadrants[3])[1],vertices(quadrants[3])[0],Color(255,255,255),1)
+		#horizontal
+		draw_line(vertices(quadrants[3])[2],vertices(quadrants[3])[0],Color(255,255,255),1)
+
+func vertices(quadrant):
+	var c = Vector2(sign(quadrant.x) * vpsWidth,sign(quadrant.y) * vpsHeight)
+	var v = Vector2(sign(quadrant.x) * vpsWidth,0)
+	var h = Vector2(0,sign(quadrant.y) * vpsHeight)
+	var lines = [c,v,h]
+	return lines
+			
 			
 func gemRewards():
 	var frame : float = 0.01666666666666667
@@ -120,7 +151,7 @@ func gemRewards():
 		ResourceManager.changeGems(reward)
 	await get_tree().create_timer(frame).timeout
 	canBeRewarded = false
-	
+
 			
 func enemyBigSpawner():
 	newEnemyBig = SceneManager.enemyBig.instantiate() as Enemy
@@ -162,12 +193,16 @@ func getRandQuadrant():
 	var quadrant
 	if waveNumber <= 10:
 		quadrant = quadrants[0]
+		queue_redraw()
+		
 	elif waveNumber > 10 and waveNumber <= 20:
 		match randi() % 2:
 			0:
 				quadrant = quadrants[0]
 			1:
 				quadrant = quadrants[1]
+		queue_redraw()
+		
 	elif waveNumber > 20 and waveNumber <= 30:
 		match randi() % 3:
 			0:
@@ -176,6 +211,7 @@ func getRandQuadrant():
 				quadrant = quadrants[1]
 			2:
 				quadrant = quadrants[2]
+		queue_redraw()
 				
 	elif waveNumber > 30:
 		match randi() % 4:
@@ -187,6 +223,7 @@ func getRandQuadrant():
 				quadrant = quadrants[2]
 			3:
 				quadrant = quadrants[3]
+		queue_redraw()
 				
 	return quadrant
 
