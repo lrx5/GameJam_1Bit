@@ -178,7 +178,7 @@ animTree = NodePath("EnemyAnimationTree")
 healthManager = NodePath("HealthManager")
 moveStateMach = NodePath("EnemyStateMachines/EnemyMoveStateMachine")
 actionStateMach = NodePath("EnemyStateMachines/EnemyActionStateMachine")
-runSpeed = 30.0
+runSpeed = 25.0
 
 [node name="EnemyStateHandler" type="Node" parent="." node_paths=PackedStringArray("actionStateMach", "moveStateMach")]
 script = ExtResource("2_85ycd")
@@ -257,7 +257,7 @@ parameters/isAttacking/request = 0
 
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("13_0o8ux")
-maxHealth = 60.0
+maxHealth = 120.0
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 0

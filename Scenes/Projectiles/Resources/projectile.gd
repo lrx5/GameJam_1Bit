@@ -27,7 +27,7 @@ var boundary
 func _process(delta: float) -> void:
 	move_and_slide()
 	
-	await get_tree().create_timer(0.017).timeout
+	await get_tree().create_timer(0.1).timeout
 	if is_instance_valid(boundary):
 		var canMove: bool
 		if inRange.get_overlapping_areas().has(boundary):
