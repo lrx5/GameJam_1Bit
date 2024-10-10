@@ -363,7 +363,7 @@ label_settings = SubResource("LabelSettings_61pm0")
 
 [node name="DamageDetails" type="Label" parent="GemShop/MainShop/MainShopContainer"]
 layout_mode = 2
-text = "-> damage details"
+text = "                        50 >>> 75        Cost: 1 Gem"
 label_settings = SubResource("LabelSettings_8xb60")
 
 [node name="VBoxContainer3" type="HBoxContainer" parent="GemShop/MainShop/MainShopContainer"]
@@ -388,7 +388,7 @@ label_settings = SubResource("LabelSettings_61pm0")
 
 [node name="RangeDetails" type="Label" parent="GemShop/MainShop/MainShopContainer"]
 layout_mode = 2
-text = "-> range details"
+text = "                        Med >>> Med+        Cost: 1 Gem"
 label_settings = SubResource("LabelSettings_8xb60")
 
 [node name="GemUpgrades2" type="RichTextLabel" parent="GemShop"]

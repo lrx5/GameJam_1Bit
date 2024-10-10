@@ -4,7 +4,32 @@ var mainFR  = [1.25,1,0.6,0.4,0.15]
 var mainDMG = [50,75,100,125,150]
 var mainRNG = [6,7,8,11.5,15]
 
+var main_turret_label = {
+	"firerate1": "                        0.5s >>> 0.7s        Cost: 1 Gem",
+	"firerate2": "                        0.7s >>> 0.9s        Cost: 1 Gem",
+	"firerate3": "                        0.9s >>> 1.2s        Cost: 2 Gem",
+	"firerate4": "                        1.2s >>> 1.5s        Cost: 3 Gem",
+	"firerate5": "                        Max Level",
+	
+	"damage1": "                        50 >>> 75        Cost: 1 Gem",
+	"damage2": "                        75 >>> 100        Cost: 1 Gem",
+	"damage3": "                        100 >>> 125        Cost: 2 Gem",
+	"damage4": "                        125 >>> 150        Cost: 3 Gem",
+	"damage5": "                        Max Level",
 
+	"range1": "                        Med >>> Med+        Cost: 1 Gem",
+	"range2": "                        Med+ >>> Far-        Cost: 1 Gem",
+	"range3": "                        Far- >>> Far+        Cost: 2 Gem",
+	"range4": "                        Far+ >>> Global        Cost: 3 Gem",
+	"range5": "                        Max Level",
+}
+
+func get_main_turret_stats(turret_stat: String, level: int) -> String:
+	var mainKey = turret_stat + str(level)
+	if main_turret_label.has(mainKey):
+		return str(main_turret_label[mainKey])
+	else:
+		return ""
 
 var turret_data = {
 	"cannon1": {"price": 20, "hp": 300, "fire_rate": 1, "damage": 8, "range": 4},
@@ -26,10 +51,3 @@ func get_turret_stats(turret_type: String, level: int) -> Dictionary:
 		return turret_data[key]
 	else:
 		return {} 
-
-func get_specific_turret(turret_key: String) -> Dictionary:
-	if turret_data.has(turret_key):
-		return turret_data[turret_key]
-	else:
-		print("Turret level", turret_key, "not found")
-		return {}
