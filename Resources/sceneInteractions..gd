@@ -12,6 +12,7 @@ signal upgradeToggle(isUpgrading: bool, tower : Tower)
 @onready var isSelecting	: bool = false
 
 @onready var gameEnd = false
+@onready var youWin = false
 
 func _ready() -> void:
 	connect("buildModeToggle",onBuildModeToggle)

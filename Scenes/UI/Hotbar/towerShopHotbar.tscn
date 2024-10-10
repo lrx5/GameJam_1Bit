@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dxcskcr2b6so0"]
+[gd_scene load_steps=40 format=3 uid="uid://dxcskcr2b6so0"]
 
 [ext_resource type="PackedScene" uid="uid://ce5kpfo525fhr" path="res://Scenes/UI/Hotbar/TowerPanel/cannonPanel.tscn" id="1_5k7b3"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerShopHotbar.gd" id="1_nu803"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="6_bvpca"]
 [ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/RocketPanel.tscn" id="7_8q5hs"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/settings_button.gd" id="8_opwsr"]
+[ext_resource type="Texture2D" uid="uid://bs3vvwcm70h2f" path="res://Assets/Sprites/PNG/UI/Game/nextWaveNormal.png" id="9_8ofa3"]
+[ext_resource type="Script" path="res://Scenes/UI/Hotbar/next_wave_button.gd" id="10_tfg0w"]
 [ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="11_o1tfd"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/GemShop/gem_shop.gd" id="12_a38j8"]
 [ext_resource type="FontFile" uid="uid://c3plqli5lmcnp" path="res://Assets/Fonts/Awfully Digital/AwfullyDigital.ttf" id="12_epymy"]
@@ -180,6 +182,18 @@ texture_pressed = ExtResource("5_tjqic")
 texture_hover = ExtResource("5_tjqic")
 texture_focused = ExtResource("4_p0cgk")
 script = ExtResource("8_opwsr")
+
+[node name="NextWaveButton" type="TextureButton" parent="." groups=["hudButtons"]]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -9.0
+offset_right = 23.0
+offset_bottom = 9.0
+grow_vertical = 2
+texture_normal = ExtResource("9_8ofa3")
+script = ExtResource("10_tfg0w")
 
 [node name="ShopAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

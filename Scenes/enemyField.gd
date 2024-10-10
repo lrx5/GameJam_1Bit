@@ -27,6 +27,8 @@ var newEnemyExplode
 var waveTimer : float = 90
 var waveNumber : int = 0
 
+var canBeRewarded : bool = false
+var justRewarded : bool = false
 
 func _ready():
 	randomize()
@@ -38,21 +40,25 @@ func _process(delta):
 	if waveTimer >= 20:
 		canSpawn = true
 		waveNumber += 1
+		ResourceManager.round = waveNumber
 		bigCount = null
 		mediumCount = null
 		fastCount = null
 		explodeCount = null
-		var wavesData = WaveManager.waves_data[waveNumber]
-		mediumCount = wavesData[0]
-		bigCount = wavesData[1] if wavesData.size() >= 2 else 0
-		fastCount = wavesData[2] if wavesData.size() >= 3 else 0
-		explodeCount = wavesData[3] if wavesData.size() >= 4 else 0
+		if waveNumber < 50:
+			var wavesData = WaveManager.waves_data[waveNumber]
+			mediumCount = wavesData[0]
+			bigCount = wavesData[1] if wavesData.size() >= 2 else 0
+			fastCount = wavesData[2] if wavesData.size() >= 3 else 0
+			explodeCount = wavesData[3] if wavesData.size() >= 4 else 0
+		elif waveNumber >= 50:
+			canSpawn = false
 		waveTimer = 0
 		ResourceManager.round += 1
 		
 	else:
 		canSpawn = false
-		
+	
 	if canSpawn:
 		for i in range(bigCount):
 			enemyBigSpawner()
@@ -66,7 +72,48 @@ func _process(delta):
 		for i in range(explodeCount):
 			enemyExplodeSpawner()
 			await get_tree().create_timer(1).timeout
+	
+	if waveNumber >= 50:
+		SceneInteraction.youWin = true
 			
+	gemRewards()
+		
+			
+func gemRewards():
+	var frame : float = 0.01666666666666667
+	var reward : int
+	match ResourceManager.round:
+		5:
+			if not justRewarded:
+				canBeRewarded = true
+				justRewarded = true
+				reward = 1
+		10,15:
+			if not justRewarded:
+				canBeRewarded = true
+				justRewarded = true
+				reward = 2
+		20,25,35:
+			if not justRewarded:
+				canBeRewarded = true
+				justRewarded = true
+				reward = 3
+		40:
+			if not justRewarded:
+				canBeRewarded = true
+				justRewarded = true
+				reward = 4
+		_:
+			reward = 0
+			if justRewarded:
+				justRewarded = false
+			
+	
+	if canBeRewarded:
+		ResourceManager.changeGems(reward)
+	await get_tree().create_timer(frame).timeout
+	canBeRewarded = false
+	
 			
 func enemyBigSpawner():
 	newEnemyBig = SceneManager.enemyBig.instantiate() as Enemy

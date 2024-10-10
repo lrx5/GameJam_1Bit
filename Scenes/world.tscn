@@ -28,6 +28,6 @@ physics_interpolation_mode = 2
 
 [node name="ProjectileField" type="Node2D" parent="." groups=["projectileField"]]
 
-[node name="EnwmyField" parent="." instance=ExtResource("3_jnh4j")]
+[node name="EnemyField" parent="." groups=["enemyField"] instance=ExtResource("3_jnh4j")]
 
 [node name="Camera2D" type="Camera2D" parent="."]

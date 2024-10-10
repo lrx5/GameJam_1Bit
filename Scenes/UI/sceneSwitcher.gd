@@ -19,19 +19,32 @@ func _input(event: InputEvent) -> void:
 		settingsScene.visible = false
 	
 func _process(_delta: float) -> void:
-	if SceneInteraction.gameEnd:
-		gameEnd()
+	if SceneInteraction.gameEnd or SceneInteraction.youWin:
+		clearScreen()
 		var endScreen = SceneManager.getScene("gameEnd").instantiate()
-		if SceneInteraction.gameEnd:
+		if SceneInteraction.gameEnd or SceneInteraction.youWin:
 			add_child(endScreen)
-		if not endScreen.lose.visible:
-			endScreen.lose.visible = true
-		SceneInteraction.gameEnd = false
+		if SceneInteraction.gameEnd:
+			if not endScreen.lose.visible:
+				endScreen.lose.visible = true
+			if endScreen.win.visible:
+				endScreen.win.visible = false
+			SceneInteraction.gameEnd = false
+		if SceneInteraction.youWin:
+			if not endScreen.win.visible:
+				endScreen.win.visible = true
+			if endScreen.lose.visible:
+				endScreen.lose.visible = false
+			SceneInteraction.youWin = false
+				
+		ResourceManager.resourcesInit()
+		
 		await get_tree().create_timer(5).timeout
 		newGame = true
 		await get_tree().create_timer(0.017).timeout
 		newGame = false
 		remove_child(endScreen)
+		
 	if newGame:
 		add_child(mainMenuScene)
 
@@ -52,7 +65,7 @@ func mainMenu():
 		push_error("Main Menu not assigned")
 	
 
-func gameEnd():
+func clearScreen():
 	if is_instance_valid(worldScene):
 		worldScene.queue_free()
 	if is_instance_valid(towerShopHotbar):

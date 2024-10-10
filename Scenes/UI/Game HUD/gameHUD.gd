@@ -18,6 +18,8 @@ func _process(_delta):
 	new_round = ResourceManager.round
 	updateRound()
 	coins_label.text = str(ResourceManager.coins)
+	gems_label.text = str(ResourceManager.gems)
+	round_label.text = str(to_roman_numeral(ResourceManager.round))
 
 func updateRound():
 	var roman_numeral = to_roman_numeral(new_round)
