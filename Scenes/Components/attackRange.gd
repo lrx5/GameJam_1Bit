@@ -41,9 +41,8 @@ func _physics_process(_delta: float) -> void:
 
 func _onEnemyEnter(body: Node2D):
 	if body is Enemy:
-		if not enemiesDetected.has(body):
+		if not enemiesDetected.has(body) and is_instance_valid(body):
 			enemiesDetected.append(body)
-
 func _onEnemyExit(body: Node2D):
 	#Ensures that when an enemy dies within the range it would get removed from the enemies array
 	if body is Enemy:
@@ -76,7 +75,10 @@ func _setTarget():
 						enemiesStatDict[enemy]= enemy.healthManager.currentHealth
 						valueSort.append(enemy.healthManager.currentHealth)
 					target = enemiesStatDict.find_key(valueSort.max())
-		
+	if is_instance_valid(target):
+		target = target
+	else:
+		target = null
 func createNewRange():
 	if newRange:
 		newRange = null	

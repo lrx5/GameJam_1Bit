@@ -5,10 +5,10 @@ var mainDMG = [35,45,60,90,120]
 var mainRNG = [6,7,8,11.5,15]
 
 var main_turret_label = {
-	"firerate1": "                        0.5s >>> 0.7s        Cost: 1 Gem",
-	"firerate2": "                        0.7s >>> 0.9s        Cost: 1 Gem",
-	"firerate3": "                        0.9s >>> 1.2s        Cost: 2 Gem",
-	"firerate4": "                        1.2s >>> 1.5s        Cost: 3 Gem",
+	"firerate1": "                        " + str(mainFR[0]) + "s >>> " + str(mainFR[1]) + "s        Cost: 1 Gem",
+	"firerate2": "                        " + str(mainFR[1]) + "s >>> " + str(mainFR[2]) + "s        Cost: 1 Gem",
+	"firerate3": "                        " + str(mainFR[2]) + "s >>> " + str(mainFR[3]) + "s        Cost: 2 Gem",
+	"firerate4": "                        " + str(mainFR[3]) + "s >>> " + str(mainFR[4]) + "s        Cost: 3 Gem",
 	"firerate5": "                        Max Level",
 	
 	"damage1": "                        50 >>> 75        Cost: 1 Gem",
@@ -32,11 +32,11 @@ func get_main_turret_stats(turret_stat: String, level: int) -> String:
 		return ""
 
 var turret_data = {
-	"cannon1": {"price": 20, "hp": 300, "fire_rate": 1, "damage": 8, "range": 4},
-	"cannon2": {"price": 20, "hp": 400, "fire_rate": 2, "damage": 12, "range": 4.5},
-	"cannon3": {"price": 60, "hp": 500, "fire_rate": 3, "damage": 13, "range": 5},
+	"cannon1": {"price": 20, "hp": 175, "fire_rate": 1, "damage": 8, "range": 4},
+	"cannon2": {"price": 20, "hp": 200, "fire_rate": 2, "damage": 12, "range": 4.5},
+	"cannon3": {"price": 60, "hp": 300, "fire_rate": 3, "damage": 13, "range": 5},
 	
-	"rocket1": {"price": 30, "hp": 200, "fire_rate": 0.5, "damage": 40, "range": 6.5},
+	"rocket1": {"price": 30, "hp": 150, "fire_rate": 0.5, "damage": 40, "range": 6.5},
 	"rocket2": {"price": 40, "hp": 200, "fire_rate": 0.5, "damage": 60, "range": 8},
 	"rocket3": {"price": 70, "hp": 250, "fire_rate": 0.5, "damage": 100, "range": 10},
 	
