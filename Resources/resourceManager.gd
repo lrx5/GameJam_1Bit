@@ -12,7 +12,7 @@ func _ready():
 func resourcesInit():
 	coins = 999
 	gems = 99
-	round = 1
+	round = 0
 	
 #region INFO Resource Manager Methods
 func changeRound(value: int):

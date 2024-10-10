@@ -2,7 +2,7 @@ extends CanvasLayer
 
 var coins
 var gems
-var round
+var new_round
 @onready var coins_label: Label = $Control/CoinsLabel
 @onready var gems_label: Label = $Control/GemsLabel
 @onready var round_label: Label = $Control/RoundLabel
@@ -11,17 +11,17 @@ func _ready():
 	labelsInit()
 
 func labelsInit():
-	updateRound()
 	updateCoins()
 	updateGems()
 
 func _process(_delta):
+	new_round = ResourceManager.round
+	updateRound()
 	coins_label.text = str(ResourceManager.coins)
 
 func updateRound():
-	var new_round = ResourceManager.round
 	var roman_numeral = to_roman_numeral(new_round)
-	round_label.text = roman_numeral
+	round_label.text = "Wave: " + roman_numeral
 func updateCoins():
 	var new_coins = ResourceManager.coins
 	coins_label.text = str(new_coins)

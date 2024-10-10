@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/towerInfo.gd" id="5_2bidv"]
 [ext_resource type="Texture2D" uid="uid://gqs132clygbk" path="res://Assets/Sprites/PNG/UI/Main Menu/Settings_Hover.png" id="5_tjqic"]
 [ext_resource type="PackedScene" uid="uid://bmwscss16frcy" path="res://Scenes/UI/Hotbar/TowerPanel/beamPanel.tscn" id="6_bvpca"]
-[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/rocketPanel.tscn" id="7_8q5hs"]
+[ext_resource type="PackedScene" uid="uid://hb66vh7kvm1a" path="res://Scenes/UI/Hotbar/TowerPanel/RocketPanel.tscn" id="7_8q5hs"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/settings_button.gd" id="8_opwsr"]
 [ext_resource type="Texture2D" uid="uid://c4qacbw667lr1" path="res://Assets/Sprites/Spritesheet/mainTower_spritesheet.png" id="11_o1tfd"]
 [ext_resource type="Script" path="res://Scenes/UI/Hotbar/GemShop/gem_shop.gd" id="12_a38j8"]

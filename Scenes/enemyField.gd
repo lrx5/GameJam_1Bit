@@ -48,6 +48,7 @@ func _process(delta):
 		fastCount = wavesData[2] if wavesData.size() >= 3 else 0
 		explodeCount = wavesData[3] if wavesData.size() >= 4 else 0
 		waveTimer = 0
+		ResourceManager.round += 1
 		
 	else:
 		canSpawn = false
