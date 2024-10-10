@@ -11,14 +11,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	setTowerStats("cannon")
-	
 	if attackRange.target and attackCooldown(delta) and gunPivot.startShooting:
 		projectileSpawner.shoot()
-		#startTweening()
+		startTweening()
 
 func _input(event: InputEvent) -> void:
 	mouseSelect(event)
-
+	
 #region Turret Recoil Tween TESTING
 func startTweening():
 	tween = create_tween()

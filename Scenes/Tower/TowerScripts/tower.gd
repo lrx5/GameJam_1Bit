@@ -14,8 +14,8 @@ signal towerUpgraded
 
 @export_enum("tier1","tier2", "tier3") var towerTier = "tier1":
 	set(value):
-		emit_signal("towerUpgraded",value)
 		towerTier = value
+		emit_signal("towerUpgraded",value)
 
 @export var healthManager : HealthManager
 
@@ -64,9 +64,15 @@ func mouseSelect(input: InputEvent):
 		selected = true
 		SceneInteraction.toggleUpgrade(true,self)
 	if selected:
+		queue_redraw()
 		if attackRange.targetPriority != SceneInteraction.upgradePanel.target:
 			attackRange.targetPriority = SceneInteraction.upgradePanel.target
-
+			
+func _draw() -> void:
+	if (self is CannonTower or self is RocketTower or self is BeamTower) and selected:
+		draw_circle(Vector2.ZERO,attackRange.attackRange,Color(255,255,255),false,1,false)
+	
+	
 
 func _onMouseEnter() -> void:
 	hovered = true
