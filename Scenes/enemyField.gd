@@ -54,7 +54,6 @@ func _process(delta):
 		elif waveNumber >= 50:
 			canSpawn = false
 		waveTimer = 0
-		ResourceManager.round += 1
 		
 	else:
 		canSpawn = false
@@ -93,7 +92,7 @@ func gemRewards():
 				canBeRewarded = true
 				justRewarded = true
 				reward = 2
-		20,25,35:
+		20,25,30,35:
 			if not justRewarded:
 				canBeRewarded = true
 				justRewarded = true

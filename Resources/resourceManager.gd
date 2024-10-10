@@ -10,15 +10,15 @@ func _ready():
 	resourcesInit()
 
 func resourcesInit():
-<<<<<<< Updated upstream
-	coins = 999
-	gems = 99
-	round = 0
-=======
+#<<<<<<< Updated upstream
+#	coins = 999
+#	gems = 99
+#	round = 0
+#
 	coins = 60
 	gems = 0
 	round = 1
->>>>>>> Stashed changes
+#>>>>>>> Stashed changes
 	
 #region INFO Resource Manager Methods
 func changeRound(value: int):
