@@ -8,6 +8,7 @@ extends PanelContainer
 @export var stats		: Label
 
 @export var upgrade		: PanelContainer
+@export var upgradePrice: Label
 @export var sell		: Label
 
 
@@ -40,6 +41,12 @@ func _process(_delta) -> void:
 	if is_instance_valid(newTower):
 		towerName.text = setTowerName()
 		stats.text = setStats()
+		match newTower.towerTier:
+			"tier1":
+				upgradePrice.text = str(UpgradesManager.get_turret_stats(towerString(),2)["price"])
+			"tier2":
+				upgradePrice.text = str(UpgradesManager.get_turret_stats(towerString(),3)["price"])
+				
 		
 	else:
 		cancelUpgrade()
@@ -51,18 +58,44 @@ func _input(event: InputEvent) -> void:
 			cancelUpgrade()
 	if hoveredSell() and mouseClick(event):
 		print("sell")
+		
+		match newTower.towerTier:
+			"tier1":
+				ResourceManager.changeCoins(UpgradesManager.get_turret_stats(towerString(),1)["price"])
+			"tier2":
+				ResourceManager.changeCoins(UpgradesManager.get_turret_stats(towerString(),1)["price"]*0.75)
+			"tier3":
+				ResourceManager.changeCoins(UpgradesManager.get_turret_stats(towerString(),1)["price"]*0.5)
+			
 		newTower.queue_free()
 	if hoveredUpgrade() and mouseClick(event) and not justUpgraded:
 		match newTower.towerTier:
 			"tier1":
-				newTower.towerTier = "tier2"
+				if ResourceManager.coins >= UpgradesManager.get_turret_stats(towerString(),2)["price"]:
+					ResourceManager.changeCoins(-UpgradesManager.get_turret_stats(towerString(),2)["price"])
+					newTower.towerTier = "tier2"
 			"tier2":
-				newTower.towerTier = "tier3"
+				if ResourceManager.coins >= UpgradesManager.get_turret_stats(towerString(),3)["price"]:
+					ResourceManager.changeCoins(-UpgradesManager.get_turret_stats(towerString(),3)["price"])
+					newTower.towerTier = "tier3"
+					upgrade.visible = false
 			"tier3":
 				upgrade.visible = false
 		justUpgraded = true
 		await get_tree().create_timer(0.13).timeout
 		justUpgraded = false
+
+func towerString():
+	var towerString 
+	if "Cannon" in newTower.name:
+		towerString = "cannon"
+	if "Beam" in newTower.name:
+		towerString = "beam"
+	if "Rocket" in newTower.name:
+		towerString = "rocket"
+		
+	return towerString
+
 
 func _onMouseClickLeft(event: InputEvent):
 	if event is InputEventMouseButton and event.button_mask == 1:

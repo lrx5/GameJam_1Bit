@@ -35,7 +35,7 @@ func _ready():
 	
 func _process(delta):
 	waveTimer += delta
-	if waveTimer >= 1:
+	if waveTimer >= 20:
 		canSpawn = true
 		waveNumber += 1
 		bigCount = null
@@ -55,35 +55,43 @@ func _process(delta):
 	if canSpawn:
 		for i in range(bigCount):
 			enemyBigSpawner()
+			await get_tree().create_timer(1).timeout
 		for i in range(mediumCount):
 			enemyMediumSpawner()
+			await get_tree().create_timer(1).timeout
 		for i in range(fastCount):
 			enemyFastSpawner()
+			await get_tree().create_timer(1).timeout
 		for i in range(explodeCount):
 			enemyExplodeSpawner()
+			await get_tree().create_timer(1).timeout
 			
 			
 func enemyBigSpawner():
 	newEnemyBig = SceneManager.enemyBig.instantiate() as Enemy
 	add_child(newEnemyBig)
+	newEnemyBig.name = "Big"
 	newEnemyBig.global_position = getRandPosition(getRandQuadrant())
 	newEnemyBig = null
 	
 func enemyMediumSpawner():
 	newEnemyMedium = SceneManager.enemyMedium.instantiate() as Enemy
 	add_child(newEnemyMedium)
+	newEnemyMedium.name = "Medium"
 	newEnemyMedium.global_position = getRandPosition(getRandQuadrant())
 	newEnemyMedium = null
 
 func enemyFastSpawner():
 	newEnemyFast = SceneManager.enemyFast.instantiate() as Enemy
 	add_child(newEnemyFast)
+	newEnemyFast.name = "Fast"
 	newEnemyFast.global_position = getRandPosition(getRandQuadrant())
 	newEnemyFast = null
 
 func enemyExplodeSpawner():
 	newEnemyExplode = SceneManager.enemyExplode.instantiate() as Enemy
 	add_child(newEnemyExplode)
+	newEnemyExplode.name = "Explode"
 	newEnemyExplode.global_position = getRandPosition(getRandQuadrant())
 	newEnemyExplode = null
 

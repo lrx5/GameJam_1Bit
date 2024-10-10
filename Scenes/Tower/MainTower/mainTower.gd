@@ -37,8 +37,6 @@ func _process(delta: float) -> void:
 		
 	attackRange.attackRange = UpgradesManager.mainRNG[RNGlvl]*18
 	
-	print(attackRange.attackRange)
-	
 	if Input.is_action_just_pressed("shoot") and canShoot:
 		projectileSpawner.shoot()
 		canShoot = false

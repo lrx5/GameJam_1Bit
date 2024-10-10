@@ -73,10 +73,28 @@ func onShopHUDentered(input, panel):
 			
 	if towerType and buildMode:
 		if isJustClicked(input):
-			if not previewTower:
+			var canAfford: bool = false
+			match towerInfo.tower_name.text:
+				"CANNON TOWER":
+					if not previewTower and ResourceManager.coins >= 20:
+						canAfford = true
+					else:
+						canAfford = false
+				"BEAM TOWER":
+					if not previewTower and ResourceManager.coins >= 40:
+						canAfford = true
+					else:
+						canAfford = false
+				"ROCKET TOWER":
+					if not previewTower and ResourceManager.coins >= 30:
+						canAfford = true
+					else:
+						canAfford = false
+			if canAfford:
 				previewTower = towerType.instantiate()
 				towerName = previewTower.name
-			clicked = true
+				clicked = true
+			
 
 func _process(_delta: float) -> void:
 	buildMode = SceneInteraction.buildMode
@@ -128,6 +146,14 @@ func draggedTower():
 	previewTower.global_position = gridPlacement()
 
 func droppedTower():
+	match towerName:
+		"CannonTower":
+			ResourceManager.changeCoins(-20)
+		"BeamTower":
+			ResourceManager.changeCoins(-40)
+		"RocketTower":
+			ResourceManager.changeCoins(-30)
+	
 	previewTower.process_mode		= Node.PROCESS_MODE_ALWAYS
 	previewTower.name				= towerName
 	previewTower.modulate			= Color("ffffff")

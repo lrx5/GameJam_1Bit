@@ -11,13 +11,11 @@ func _enter():
 
 
 func dropCoin():
-	match character.name:
-		"EnemyBig":
-			ResourceManager.changeCoins(6)
-			print("dropped 6")
-		"EnemyMedium":
-			ResourceManager.changeCoins(1)
-		"EnemyFast":
-			ResourceManager.changeCoins(2)
-		"EnemyExplode":
-			ResourceManager.changeCoins(4)
+	if character.name.left(3) == "Big":
+		ResourceManager.changeCoins(20)
+	if character.name.left(6) == "Medium":
+		ResourceManager.changeCoins(5)
+	if character.name.left(4) == "Fast":
+		ResourceManager.changeCoins(3)
+	if character.name.left(7) == "Explode":
+		ResourceManager.changeCoins(10)
