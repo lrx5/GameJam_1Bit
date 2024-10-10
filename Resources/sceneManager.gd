@@ -34,6 +34,7 @@ extends Node
 @export var settings				: PackedScene
 @export var world					: PackedScene
 @export var gameHUD					: PackedScene
+@export var gameEnd					: PackedScene
 
 @export_group("Tower Shop")
 @export var towerShopHotbar 		: PackedScene
@@ -64,6 +65,7 @@ extends Node
 	"settings"					: settings,
 	"world"						: world,
 	"gameHUD"					: gameHUD,
+	"gameEnd"					: gameEnd,
 }
 
 func getScene(sceneName : String): 

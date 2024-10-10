@@ -35,7 +35,7 @@ func _ready():
 	
 func _process(delta):
 	waveTimer += delta
-	if waveTimer >= 90:
+	if waveTimer >= 1:
 		canSpawn = true
 		waveNumber += 1
 		bigCount = null

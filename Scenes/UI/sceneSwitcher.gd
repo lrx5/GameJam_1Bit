@@ -1,18 +1,42 @@
 class_name SceneSwitcher
 extends Node
 
-@export var mainMenuScene : CanvasLayer		##Reference to main menu
-@export var settingsScene : CanvasLayer		##Reference to settings
+@export var mainMenuScene : CanvasLayer	##Reference to main menu
+@export var settingsScene : CanvasLayer ##Reference to settings
 
 var worldScene
 var towerShopHotbar
 var gameHUD
 
 var menuControls
-
-@onready var gameEnded = false
+var newGame: bool = false
 
 func _ready():
+	mainMenu()
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("escape"):
+		settingsScene.visible = false
+	
+func _process(_delta: float) -> void:
+	if SceneInteraction.gameEnd:
+		gameEnd()
+		var endScreen = SceneManager.getScene("gameEnd").instantiate()
+		if SceneInteraction.gameEnd:
+			add_child(endScreen)
+		if not endScreen.lose.visible:
+			endScreen.lose.visible = true
+		SceneInteraction.gameEnd = false
+		await get_tree().create_timer(5).timeout
+		newGame = true
+		await get_tree().create_timer(0.017).timeout
+		newGame = false
+		remove_child(endScreen)
+	if newGame:
+		add_child(mainMenuScene)
+
+func mainMenu():
+	
 	if mainMenuScene:
 		menuControls = mainMenuScene.get_tree().get_nodes_in_group("menuControls")
 		for control in menuControls:
@@ -27,14 +51,6 @@ func _ready():
 	else:
 		push_error("Main Menu not assigned")
 	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("escape"):
-		settingsScene.visible = false
-	
-func _process(_delta: float) -> void:
-	if SceneInteraction.gameEnd:
-		gameEnd()
-		SceneInteraction.gameEnd = false
 
 func gameEnd():
 	if is_instance_valid(worldScene):
@@ -45,7 +61,7 @@ func gameEnd():
 		gameHUD.queue_free()
 
 func onPressPlay():
-	mainMenuScene.queue_free()
+	remove_child(mainMenuScene)
 	worldScene = SceneManager.getScene("world").instantiate()
 	towerShopHotbar = SceneManager.getScene("towerShopHotbar").instantiate()
 	gameHUD = SceneManager.getScene("gameHUD").instantiate()

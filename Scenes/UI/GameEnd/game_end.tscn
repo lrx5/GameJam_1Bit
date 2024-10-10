@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://i0aa7xhsm3by"]
+[gd_scene load_steps=4 format=3 uid="uid://i0aa7xhsm3by"]
 
 [ext_resource type="Texture2D" uid="uid://cyft8rdcui074" path="res://Assets/Sprites/PNG/Background/1bit_bg_blur.png" id="1_ng48p"]
+[ext_resource type="Script" path="res://Scenes/UI/GameEnd/game_end.gd" id="1_q0n1m"]
 [ext_resource type="FontFile" uid="uid://c3plqli5lmcnp" path="res://Assets/Fonts/Awfully Digital/AwfullyDigital.ttf" id="2_wkxfk"]
 
-[node name="GameEnd" type="CanvasLayer"]
+[node name="GameEnd" type="CanvasLayer" node_paths=PackedStringArray("win", "lose")]
 layer = 10
-visible = false
+script = ExtResource("1_q0n1m")
+win = NodePath("Control/Win")
+lose = NodePath("Control/Lose")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -21,18 +24,23 @@ offset_right = 480.0
 offset_bottom = 270.0
 texture = ExtResource("1_ng48p")
 
-[node name="YouWin" type="RichTextLabel" parent="Control"]
+[node name="Win" type="Control" parent="Control"]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="YouWin" type="RichTextLabel" parent="Control/Win"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -98.0
-offset_right = 75.0
-offset_bottom = -25.0
+offset_left = 145.0
+offset_top = 17.0
+offset_right = 295.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 8
@@ -42,18 +50,17 @@ bbcode_enabled = true
 text = "[center][wave amp=25.0 freq=5.0 connected=1] 
 YOU WIN[/wave][/center]"
 
-[node name="WinText" type="RichTextLabel" parent="Control"]
-visible = false
+[node name="WinText" type="RichTextLabel" parent="Control/Win"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -123.0
-offset_top = -22.0
-offset_right = 124.0
-offset_bottom = 67.0
+offset_left = 97.0
+offset_top = 93.0
+offset_right = 344.0
+offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 4
@@ -62,17 +69,23 @@ theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[center]You have succesfully repelled 50 waves from the invasion and have transmitted the necessary data. Help is now coming. Great Job Commander![/center]"
 
-[node name="Defeat" type="RichTextLabel" parent="Control"]
+[node name="Lose" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Defeat" type="RichTextLabel" parent="Control/Lose"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -98.0
-offset_right = 75.0
-offset_bottom = -25.0
+offset_left = 145.0
+offset_top = 17.0
+offset_right = 295.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 8
@@ -82,17 +95,17 @@ bbcode_enabled = true
 text = "[center][wave amp=25.0 freq=5.0 connected=1] 
 DEFEAT[/wave][/center]"
 
-[node name="LoseText" type="RichTextLabel" parent="Control"]
+[node name="LoseText" type="RichTextLabel" parent="Control/Lose"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -122.5
-offset_top = 0.5
-offset_right = 124.5
-offset_bottom = 89.5
+offset_left = 97.5
+offset_top = 115.5
+offset_right = 344.5
+offset_bottom = 204.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 4
