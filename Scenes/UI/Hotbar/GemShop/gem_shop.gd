@@ -13,7 +13,6 @@ var range_level = 1
 @onready var damage_details: Label = $MainShop/MainShopContainer/DamageDetails
 @onready var range_level_label: Label = $MainShop/MainShopContainer/VBoxContainer3/RangeLevel
 @onready var range_details: Label = $MainShop/MainShopContainer/RangeDetails
-
 @onready var mainTower = get_tree().get_first_node_in_group("mainTower")
 
 func _ready() -> void:

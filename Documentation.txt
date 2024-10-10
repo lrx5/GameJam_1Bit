@@ -52,11 +52,13 @@ Offset:      0px
 
 -------------------------------------------------------------------------------
 [Autoloads]
-The project has a total of 3 Autoload(s):
+The project has a total of 6 Autoload(s):
 SceneInteraction.gd        # Handles Scene Interactions
 SceneManager.gd            # Contains Packed Scenes stored in a dictionary
 ResourceManager.gd         # Manages the Coins, Gems, Round Counter
 UpgradesManager.gd         # Holds all the buildable tower upgrades Tier I, II, III
+AudioManager.gd            # For Audio
+WaveManager.gd             # For In-game wave spawning
 
 -------------------------------------------------------------------------------
 [Other Settings]
@@ -75,4 +77,4 @@ Enemy gets stuck in attack state without actually attacking when its target quad
 Something to do with the canStartAttacking boolean.
 
 [Remove On Final Export]
-1. ResourceManager.gd Debug
+Nothing for now
