@@ -30,10 +30,13 @@ var waveNumber : int = 0
 var canBeRewarded : bool = false
 var justRewarded : bool = false
 
+var widthValue : float = 3
+
 func _ready():
 	randomize()
 	quadrants.shuffle()
 	setVPSvar()
+	startTween()
 	
 func _process(delta):
 	waveTimer += delta
@@ -84,30 +87,43 @@ func _process(delta):
 
 			
 	gemRewards()
-		
+	queue_redraw()
+
+func tweenWidth(value):
+	widthValue = value
+	return widthValue
+
+func startTween():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).\
+	tween_method(tweenWidth, 3, 7, 0.5)
+	tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).\
+	tween_method(tweenWidth, 7, 3, 0.5)
+	tween.set_loops()
+	
 func _draw() -> void:	
 	#vertical
-	draw_line(vertices(quadrants[0])[1],vertices(quadrants[0])[0],Color(255,255,255),3)
+	draw_line(vertices(quadrants[0])[1],vertices(quadrants[0])[0],Color(255,255,255),widthValue)
 	#horizontal
-	draw_line(vertices(quadrants[0])[2],vertices(quadrants[0])[0],Color(255,255,255),3)
+	draw_line(vertices(quadrants[0])[2],vertices(quadrants[0])[0],Color(255,255,255),widthValue)
 	
 	if  ResourceManager.round > 10:
 		#vertical
-		draw_line(vertices(quadrants[1])[1],vertices(quadrants[1])[0],Color(255,255,255),1)
+		draw_line(vertices(quadrants[1])[1],vertices(quadrants[1])[0],Color(255,255,255),widthValue)
 		#horizontal
-		draw_line(vertices(quadrants[1])[2],vertices(quadrants[1])[0],Color(255,255,255),1)
+		draw_line(vertices(quadrants[1])[2],vertices(quadrants[1])[0],Color(255,255,255),widthValue)
 		
 	if  ResourceManager.round > 20:
 		#vertical
-		draw_line(vertices(quadrants[2])[1],vertices(quadrants[2])[0],Color(255,255,255),1)
+		draw_line(vertices(quadrants[2])[1],vertices(quadrants[2])[0],Color(255,255,255),widthValue)
 		#horizontal
-		draw_line(vertices(quadrants[2])[2],vertices(quadrants[2])[0],Color(255,255,255),1)
+		draw_line(vertices(quadrants[2])[2],vertices(quadrants[2])[0],Color(255,255,255),widthValue)
 		
 	if  ResourceManager.round > 30:
 		#vertical
-		draw_line(vertices(quadrants[3])[1],vertices(quadrants[3])[0],Color(255,255,255),1)
+		draw_line(vertices(quadrants[3])[1],vertices(quadrants[3])[0],Color(255,255,255),widthValue)
 		#horizontal
-		draw_line(vertices(quadrants[3])[2],vertices(quadrants[3])[0],Color(255,255,255),1)
+		draw_line(vertices(quadrants[3])[2],vertices(quadrants[3])[0],Color(255,255,255),widthValue)
 
 func vertices(quadrant):
 	var c = Vector2(sign(quadrant.x) * vpsWidth,sign(quadrant.y) * vpsHeight)
