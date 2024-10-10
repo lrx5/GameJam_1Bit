@@ -37,26 +37,36 @@ func _ready():
 	
 func _process(delta):
 	waveTimer += delta
-	if waveTimer >= 20:
-		canSpawn = true
-		waveNumber += 1
-		ResourceManager.round = waveNumber
-		bigCount = null
-		mediumCount = null
-		fastCount = null
-		explodeCount = null
-		if waveNumber < 50:
-			var wavesData = WaveManager.waves_data[waveNumber]
-			mediumCount = wavesData[0]
-			bigCount = wavesData[1] if wavesData.size() >= 2 else 0
-			fastCount = wavesData[2] if wavesData.size() >= 3 else 0
-			explodeCount = wavesData[3] if wavesData.size() >= 4 else 0
-		elif waveNumber >= 50:
+	if waveNumber < 50:
+		if waveTimer >= 20:
+			canSpawn = true
+			waveNumber += 1
+			ResourceManager.round = waveNumber
+			bigCount = null
+			mediumCount = null
+			fastCount = null
+			explodeCount = null
+			if waveNumber < 50:
+				var wavesData = WaveManager.waves_data[waveNumber]
+				mediumCount = wavesData[0]
+				bigCount = wavesData[1] if wavesData.size() >= 2 else 0
+				fastCount = wavesData[2] if wavesData.size() >= 3 else 0
+				explodeCount = wavesData[3] if wavesData.size() >= 4 else 0
+			elif waveNumber >= 50:
+				canSpawn = false
+			waveTimer = 0
+			
+		else:
 			canSpawn = false
-		waveTimer = 0
-		
-	else:
+			
+	elif waveNumber >= 50:
+		bigCount = 0
+		mediumCount = 0
+		fastCount = 0
+		explodeCount = 0
 		canSpawn = false
+		if get_child_count() == 0:
+			SceneInteraction.youWin = true
 	
 	if canSpawn:
 		for i in range(bigCount):
@@ -71,9 +81,7 @@ func _process(delta):
 		for i in range(explodeCount):
 			enemyExplodeSpawner()
 			await get_tree().create_timer(1).timeout
-	
-	if waveNumber >= 50:
-		SceneInteraction.youWin = true
+
 			
 	gemRewards()
 		

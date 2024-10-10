@@ -17,3 +17,5 @@ func onWaveButtonPressed():
 	if enemyField.waveNumber != 50:
 		await get_tree().create_timer(0.1).timeout
 		enemyField.waveTimer = 90
+	elif enemyField.waveNumber == 50:
+		process_mode = PROCESS_MODE_DISABLED
