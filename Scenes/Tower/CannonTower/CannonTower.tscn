@@ -77,7 +77,6 @@ shape = SubResource("CircleShape2D_4h40k")
 
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("12_q0u47")
-maxHealth = 300.0
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 1024

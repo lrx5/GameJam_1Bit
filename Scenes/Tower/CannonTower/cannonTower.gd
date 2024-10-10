@@ -8,6 +8,7 @@ var tween
 func _ready() -> void:
 	super._ready()
 	setTowerStats("cannon")
+	initStats = true
 
 func _process(delta: float) -> void:
 	setTowerStats("cannon")

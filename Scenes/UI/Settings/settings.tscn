@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bsfofk3gmlsdb"]
 
 [ext_resource type="Material" uid="uid://dqrlqarhqnrdr" path="res://Scenes/UI/settingShader.tres" id="1_8ilo1"]
-[ext_resource type="Script" path="res://Resources/audioManager.gd" id="1_voido"]
+[ext_resource type="Script" path="res://Assets/audioManager.gd" id="1_voido"]
 [ext_resource type="Texture2D" uid="uid://b7jvoxecycbcl" path="res://Assets/Sprites/PNG/UI/Settings/settings_handle.png" id="2_1o6yq"]
 [ext_resource type="Script" path="res://Scenes/UI/Settings/spriteWaveSettings.gd" id="3_2bw7f"]
 [ext_resource type="Texture2D" uid="uid://dkrabk2vh630" path="res://Assets/Sprites/PNG/UI/Settings/Music_Normal.png" id="3_m2cib"]

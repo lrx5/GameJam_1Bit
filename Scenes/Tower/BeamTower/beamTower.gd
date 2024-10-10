@@ -5,6 +5,7 @@ extends Tower
 func _ready() -> void:
 	super._ready()
 	setTowerStats("beam")
+	initStats = true
 	
 func _process(delta: float) -> void:
 	setTowerStats("beam")

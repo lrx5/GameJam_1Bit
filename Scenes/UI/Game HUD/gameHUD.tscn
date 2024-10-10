@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dul6urpny4ssk"]
+[gd_scene load_steps=7 format=3 uid="uid://dul6urpny4ssk"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Game HUD/gameHUD.gd" id="1_f6a5x"]
 [ext_resource type="FontFile" uid="uid://bx3y0eh5kbicb" path="res://Assets/Fonts/Dico/Dico.ttf" id="2_hx8e1"]
@@ -7,6 +7,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_p2m44"]
 font = ExtResource("2_hx8e1")
 font_size = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_typat"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_agjra"]
 font = ExtResource("3_5kpkm")
@@ -44,15 +46,20 @@ offset_bottom = 16.0
 text = "Gems: 0"
 label_settings = SubResource("LabelSettings_p2m44")
 
-[node name="RoundLabel" type="Label" parent="Control"]
+[node name="Panel" type="PanelContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -19.5
-offset_top = 2.0
-offset_right = 19.5
-offset_bottom = 16.0
+offset_left = -24.5
+offset_right = 24.5
+offset_bottom = 40.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_typat")
+
+[node name="RoundLabel" type="Label" parent="Control/Panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 text = "Round"
 label_settings = SubResource("LabelSettings_agjra")

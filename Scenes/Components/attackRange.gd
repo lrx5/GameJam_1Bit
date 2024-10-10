@@ -61,20 +61,24 @@ func _setTarget():
 					enemiesStatDict[enemy] = global_position.distance_to(enemy.global_position)
 					valueSort.append(global_position.distance_to(enemy.global_position))
 				if targetPriority == "Farthest":
-					target = enemiesStatDict.find_key(valueSort.max())
+					if is_instance_valid(enemiesStatDict.find_key(valueSort.max())):
+						target = enemiesStatDict.find_key(valueSort.max())
 				else:
-					target = enemiesStatDict.find_key(valueSort.min())
+					if is_instance_valid(enemiesStatDict.find_key(valueSort.min())):
+						target = enemiesStatDict.find_key(valueSort.min())
 			"Fastest":
 				for enemy in enemiesDetected:
 					enemiesStatDict[enemy] = enemy.runSpeed
 					valueSort.append(enemy.runSpeed)
-				target =  enemiesStatDict.find_key(valueSort.max())
+				if is_instance_valid(enemiesStatDict.find_key(valueSort.max())):
+					target = enemiesStatDict.find_key(valueSort.max())
 			"HighestHP":
 				for enemy in enemiesDetected:
 					if enemy.healthManager:
 						enemiesStatDict[enemy]= enemy.healthManager.currentHealth
 						valueSort.append(enemy.healthManager.currentHealth)
-					target = enemiesStatDict.find_key(valueSort.max())
+					if is_instance_valid(enemiesStatDict.find_key(valueSort.max())):
+						target = enemiesStatDict.find_key(valueSort.max())
 	if is_instance_valid(target):
 		target = target
 	else:

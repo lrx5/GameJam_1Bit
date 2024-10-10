@@ -12,10 +12,10 @@ func _enter():
 
 func dropCoin():
 	if character.name.left(3) == "Big":
-		ResourceManager.changeCoins(20)
+		ResourceManager.changeCoins(12)
 	if character.name.left(6) == "Medium":
-		ResourceManager.changeCoins(5)
+		ResourceManager.changeCoins(4)
 	if character.name.left(4) == "Fast":
 		ResourceManager.changeCoins(3)
 	if character.name.left(7) == "Explode":
-		ResourceManager.changeCoins(10)
+		ResourceManager.changeCoins(6)

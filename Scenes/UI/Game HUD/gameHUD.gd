@@ -5,7 +5,7 @@ var gems
 var new_round
 @onready var coins_label: Label = $Control/CoinsLabel
 @onready var gems_label: Label = $Control/GemsLabel
-@onready var round_label: Label = $Control/RoundLabel
+@onready var round_label: Label = $Control/Panel/RoundLabel
 
 func _ready():
 	labelsInit()

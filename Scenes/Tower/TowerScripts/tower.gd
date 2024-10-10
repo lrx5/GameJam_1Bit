@@ -23,8 +23,9 @@ signal towerUpgraded
 
 @onready var hovered: bool = false
 @onready var selected: bool = false
+@onready var canDraw: bool = true
 var attackTimer : float = 0
-
+@onready var initStats = false
 
 func _ready():
 	connect("mouse_entered",_onMouseEnter)
@@ -52,26 +53,30 @@ func setTowerStats(towerType: String):
 		attackSpeed = towerStats["fire_rate"]
 	if healthManager.maxHealth != towerStats["hp"]:
 		healthManager.maxHealth = towerStats["hp"]
+		if not initStats:
+			healthManager.currentHealth = towerStats["hp"]
 	if attackRange.attackRange != towerStats["range"] * 18:
 		attackRange.attackRange = towerStats["range"] * 18
 	if damage != towerStats["damage"]:
 		damage = towerStats["damage"]
 
 
+
 func mouseSelect(input: InputEvent):
+		
 	if hovered and input is InputEventMouseButton and input.button_index == MOUSE_BUTTON_LEFT:
 		hovered = false
 		selected = true
 		SceneInteraction.toggleUpgrade(true,self)
+		
 	if selected:
 		queue_redraw()
 		if attackRange.targetPriority != SceneInteraction.upgradePanel.target:
 			attackRange.targetPriority = SceneInteraction.upgradePanel.target
-			
+
 func _draw() -> void:
 	if (self is CannonTower or self is RocketTower or self is BeamTower) and selected:
 		draw_circle(Vector2.ZERO,attackRange.attackRange,Color(255,255,255),false,1,false)
-	
 	
 
 func _onMouseEnter() -> void:

@@ -85,6 +85,8 @@ func _input(event: InputEvent) -> void:
 		await get_tree().create_timer(0.13).timeout
 		justUpgraded = false
 
+
+
 func towerString():
 	var towerString 
 	if "Cannon" in newTower.name:
@@ -115,6 +117,7 @@ func setTarget(index: int):
 
 func setTower(tower: Tower):
 	newTower = tower
+	queue_redraw()
 	upgrade.visible = false if newTower.towerTier == "tier3" else true
 	canUpgrade = false
 	await get_tree().create_timer(0.13).timeout
@@ -159,6 +162,8 @@ func cancelUpgrade():
 	SceneInteraction.toggleBuildMode(false)
 	SceneInteraction.toggleSelect(false)
 	if is_instance_valid(newTower):
+		newTower.selected = false
+	if newTower:
 		newTower.selected = false
 	newTower = null
 	

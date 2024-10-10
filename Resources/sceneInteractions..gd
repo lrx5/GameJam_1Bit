@@ -64,6 +64,7 @@ func setPanelPosition(tower: Tower):
 	var panelSize = upgradePanel.get_rect().size 
 	var towerOffset = tower.get_global_transform_with_canvas().origin + Vector2(cellSize.x,-panelSize.y/2)
 	var viewPortLimit = get_viewport().size/2
+
 	upgradePanel.global_position = towerOffset
 	
 	if towerOffset.x + (4*panelSize.x) > viewPortLimit.x:
@@ -72,4 +73,4 @@ func setPanelPosition(tower: Tower):
 		upgradePanel.global_position.y = towerOffset.y + panelSize.y/2 - cellSize.y/2
 	if towerOffset.y + 2*panelSize.y > viewPortLimit.y:
 		upgradePanel.global_position.y = towerOffset.y - panelSize.y/2 + cellSize.y/2
-		
+			
