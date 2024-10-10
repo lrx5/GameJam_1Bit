@@ -7,6 +7,8 @@ extends Tower
 @export var quadrant3: MainTowerQuadrant
 @export var quadrant4: MainTowerQuadrant
 @onready var quadrants = [quadrant1,quadrant2,quadrant3,quadrant4]
+@export var main_gun: MainGunPivot
+@export var main_tower_sfx: AudioStreamPlayer
 
 var quad1Health : float = 0
 
@@ -40,11 +42,16 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") and canShoot:
 		projectileSpawner.shoot()
 		canShoot = false
-		
+		start_tweening()
+		main_tower_sfx.play()
 	if not canShoot:
 		shootCooldown(delta)
 			
-			
+func start_tweening():
+	var tween = create_tween()
+	tween.tween_property(main_gun, "scale", Vector2(1.2,  1.2), 0.1)
+	tween.tween_property(main_gun, "scale", Vector2(1.0,  1.0), 0.5)
+
 func shootCooldown(delta):
 	cooldown += delta
 	if cooldown > UpgradesManager.mainFR[FRlvl]:

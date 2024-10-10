@@ -65,6 +65,8 @@ Viewport Width:  480px
 Viewport Height: 270px
 
 [Known Bugs]
+Major Bug where you can skip indefinitely and win the game outright
+
 Enemy damage triggers immediately upon contact with tower
 Everything works okay with this bug except for the exploder, 
 it triggers its damage twice so a temporary fix is to halve its damage

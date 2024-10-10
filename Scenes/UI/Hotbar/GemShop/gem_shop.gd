@@ -34,9 +34,9 @@ func onShopExit():
 
 #region Fire Rate Upgrade
 func _on_upgrade_1_mouse_entered() -> void:
-	pass #TODO For Anim
+	upgrade_1.text = "[+] Upgrade?"
 func _on_upgrade_1_mouse_exited() -> void:
-	pass #TODO For Anim
+	upgrade_1.text = "[+]"
 func _on_upgrade_1_gui_input(event: InputEvent) -> void:
 	var gameHUD = get_node("/root/SceneSwitcher/GameHUD")
 	if event.is_action_pressed("ui_LMB"):
@@ -77,13 +77,15 @@ func _on_upgrade_1_gui_input(event: InputEvent) -> void:
 			upgrade_1.visible = false
 			#Change Main Turret Values
 			return
+		else:
+			upgrade_1.text = "[+] Low Gems"
 #endregion
 
 #region Damage Upgrade
 func _on_upgrade_2_mouse_entered() -> void:
-	pass #TODO For Anim
+	upgrade_2.text = "[+] Upgrade?"
 func _on_upgrade_2_mouse_exited() -> void:
-	pass #TODO For Anim
+	upgrade_2.text = "[+]"
 func _on_upgrade_2_gui_input(event: InputEvent) -> void:
 	var gameHUD = get_node("/root/SceneSwitcher/GameHUD")
 	if event.is_action_pressed("ui_LMB"):
@@ -124,13 +126,15 @@ func _on_upgrade_2_gui_input(event: InputEvent) -> void:
 			upgrade_2.visible = false
 			#Change Main Turret Values
 			return
+		else:
+			upgrade_2.text = "[+] Low Gems"
 #endregion
 
 #region Range Upgrade
 func _on_upgrade_3_mouse_entered() -> void:
-	pass # Replace with function body.
+	upgrade_3.text = "[+] Upgrade?"
 func _on_upgrade_3_mouse_exited() -> void:
-	pass # Replace with function body.
+	upgrade_3.text = "[+]"
 func _on_upgrade_3_gui_input(event: InputEvent) -> void:
 	var gameHUD = get_node("/root/SceneSwitcher/GameHUD")
 	if event.is_action_pressed("ui_LMB"):
@@ -171,4 +175,6 @@ func _on_upgrade_3_gui_input(event: InputEvent) -> void:
 			upgrade_3.visible = false
 			#Change Main Turret Values
 			return
+		else:
+			upgrade_3.text = "[+] Low Gems"
 #endregion

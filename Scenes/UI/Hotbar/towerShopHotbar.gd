@@ -21,15 +21,7 @@ extends CanvasLayer
 
 var towerType
 var towerName
-var towerBase#
-
-#region New TowerShop Variables
-#var openedPos = offset.x
-#var closedPos = offset.x + 80.0
-#var isShopOpen = false
-#var isTweening = false
-#@onready var tween
-#endregion
+var towerBase
 
 func _ready():
 	#setDefaultPos()
@@ -194,29 +186,3 @@ func onMouseExit():
 		SceneInteraction.toggleSelect(false)
 	else:
 		canDrop = true
-
-#region Open & Close Tower Shop - TESTING
-#func setDefaultPos():
-#	offset.x = closedPos
-#
-#func _on_shop_button_pressed() -> void:
-#	if isTweening == false:
-#		isTweening = true
-#		isShopOpen = !isShopOpen
-#		if isShopOpen:
-#			openTowerShop()
-#			closeTowerShop()
-#
-#func openTowerShop():
-#	tween = create_tween()
-#	tween.set_trans(Tween.TRANS_CUBIC).tween_property(self, "offset:x", openedPos, 1.0)
-#	tween.finished.connect(_on_tween_finished)
-#	
-#func closeTowerShop():
-#	tween = create_tween()
-#	tween.set_trans(Tween.TRANS_CUBIC).tween_property(self, "offset:x", closedPos, 1.0)
-#	tween.finished.connect(_on_tween_finished)
-#
-#func _on_tween_finished():
-#	isTweening = false
-#endregion
