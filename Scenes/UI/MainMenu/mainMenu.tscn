@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://byaj84r1nn03j"]
+[gd_scene load_steps=18 format=3 uid="uid://byaj84r1nn03j"]
 
 [ext_resource type="Texture2D" uid="uid://blxsuusrq64tg" path="res://Assets/Sprites/PNG/Background/1bit_bg_main.png" id="1_6r48k"]
 [ext_resource type="Texture2D" uid="uid://gylwgx722dai" path="res://Assets/Sprites/PNG/Background/1bit_bg_white.png" id="1_y8aac"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bshy1a3f0nw4i" path="res://Assets/Sprites/PNG/UI/Main Menu/Quit_Hover.png" id="7_0ruod"]
 [ext_resource type="Script" path="res://Scenes/UI/MainMenu/change_bgm.gd" id="9_y3va4"]
 [ext_resource type="AudioStream" uid="uid://yjtokt28t3wi" path="res://Assets/Sounds/Background Music/1bit_bgm.wav" id="10_c6dj4"]
+[ext_resource type="FontFile" uid="uid://c3plqli5lmcnp" path="res://Assets/Fonts/Awfully Digital/AwfullyDigital.ttf" id="15_xumx3"]
 
 [sub_resource type="GDScript" id="GDScript_u6wbf"]
 script/source = "extends TextureRect  # or any other node with a shader
@@ -119,6 +120,28 @@ texture_normal = ExtResource("6_5yfli")
 texture_pressed = ExtResource("6_5yfli")
 texture_hover = ExtResource("7_0ruod")
 texture_disabled = ExtResource("7_0ruod")
+
+[node name="GameTitle" type="RichTextLabel" parent="Control"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = 71.0
+offset_right = -154.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_offset_y = -4
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/normal_font = ExtResource("15_xumx3")
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "[center][wave amp=15.0 freq=1.0 connected=1] 
+ExoCrystalTD[/wave][/center]"
 
 [connection signal="pressed" from="Control/Play" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="Control/Play" to="Control/Play" method="_on_pressed"]
