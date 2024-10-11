@@ -25,3 +25,6 @@ func _on_pressed() -> void:
 
 	var settings = get_node("/root/SceneSwitcher/Settings")
 	settings.visible = true
+	SceneInteraction.toggleBuildMode(true)
+	await get_tree().create_timer(0.25).timeout
+	

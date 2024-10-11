@@ -14,10 +14,6 @@ var newGame: bool = false
 func _ready():
 	mainMenu()
 	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("escape"):
-		settingsScene.visible = false
-	
 func _process(_delta: float) -> void:
 	if SceneInteraction.gameEnd or SceneInteraction.youWin:
 		clearScreen()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bsfofk3gmlsdb"]
+[gd_scene load_steps=19 format=3 uid="uid://bsfofk3gmlsdb"]
 
 [ext_resource type="Material" uid="uid://dqrlqarhqnrdr" path="res://Scenes/UI/settingShader.tres" id="1_8ilo1"]
 [ext_resource type="Script" path="res://Assets/audioManager.gd" id="1_voido"]
@@ -9,6 +9,8 @@
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Assets/Fonts/Joystix/joystix monospace.otf" id="5_bk6qq"]
 [ext_resource type="AudioStream" uid="uid://fdgfhbual57b" path="res://Assets/Sounds/Background Music/1bit_bgm_calm.wav" id="6_6ex1b"]
 [ext_resource type="Texture2D" uid="uid://70qcfbhty0mo" path="res://Assets/Sprites/PNG/Background/1bit_settings.png" id="6_e82wk"]
+[ext_resource type="Texture2D" uid="uid://c8g0xcaxuavx7" path="res://Assets/Sprites/PNG/UI/Game/closeButtonSettings.png" id="10_xxgqb"]
+[ext_resource type="Texture2D" uid="uid://ccwneys42h6id" path="res://Assets/Sprites/PNG/UI/Game/closeButtonSettingsHovered.png" id="11_i6fra"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ugcde"]
 color = Color(1, 1, 1, 1)
@@ -28,7 +30,9 @@ thickness = 6
 font = ExtResource("5_bk6qq")
 font_size = 30
 
-[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("bgm", "sfx")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6b0x0"]
+
+[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("bgm", "sfx", "closeButton")]
 process_mode = 3
 layer = 5
 visible = false
@@ -37,6 +41,8 @@ bus_name_bgm = "bgm"
 bus_name_sfx = "sfx"
 bgm = NodePath("Control/BGM")
 sfx = NodePath("Control/SFX")
+closeButton = NodePath("Control/PanelContainer/MarginContainer/TextureButton")
+metadata/_edit_vertical_guides_ = [476.0]
 
 [node name="Control" type="Control" parent="."]
 z_index = 1
@@ -138,6 +144,29 @@ grow_horizontal = 2
 text = "SETTINGS"
 label_settings = SubResource("LabelSettings_6oloa")
 horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6b0x0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="TextureButton" type="TextureButton" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("10_xxgqb")
+texture_pressed = ExtResource("10_xxgqb")
+texture_hover = ExtResource("11_i6fra")
+texture_disabled = ExtResource("11_i6fra")
 
 [connection signal="value_changed" from="Control/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
 [connection signal="value_changed" from="Control/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

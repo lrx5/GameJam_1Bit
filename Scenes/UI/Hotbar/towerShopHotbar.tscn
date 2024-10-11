@@ -149,7 +149,7 @@ mainShopButton = NodePath("MainShopButton")
 towerShopButton = NodePath("TowerShopButton")
 settingsButton = NodePath("SettingsButton")
 towerShop = NodePath("TowerShop")
-metadata/_edit_vertical_guides_ = [390.0, 413.0]
+metadata/_edit_vertical_guides_ = [390.0, 413.0, 476.0]
 metadata/_edit_horizontal_guides_ = [22.0, 4.0]
 
 [node name="TowerShopButton" type="TextureButton" parent="." groups=["hudButtons"]]
@@ -158,9 +158,9 @@ offset_top = 4.0
 offset_right = 412.0
 offset_bottom = 22.0
 texture_normal = ExtResource("2_bnx3u")
-texture_pressed = ExtResource("3_sveaw")
+texture_pressed = ExtResource("2_bnx3u")
 texture_hover = ExtResource("3_sveaw")
-texture_focused = ExtResource("2_bnx3u")
+texture_disabled = ExtResource("3_sveaw")
 script = ExtResource("4_a5swv")
 
 [node name="MainShopButton" type="TextureButton" parent="." groups=["hudButtons"]]
@@ -169,9 +169,9 @@ offset_top = 4.0
 offset_right = 437.0
 offset_bottom = 22.0
 texture_normal = ExtResource("5_s3sh6")
-texture_pressed = ExtResource("6_mgfjw")
+texture_pressed = ExtResource("5_s3sh6")
 texture_hover = ExtResource("6_mgfjw")
-texture_focused = ExtResource("5_s3sh6")
+texture_disabled = ExtResource("6_mgfjw")
 script = ExtResource("4_aech8")
 
 [node name="SettingsButton" type="TextureButton" parent="." groups=["hudButtons"]]
@@ -181,9 +181,9 @@ offset_right = 498.0
 offset_bottom = 39.0
 scale = Vector2(0.508133, 0.508133)
 texture_normal = ExtResource("4_p0cgk")
-texture_pressed = ExtResource("5_tjqic")
+texture_pressed = ExtResource("4_p0cgk")
 texture_hover = ExtResource("5_tjqic")
-texture_focused = ExtResource("4_p0cgk")
+texture_disabled = ExtResource("5_tjqic")
 script = ExtResource("8_opwsr")
 
 [node name="NextWaveButton" type="TextureButton" parent="." groups=["hudButtons"]]
@@ -196,7 +196,9 @@ offset_right = 23.0
 offset_bottom = 9.0
 grow_vertical = 2
 texture_normal = ExtResource("9_8ofa3")
+texture_pressed = ExtResource("9_8ofa3")
 texture_hover = ExtResource("12_nvejh")
+texture_disabled = ExtResource("12_nvejh")
 script = ExtResource("10_tfg0w")
 
 [node name="ShopAnimationPlayer" type="AnimationPlayer" parent="."]
