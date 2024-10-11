@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://28paxk21m0io"]
+[gd_scene load_steps=14 format=3 uid="uid://28paxk21m0io"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/BeamTower/beamTower.gd" id="1_8exyt"]
 [ext_resource type="Script" path="res://Scenes/Components/towerBase.gd" id="2_5lptc"]
-[ext_resource type="Texture2D" uid="uid://rl62hshmfphl" path="res://Assets/Sprites/PNG/TIle/BlackTile.png" id="2_537no"]
 [ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="3_7qucq"]
 [ext_resource type="Script" path="res://Scenes/Components/projectileSpawner.gd" id="4_ncd52"]
 [ext_resource type="Texture2D" uid="uid://dd8wbfhwxqq6x" path="res://Assets/Sprites/PNG/Buildable Tower/beamTower_tier1.png" id="6_autxw"]
@@ -13,10 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://8vf6sog8gu3v" path="res://Assets/Sprites/PNG/Buildable Tower/beamTower_tier3.png" id="10_03oge"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="12_jwv24"]
 [ext_resource type="Script" path="res://Scenes/Components/hurtbox.gd" id="13_svu8n"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rinhm"]
-atlas = ExtResource("2_537no")
-region = Rect2(0, 0, 18, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4h40k"]
 radius = 50.0
@@ -32,9 +27,6 @@ gunPivot = NodePath("GunPivot")
 attackSpeed = 8.0
 healthManager = NodePath("HealthManager")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_rinhm")
-
 [node name="BeamCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 1)
 polygon = PackedVector2Array(-6, -6, -6, 4, 6, 4, 6, -6)
@@ -46,7 +38,7 @@ script = ExtResource("2_5lptc")
 
 [node name="TowerShape" type="CollisionPolygon2D" parent="TowerBase"]
 position = Vector2(0, -1)
-polygon = PackedVector2Array(-6, -4, -6, 6, 6, 6, 6, -4)
+polygon = PackedVector2Array(-8, -7, -8, 9, 8, 9, 8, -7)
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
 script = ExtResource("3_7qucq")

@@ -10,6 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	setTowerStats("beam")
 	
+	cancelSelection()
 	if attackRange.target and attackCooldown(delta) and gunPivot.startShooting:
 		projectileSpawner.shoot()
 	

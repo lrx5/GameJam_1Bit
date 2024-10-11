@@ -41,7 +41,7 @@ layer = 20
 visible = false
 texture = ExtResource("2_btlgl")
 
-[node name="UpgradePanel" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("left", "targetLabel", "right", "towerName", "stats", "upgrade", "upgradePrice", "sell")]
+[node name="UpgradePanel" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("left", "targetLabel", "right", "towerName", "stats", "upgrade", "upgradePrice", "filler", "sell")]
 process_mode = 4
 visible = false
 offset_right = 64.0
@@ -55,6 +55,7 @@ towerName = NodePath("MarginContainer/UpgradeContainer/TowerName")
 stats = NodePath("MarginContainer/UpgradeContainer/Stats")
 upgrade = NodePath("MarginContainer/UpgradeContainer/Upgrade")
 upgradePrice = NodePath("MarginContainer/UpgradeContainer/Upgrade/UpgradePrice/Price")
+filler = NodePath("MarginContainer/UpgradeContainer/Filler")
 sell = NodePath("MarginContainer/UpgradeContainer/SellTower/Sell")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UpgradePanel"]

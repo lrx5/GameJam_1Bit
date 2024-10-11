@@ -32,6 +32,7 @@ gunPivot = NodePath("GunPivot")
 healthManager = NodePath("HealthManager")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 z_index = -10
 texture = SubResource("AtlasTexture_snjoq")
 
@@ -44,7 +45,9 @@ collision_mask = 64
 script = ExtResource("2_7b43j")
 
 [node name="TowerShape" type="CollisionPolygon2D" parent="TowerBase"]
-polygon = PackedVector2Array(-4, -4, -4, 5, 4, 5, 4, -4)
+position = Vector2(-0.2, -0.3)
+scale = Vector2(0.986111, 1.02083)
+polygon = PackedVector2Array(-7.90986, -7.54286, -7.90986, 8.13061, 8.31549, 8.13061, 8.31549, -7.54286)
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
 script = ExtResource("3_vehgj")

@@ -15,6 +15,7 @@ func _ready() -> void:
 func _process(_delta) -> void:
 	if !shop_hidden and !is_tweening and Input.is_action_just_pressed("escape"):
 		justClicked = true
+		SceneInteraction.toggleBuildMode(false)
 		is_tweening = true
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC).tween_property(gem_shop, "position", hidden_pos, 0.2)

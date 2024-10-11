@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://derno1dlhr656"]
+[gd_scene load_steps=14 format=3 uid="uid://derno1dlhr656"]
 
 [ext_resource type="Script" path="res://Scenes/Tower/RocketTower/rocketTower.gd" id="1_wrymd"]
-[ext_resource type="Texture2D" uid="uid://rl62hshmfphl" path="res://Assets/Sprites/PNG/TIle/BlackTile.png" id="2_2jh8s"]
 [ext_resource type="Script" path="res://Scenes/Components/towerBase.gd" id="2_opmw5"]
 [ext_resource type="Script" path="res://Scenes/Components/gunPivot.gd" id="3_tqb0f"]
 [ext_resource type="Script" path="res://Scenes/Components/projectileSpawner.gd" id="4_d61fj"]
@@ -13,10 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://dm0v020oyieyj" path="res://Assets/Sprites/PNG/Buildable Tower/rocketTower_tier3.png" id="12_l2ghk"]
 [ext_resource type="Script" path="res://Scenes/Components/healthManager.gd" id="12_nvg6o"]
 [ext_resource type="Script" path="res://Scenes/Components/hurtbox.gd" id="13_qhyn2"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d7qmb"]
-atlas = ExtResource("2_2jh8s")
-region = Rect2(0, 0, 18, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4h40k"]
 radius = 50.0
@@ -32,9 +27,6 @@ gunPivot = NodePath("GunPivot")
 attackSpeed = 0.5
 healthManager = NodePath("HealthManager")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_d7qmb")
-
 [node name="RocketCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 6)
 polygon = PackedVector2Array(-5, -10, -5, -2, 5, -2, 5, -10)
@@ -45,7 +37,7 @@ collision_mask = 64
 script = ExtResource("2_opmw5")
 
 [node name="TowerShape" type="CollisionPolygon2D" parent="TowerBase"]
-polygon = PackedVector2Array(-5, -4, -5, 4, 5, 4, 5, -4)
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
 [node name="GunPivot" type="Node2D" parent="." node_paths=PackedStringArray("inRange")]
 script = ExtResource("3_tqb0f")

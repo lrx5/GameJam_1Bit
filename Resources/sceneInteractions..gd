@@ -13,6 +13,7 @@ signal upgradeToggle(isUpgrading: bool, tower : Tower)
 
 @onready var gameEnd = false
 @onready var youWin = false
+@onready var upgradeDisplayed = false
 
 func _ready() -> void:
 	connect("buildModeToggle",onBuildModeToggle)
@@ -66,7 +67,6 @@ func setPanelPosition(tower: Tower):
 	var viewPortLimit = get_viewport().size/2
 
 	upgradePanel.global_position = towerOffset
-	
 	if towerOffset.x + (4*panelSize.x) > viewPortLimit.x:
 		upgradePanel.global_position.x = towerOffset.x - (2 * cellSize.x+panelSize.x)
 	if towerOffset.y < 0:

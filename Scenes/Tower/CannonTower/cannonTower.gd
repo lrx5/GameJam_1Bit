@@ -11,7 +11,8 @@ func _ready() -> void:
 	initStats = true
 
 func _process(delta: float) -> void:
-	setTowerStats("cannon")
+	cancelSelection()
+	
 	if attackRange.target and attackCooldown(delta) and gunPivot.startShooting:
 		projectileSpawner.shoot()
 		startTweening()

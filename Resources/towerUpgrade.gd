@@ -9,8 +9,11 @@ extends PanelContainer
 
 @export var upgrade		: PanelContainer
 @export var upgradePrice: Label
+@export var filler		: Panel
 @export var sell		: Label
 
+@onready var upgradeSize = upgrade.get_rect().size
+@onready var fillerSize = filler.get_rect().size
 
 var targetOptions = {
 	0:"Nearest",
@@ -61,11 +64,11 @@ func _input(event: InputEvent) -> void:
 		
 		match newTower.towerTier:
 			"tier1":
-				ResourceManager.changeCoins(UpgradesManager.get_turret_stats(towerString(),1)["price"])
-			"tier2":
 				ResourceManager.changeCoins(UpgradesManager.get_turret_stats(towerString(),1)["price"]*0.75)
+			"tier2":
+				ResourceManager.changeCoins(UpgradesManager.get_turret_stats(towerString(),1)["price"]*0.55)
 			"tier3":
-				ResourceManager.changeCoins(UpgradesManager.get_turret_stats(towerString(),1)["price"]*0.5)
+				ResourceManager.changeCoins(UpgradesManager.get_turret_stats(towerString(),1)["price"]*0.35)
 			
 		newTower.queue_free()
 	if hoveredUpgrade() and mouseClick(event) and not justUpgraded:
@@ -74,15 +77,21 @@ func _input(event: InputEvent) -> void:
 				if ResourceManager.coins >= UpgradesManager.get_turret_stats(towerString(),2)["price"]:
 					ResourceManager.changeCoins(-UpgradesManager.get_turret_stats(towerString(),2)["price"])
 					newTower.towerTier = "tier2"
+					newTower.toggleUpgrade()
+					filler.custom_minimum_size = fillerSize
 			"tier2":
 				if ResourceManager.coins >= UpgradesManager.get_turret_stats(towerString(),3)["price"]:
 					ResourceManager.changeCoins(-UpgradesManager.get_turret_stats(towerString(),3)["price"])
 					newTower.towerTier = "tier3"
-					upgrade.visible = false
+					newTower.toggleUpgrade()
+					filler.custom_minimum_size = fillerSize + upgradeSize
+					
 			"tier3":
+				
+				filler.custom_minimum_size = fillerSize + upgradeSize
 				upgrade.visible = false
 		justUpgraded = true
-		await get_tree().create_timer(0.13).timeout
+		await get_tree().create_timer(0.5).timeout
 		justUpgraded = false
 
 
@@ -116,9 +125,16 @@ func setTarget(index: int):
 	targetLabel.text = str(target).to_upper()
 
 func setTower(tower: Tower):
+	if newTower:
+		cancelUpgrade()
+	
 	newTower = tower
-	queue_redraw()
-	upgrade.visible = false if newTower.towerTier == "tier3" else true
+	if newTower.towerTier == "tier3":
+		upgrade.visible = false
+		filler.custom_minimum_size = fillerSize + upgradeSize
+	else:
+		upgrade.visible = true
+		filler.custom_minimum_size = fillerSize
 	canUpgrade = false
 	await get_tree().create_timer(0.13).timeout
 	canUpgrade = true
@@ -162,8 +178,6 @@ func cancelUpgrade():
 	SceneInteraction.toggleBuildMode(false)
 	SceneInteraction.toggleSelect(false)
 	if is_instance_valid(newTower):
-		newTower.selected = false
-	if newTower:
 		newTower.selected = false
 	newTower = null
 	
