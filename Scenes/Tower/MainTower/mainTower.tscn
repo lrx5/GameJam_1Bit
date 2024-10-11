@@ -133,7 +133,7 @@ collision_mask = 64
 script = ExtResource("8_j5mqu")
 
 [node name="TowerBaseShape" type="CollisionPolygon2D" parent="TowerBase"]
-polygon = PackedVector2Array(-15, -26, -26, -15, -26, 15, -15, 26, 15, 26, 26, 15, 26, -15, 15, -26)
+polygon = PackedVector2Array(-15, -26, -15, -15, -26, -15, -26, 15, -15, 15, -15, 26, 15, 26, 15, 15, 26, 15, 26, -15, 15, -15, 15, -26)
 
 [node name="MainTowerShape" type="CollisionPolygon2D" parent="."]
 visible = false

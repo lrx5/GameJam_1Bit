@@ -13,7 +13,8 @@ signal towerUpgraded
 @onready var damage : float = 0
 signal healthUpgraded()
 
-
+var tween
+@export var towerSprite : Sprite2D
 var towerBase : TowerBase
 
 @export_enum("tier1","tier2", "tier3") var towerTier = "tier1":
@@ -67,8 +68,6 @@ func setTowerStats(towerType: String):
 		"tier3":
 			towerStats = UpgradesManager.get_turret_stats(towerType,3)
 	
-	print(towerStats["hp"])
-	
 	if attackSpeed != towerStats["fire_rate"]:
 		attackSpeed = towerStats["fire_rate"]
 	if healthManager.maxHealth != towerStats["hp"]:
@@ -88,7 +87,15 @@ func cancelSelection():
 			selected = false
 			queue_redraw()
 
+#region Turret Recoil Tween TESTING
+func startTweening(recoil: float, recoilRecovery: float):
+	tween = create_tween()
+	# Cannon Recoil
+	tween.set_ease(Tween.EASE_IN_OUT).tween_property(towerSprite, "position:y", 1/attackSpeed/2, recoil).set_ease(Tween.EASE_OUT)
+	# Cannon Recoil Reset
+	tween.tween_property(towerSprite, "position:y", towerSprite.position.y, recoilRecovery).set_ease(Tween.EASE_IN).set_delay(recoil)
 
+#endregion
 
 func mouseSelect(input: InputEvent):
 		

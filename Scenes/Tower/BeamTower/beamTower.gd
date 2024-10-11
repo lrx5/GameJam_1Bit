@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 	cancelSelection()
 	if attackRange.target and attackCooldown(delta) and gunPivot.startShooting:
 		projectileSpawner.shoot()
+		startTweening(0.1,0.1)
 	
 func _input(event: InputEvent) -> void:
 	mouseSelect(event)

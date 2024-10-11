@@ -13,17 +13,22 @@ func _process(_delta: float) -> void:
 		var currentRotation = rotation
 		var enemyPosition = inRange.prevTarget.global_position
 		var gunRotation = global_position.angle_to_point(enemyPosition)
-		var finalRotation = defaultSpriteDirection.rotated(gunRotation).angle()
+		
+		var finalRotation = gunRotation + defaultSpriteDirection.angle()
+		#var finalRotation = defaultSpriteDirection.rotated(gunRotation).angle()
 	
-		finalRotation = _adjustFinalRotation(currentRotation,finalRotation)
+		#finalRotation = _adjustFinalRotation(currentRotation,finalRotation)
 		
 		rotation = move_toward(rotation,finalRotation, rotationSpeed)
 		
+		#startShooting = true if abs(rotation - finalRotation) <- 0.01 else false
 		startShooting = true if round(rotation) == round(finalRotation) else false
 		
 	else:
-		rotation = move_toward(rotation,0,rotationSpeed)
 		startShooting = false
+		
+		await get_tree().create_timer(0.2).timeout
+		rotation = move_toward(rotation,0,rotationSpeed)
 
 func _adjustFinalRotation(currentRotation,finalRotation):
 		

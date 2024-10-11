@@ -32,7 +32,7 @@ func get_main_turret_stats(turret_stat: String, level: int) -> String:
 		return ""
 
 var turret_data = {
-	"cannon1": {"price": 20, "hp": 175, "fire_rate": 1, "damage": 8, "range": 4},
+	"cannon1": {"price": 20, "hp": 175, "fire_rate": 2, "damage": 8, "range": 4},
 	"cannon2": {"price": 20, "hp": 200, "fire_rate": 2, "damage": 12, "range": 4.5},
 	"cannon3": {"price": 60, "hp": 300, "fire_rate": 3, "damage": 13, "range": 5},
 	

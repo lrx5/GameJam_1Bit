@@ -13,7 +13,8 @@ config_version=5
 config/name="gamejam_1bit"
 run/main_scene="res://Scenes/UI/SceneSwitcher.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Assets/Sprites/PNG/UI/Game/gem_icon.png"
+config/windows_native_icon="res://Assets/Sprites/PNG/UI/Game/gem_icon.ico"
 
 [audio]
 
